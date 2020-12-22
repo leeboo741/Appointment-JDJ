@@ -1,2 +1,28 @@
 <!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view class="header">
+  <view class="left-box">
+    <image class="avater" src="{{userData.avater}}" wx:if='{{userData}}'></image>
+    <image class="avater" src="/resources/images/logo.jpg" wx:else></image>
+  </view>
+  <view class="center-box">
+    <block  wx:if='{{userData}}'>
+      <view class="user-name">{{userData.name}}</view>
+      <view class="user-role">
+        <view class="role-item">社区居民</view>
+        <view class="role-item">召集人</view>
+        <view class="role-item">团队队长</view>
+      </view>
+    </block>
+    <text wx:else>点我登录,登录之后更精彩</text>
+  </view>
+  <view class="right-box" wx:if='{{userData}}'>
+    <view class="apply-button">申请成为召集人</view>
+  </view>
+</view>
+<view style="height: 20rpx"></view>
+<vantCellGroup>
+  <vantCell is-link wx:for='{{operate}}' wx:key='index' link-type='navigateTo' url='{{item.url}}'>
+    <text slot='title' class="cell-title">{{item.name}}</text>
+    <image slot='icon' class="cell-icon" src="{{item.icon}}"></image>
+  </vantCell>
+</vantCellGroup>

@@ -15,19 +15,19 @@
         "pagePath": "pages/journal/journal-list/index",
         "text": "随拍",
         "iconPath": "/resources/images/journal_unselected.png",
-        "selectedIconPath": "/resources/images/journal_unselected.png"
+        "selectedIconPath": "/resources/images/journal_selected.png"
       },
       {
         "pagePath": "pages/home/index",
         "text": "首页",
-        "iconPath": "/resources/images/home_selected.png",
+        "iconPath": "/resources/images/home_unselected.png",
         "selectedIconPath": "/resources/images/home_selected.png"
       },
       {
         "pagePath": "pages/my/index",
         "text": "我的",
         "iconPath": "/resources/images/my_unselected.png",
-        "selectedIconPath": "/resources/images/my_unselected.png"
+        "selectedIconPath": "/resources/images/my_selected.png"
       }
     ]
   },
@@ -37,6 +37,5 @@
     "navigationBarTitleText": "金顶街-场馆预约",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

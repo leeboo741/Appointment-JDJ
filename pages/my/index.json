@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "vantCellGroup": "@vant/weapp/cell-group/index",
+    "vantCell": "@vant/weapp/cell/index",
+    "panel": "/components/panel/index"
+  }
 }

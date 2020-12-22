@@ -12,9 +12,19 @@ Page({
     ],
     activities: [
       {
-        title: '老年迪斯科',
-        content: '老年迪斯科，老年迪斯科，老年迪斯科，老年迪斯科，老年迪斯科，老年迪斯科，老年迪斯科',
-        coverImg: ''
+        title: '社区老年书法比赛',
+        content: '社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛',
+        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
+      },
+      {
+        title: '社区老年书法比赛社区老年书法比赛',
+        content: '社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛',
+        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
+      },
+      {
+        title: '社区老年书法比赛',
+        content: '社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛',
+        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
       }
     ]
   },

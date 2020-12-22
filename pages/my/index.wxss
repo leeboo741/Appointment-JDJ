@@ -1,1 +1,102 @@
 /* pages/my/index.wxss */
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 60rpx 20rpx;
+  background: linear-gradient(#FF7603,#FF9813);
+}
+.left-box{
+  width: 130rpx;
+  min-width: 130rpx;
+  height: 130rpx;
+  background: white;
+  border-radius: 65rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-box text{
+  font-size: 24rpx;
+  color: #000000;
+}
+
+.avater{
+  width: 100%;
+  height: 100%;
+}
+
+.center-box{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  flex-grow: 1;
+}
+
+.center-box text{
+  font-size: 32rpx;
+  font-weight: bolder;
+}
+
+.user-name{
+  font-size: 32rpx;
+  font-weight: bolder;
+  margin-bottom: 15rpx;
+}
+
+.user-role{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.role-item{
+  width: 120rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 15rpx;
+  background: white;
+  color: #FF7603;
+  font-size: 20rpx;
+  text-align: center;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.role-item:last-child{
+  margin-right: 0;
+}
+
+.right-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apply-button{
+  width: 220rpx;
+  min-width: 220rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  border: 1rpx solid #fff;
+  font-size: 26rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.cell-title{
+  font-size: 28rpx;
+  color: #333333;
+  margin-left: 15rpx;
+}
+
+.cell-icon{
+  width: 50rpx;
+  height: 50rpx;
+}

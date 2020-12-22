@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <!-- 高度60rpx -->
-<searchBar style="margin-top: 15rpx; margin-bottom: 15rpx"></searchBar>
+<searchBar></searchBar>
 <swiper class="banner" indicator-dots='true' indicator-color='#ffffff' indicator-active-color='#FF7603'>
   <swiper-item wx:for="{{bannerData}}" wx:key='index'>
     <view class="banner-item">
@@ -13,23 +13,49 @@
     <view class="appointment-button">
       <image class="appointment-icon" src="/resources/images/appointment.png"></image>
       <view class="appointment-content">
-        <view class="appointment-title">立即预约</view>
-        <view class="appointment-detail">立即预约场馆</view>
+        <text class="appointment-title">立即预约</text>
+        <text class="appointment-detail">立即预约场馆</text>
       </view>
     </view>
     <view class="appointment-button">
       <image class="appointment-icon" src="/resources/images/appointment-rule.png"></image>
       <view class="appointment-content">
-        <view class="appointment-title">预约规则</view>
-        <view class="appointment-detail">查看预约规则</view>
+        <text class="appointment-title">预约规则</text>
+        <text class="appointment-detail">查看预约规则</text>
       </view>
     </view>
   </view>
 </panel>
-<panel title='参加活动' titleColor='#333333' titleFontSize='32'>
-  <scroll-view slot='content' class="activity">
-    <view class="activity-item">
-      
+<panel title='社区活动' titleColor='#333333' titleFontSize='32'>
+  <scroll-view slot='content' scroll-x class="activity" style="width: 100%">
+    <view class="activity-item" wx:for='{{activities}}' wx:key='index'>
+      <image class="activity-item-image" src="{{item.coverImg}}"></image>
+      <view class="activity-item-content">
+        <text class="activity-item-title">{{item.title}}</text>
+        <text class="activity-item-detail">{{item.content}}</text>
+      </view>
+      <view class="activity-item-join-button">
+        <text class="join-button-title">参加</text>
+        <image class="join-button-image" src="/resources/images/button-bg.png"></image>
+      </view>
     </view>
   </scroll-view>
+</panel>
+<panel title='团队活动' titleColor='#333333' titleFontSize='32'>
+  <view slot='content' class="groups">
+    <view class="groups-button">
+      <image class="groups-bg" src="/resources/images/group-create.png"></image>
+      <view class="groups-content">
+        <text class="groups-title">创建团队</text>
+        <text class="groups-detail">点击立即创建团队</text>
+      </view>
+    </view>
+    <view class="groups-button">
+      <image class="groups-bg" src="/resources/images/group-join.png"></image>
+      <view class="groups-content">
+        <text class="groups-title">加入团队</text>
+        <text class="groups-detail">点击立即加入团队</text>
+      </view>
+    </view>
+  </view>
 </panel>
