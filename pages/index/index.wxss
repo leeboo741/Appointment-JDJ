@@ -1,21 +1,21 @@
 /**index.wxss**/
-.userinfo {
+.index{
+  position: fixed;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.logo{
+  width: 100%;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
+.version{
+  position: absolute;
+  bottom: 20rpx;
+  left:50%;
+  transform:translate(-50%);
+  font-size: 28rpx;
 }

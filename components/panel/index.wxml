@@ -1,0 +1,16 @@
+<!--components/panel/index.wxml-->
+<view class="panel">
+  <view class="panel-header">
+    <view class="panel-header-flag" style="background: {{flagBackgroundColor}}" v-if='showFlag'></view>
+    <view class="panel-header-title" style="color: {{titleColor}}; font-size: {{titleFontSize}}rpx">{{title}}</view>
+    <view class="panel-header-content">
+      <slot name='header'></slot>
+    </view>
+  </view>
+  <view class="panel-content">
+    <slot name='content'></slot>
+  </view>
+  <view class="panel-footer">
+    <slot name='footer'></slot>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+/* components/search-bar/index.wxss */
+.search-bar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 35rpx;
+}
+
+.search-button-image{
+  width: 48rpx;
+  height: 48rpx;
+}

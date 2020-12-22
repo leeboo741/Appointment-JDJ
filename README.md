@@ -3,8 +3,10 @@
 |-- /components 组件
     |-- imageUpload 图片上传组件
 |-- /global 全局数据处理
-    |-- http 数据请求
-    |-- notification 数据通知
+    |-- /http 数据请求
+    |-- /manager 数据处理中心
+        |-- userDataManager 用户数据
+    |-- notificationCenter 数据通知中心
     |-- route 页面跳转
 |-- /pages 页面
     |-- index 起始页面/欢迎页（处理进入程序时的页面跳转）
@@ -36,8 +38,9 @@
         |-- journal-my 我的随拍
         |-- journal-create 发布随拍
 |-- /resources 资源文件
-    |-- images
-    |-- files
+    |-- /images
+    |-- /files
+    |-- /strings
 |-- /utils 工具包
     |-- util
 |-- app.js

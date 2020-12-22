@@ -1,0 +1,7 @@
+<!--components/search-bar/index.wxml-->
+<view class="search-bar">
+  <inputBar style="flex-grow: 1; margin-left: 15rpx; margin-right: 15rpx"></inputBar>
+  <view class="search-button">
+    <image class="search-button-image" src="/resources/images/message.png"></image>
+  </view>
+</view>

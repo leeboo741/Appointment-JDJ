@@ -14,6 +14,25 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+/**
+ * 检查是否为空
+ * @param {any} obj 
+ * @return true空/false非空
+ */
+function checkEmpty(obj) {
+  if (obj == null || obj==undefined) {
+    return true;
+  }
+  if ((typeof obj == 'string' || obj instanceof Array) && obj.length <= 0) {
+    return true;
+  } 
+  if (typeof obj == 'object' && Object.keys(obj).length <= 0) {
+    return true;
+  }
+  return false;
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  checkEmpty
 }

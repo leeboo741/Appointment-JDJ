@@ -1,0 +1,23 @@
+/* components/input-bar/index.wxss */
+.input-bar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60rpx;
+  border-radius: 10rpx;
+  background: #EDEDED;
+}
+
+.input-header{
+  margin-left: 20rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.input-area{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+}

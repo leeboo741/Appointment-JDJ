@@ -1,0 +1,35 @@
+<!--pages/home/home.wxml-->
+<!-- 高度60rpx -->
+<searchBar style="margin-top: 15rpx; margin-bottom: 15rpx"></searchBar>
+<swiper class="banner" indicator-dots='true' indicator-color='#ffffff' indicator-active-color='#FF7603'>
+  <swiper-item wx:for="{{bannerData}}" wx:key='index'>
+    <view class="banner-item">
+      <image class="banner-content" src="{{item}}"></image>
+    </view>
+  </swiper-item>
+</swiper>
+<panel title='场馆预约' titleColor='#333333' titleFontSize='32'>
+  <view slot='content' class="appointment">
+    <view class="appointment-button">
+      <image class="appointment-icon" src="/resources/images/appointment.png"></image>
+      <view class="appointment-content">
+        <view class="appointment-title">立即预约</view>
+        <view class="appointment-detail">立即预约场馆</view>
+      </view>
+    </view>
+    <view class="appointment-button">
+      <image class="appointment-icon" src="/resources/images/appointment-rule.png"></image>
+      <view class="appointment-content">
+        <view class="appointment-title">预约规则</view>
+        <view class="appointment-detail">查看预约规则</view>
+      </view>
+    </view>
+  </view>
+</panel>
+<panel title='参加活动' titleColor='#333333' titleFontSize='32'>
+  <scroll-view slot='content' class="activity">
+    <view class="activity-item">
+      
+    </view>
+  </scroll-view>
+</panel>
