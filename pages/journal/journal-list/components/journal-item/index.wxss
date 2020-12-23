@@ -1,0 +1,65 @@
+/* pages/journal/journal-list/components/journal-item/index.wxss */
+.journal-item{
+  display: flex;
+  flex-direction: column;
+  margin: 15rpx 20rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+}
+
+.header{
+  margin: 15rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.avater{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  margin-right: 15rpx;
+}
+
+.header-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.name{
+  font-size: 24rpx;
+  font-weight: bolder;
+  color: #000000;
+}
+
+.time{
+  font-size: 20rpx;
+  color: #999999;
+  margin-top: 10rpx;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx 20rpx;
+}
+
+.title{
+  font-size: 32rpx;
+  font-weight: bolder;
+  color: #000000;
+}
+
+.content{
+  font-size: 24rpx;
+  color: #999999;
+  margin: 20rpx 0rpx;
+}
+
+.footer{
+  margin: 0rpx 20rpx 20rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}

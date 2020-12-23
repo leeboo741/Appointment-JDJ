@@ -1,0 +1,5 @@
+<!--pages/journal/journal-list/components/journal-item-operate/index.wxml-->
+<view class="operate-item" catchtap="tap">
+  <image class="operate-icon" src="{{iconPath}}"></image>
+  <view class="operate-count">{{count}}</view>
+</view>

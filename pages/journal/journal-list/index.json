@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "journalItem": "./components/journal-item/index"
+  },
+  "navigationBarTitleText": "随拍"
 }

@@ -46,7 +46,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    this.userData = UserDataManager.getUserData(this, function(userData){
+    this.userData = UserDataManager.queryUserData(this, function(userData){
       that.setData({
         userData
       })
@@ -84,7 +84,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    UserDataManager.removeUserDataChangeObserver(this);
   },
 
   /**

@@ -1,0 +1,6 @@
+<!--components/image-box/index.wxml-->
+<view class="image-box">
+  <view class="image-item" wx:for='{{imageList}}' wx:key='index' style="width: {{1 / columnCount * 100}}%; height: {{height}}">
+    <image class="image-content" src="{{item}}" catchtap="tapPreview" data-url='{{item}}' mode="aspectFill"></image>
+  </view>
+</view>

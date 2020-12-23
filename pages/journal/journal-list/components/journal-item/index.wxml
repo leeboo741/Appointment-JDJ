@@ -1,0 +1,20 @@
+<!--pages/journal/journal-list/components/journal-item/index.wxml-->
+<view class="journal-item">
+  <view class="header">
+    <image class="avater" src='{{data.avater}}'></image>
+    <view class="header-content">
+      <view class="name">{{data.name}}</view>
+      <view class="time">{{data.time}}</view>
+    </view>
+  </view>
+  <view class="body">
+    <view class="title">{{data.title}}</view>
+    <view class="content">{{data.content}}</view>
+    <imageBox imageList='{{data.imageList?data.imageList:[]}}'></imageBox>
+  </view>
+  <view class="footer">
+    <operateItem iconPath='/resources/images/watch.png' count='{{data.watchCount}}' flag='watch' disabled='true'></operateItem>
+    <operateItem iconPath='/resources/images/like.png' count='{{data.likeCount}}' flag='like' bind:operate='operate'></operateItem>
+    <operateItem iconPath='/resources/images/comment.png' count='{{data.commentCount}}' flag='comment' bind:operate='operate'></operateItem>
+  </view>
+</view>

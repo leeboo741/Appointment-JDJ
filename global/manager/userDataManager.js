@@ -33,7 +33,7 @@ function updateUserData(userData) {
  * @param {function} callback 监听回调 处理 userData 变化
  * @return userData
  */
-function getUserData(observer, callback) {
+function queryUserData(observer, callback) {
   try {
     const userData = wx.getStorageSync(Storage_Key_UserData)
     if (!checkEmpty(observer)) {
@@ -53,9 +53,27 @@ function removeUserDataChangeObserver(observer) {
   NotificationCenter.removeNotificationObserver(NOTIFICATION_CHANGE_USER_DATA, observer);
 }
 
+/**
+ * 需要登录的功能 弹窗提示登录
+ */
+function showNeedLoginAlert() {
+  wx.showModal({
+    title: '请前往登录！',
+    content: '该功能需要登录后才能使用！请前往登录。',
+    cancelText: '稍后登录',
+    confirmText: '前往登录',
+    success(res) {
+      if (res.confirm) {
+
+      }
+    }
+  })
+}
+
 module.exports = {
   deleteUserData,
   updateUserData,
-  getUserData,
-  removeUserDataChangeObserver
+  queryUserData,
+  removeUserDataChangeObserver,
+  showNeedLoginAlert
 }

@@ -13,7 +13,7 @@ Page({
   },
   
   onLoad: function () {
-    // userData = UserDataManager.getUserData();
+    // userData = UserDataManager.queryUserData();
     // if (checkEmpty(userData)) {
     //   // 没有用户数据
     // } else{
