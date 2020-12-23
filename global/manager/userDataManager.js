@@ -1,5 +1,5 @@
 import NotificationCenter from "../notificationCenter.js";
-import {NOTIFICATION_CHANGE_USER_DATA} from "../../resources/strings/notificationName.js";
+import {NOTIFICATION_CHANGE_USER_DATA, NOTIFICATION_SHOW_LOGIN} from "../../resources/strings/notificationName.js";
 import {checkEmpty} from '../../utils/util';
 const Storage_Key_UserData = 'userDataStorageKey'
 /**
@@ -57,17 +57,7 @@ function removeUserDataChangeObserver(observer) {
  * 需要登录的功能 弹窗提示登录
  */
 function showNeedLoginAlert() {
-  wx.showModal({
-    title: '请前往登录！',
-    content: '该功能需要登录后才能使用！请前往登录。',
-    cancelText: '稍后登录',
-    confirmText: '前往登录',
-    success(res) {
-      if (res.confirm) {
-
-      }
-    }
-  })
+  NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, true);
 }
 
 module.exports = {

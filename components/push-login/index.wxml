@@ -1,0 +1,12 @@
+<!--components/push-login/index.wxml-->
+<pushBox show='{{show}}'>
+  <view class="content">
+    <image class="logo" src="/resources/images/logo.jpg"></image>
+    <view class="title">欢迎登录金顶街预约系统</view>
+    <view class="detail">共同参与,发现社区精彩</view>
+    <view class="button-box">
+      <button type='warn' plain='true' catchtap='cancel'>暂不登录</button>
+      <button type='primary' disabled='{{disabled}}' loading='{{loading}}' catchtap="login">登录/注册</button>
+    </view>
+  </view>
+</pushBox>

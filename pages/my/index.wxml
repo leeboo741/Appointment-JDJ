@@ -26,3 +26,5 @@
     <image slot='icon' class="cell-icon" src="{{item.icon}}"></image>
   </vantCell>
 </vantCellGroup>
+
+<pushLogin></pushLogin>

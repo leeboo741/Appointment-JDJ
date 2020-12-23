@@ -1,16 +1,27 @@
 # Appointment-JDJ
  
+### 代码文件结构
+
 |-- /components 组件
-    |-- imageUpload 图片上传组件
+    |-- image-box 图片显示组件
+    |-- input-bar 输入框组件
+    |-- panel 面板组件
+    |-- push-box 弹出页面盒子 组件
+    |-- push-login 登录页面 组件
+    |-- search-bar 搜索输入框组件
 |-- /global 全局数据处理
     |-- /http 数据请求
+        |-- request 数据请求
     |-- /manager 数据处理中心
         |-- userDataManager 用户数据
     |-- notificationCenter 数据通知中心
-    |-- route 页面跳转
+    |-- config 系统相关信息
+|-- miniprogram_npm npm构建包
+    |-- @vant vant-UI 组件库
+|-- node_modules npm包
+    |-- @vant vant-UI 组件库
 |-- /pages 页面
     |-- index 起始页面/欢迎页（处理进入程序时的页面跳转）
-    |-- login 登录 （不强制登录，只有在操作需要具体登录人身份时才跳转登录）
     |-- register 注册
     |-- home 首页
     |-- my 我的页面
@@ -35,14 +46,16 @@
         |-- group-my-joined 我加入的团队
     |-- /journal 随拍
         |-- journal-list 随拍列表
+            |-- journal-item 随拍列表item组件
+            |-- journal-item-operate 随拍列表item操作组件
         |-- journal-my 我的随拍
         |-- journal-create 发布随拍
 |-- /resources 资源文件
-    |-- /images
-    |-- /files
-    |-- /strings
+    |-- /images 图片资源
+    |-- /strings 文本资源
+        |-- notificationName 通知名称
 |-- /utils 工具包
-    |-- util
+    |-- util 工具
 |-- app.js
 |-- app.json
 |-- app.wxss

@@ -1,0 +1,5 @@
+<!--components/push-box/index.wxml-->
+<view class="push-view" hidden='{{!show}}'>
+  <view class="mask" catchtap="tapMask"></view>
+  <slot></slot>
+</view>

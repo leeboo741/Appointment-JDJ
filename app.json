@@ -5,8 +5,13 @@
     "pages/my/index",
     "pages/journal/journal-list/index",
     "pages/journal/journal-my/index",
-    "pages/journal/journal-create/index"
+    "pages/journal/journal-create/index",
+    "pages/register/index",
+    "pages/user-info/index"
   ],
+  "usingComponents": {
+    "pushLogin": "/components/push-login/index"
+  },
   "tabBar": {
     "selectedColor": "#FF7603",
     "color": "#666666",
