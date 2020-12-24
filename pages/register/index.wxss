@@ -1,1 +1,57 @@
 /* pages/register/index.wxss */
+.form{
+  margin-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form inputItem{
+  margin-bottom: 30rpx;
+}
+
+.notice{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  margin-bottom: 50rpx;
+}
+
+.check{
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.title{
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  color: #999999;
+}
+
+.contract{
+  color: #ff7603;
+}
+
+.button{
+  width: 710rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #ffffff;
+  letter-spacing: 0.3rem;
+  border-radius: 44rpx;
+  background: linear-gradient(#EC8528,#ff7603);
+}
+
+.normal{
+  font-size: 28rpx;
+  color: #000000;
+}
+
+.placeholder{
+  font-size: 28rpx;
+  color: #999999;
+}

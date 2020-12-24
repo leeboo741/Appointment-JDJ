@@ -63,7 +63,10 @@ Component({
       NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
     },
     requestLogin: function(wxCode) {
-      request.request();
+      // request.request();
+      wx.navigateTo({
+        url: `/pages/register/index?code=${wxCode}`,
+      })
       NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
     }
   },

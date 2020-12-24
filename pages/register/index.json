@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "inputItem": "./components/input-item/input-item",
+    "userInfoPush": "/components/push-authorize-userinfo/index",
+    "phonePush": "/components/push-authorize-getphone/index"
+  },
+  "navigationBarTitleText": "注册"
 }

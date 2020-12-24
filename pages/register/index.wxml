@@ -1,2 +1,35 @@
 <!--pages/register/index.wxml-->
-<text>pages/register/index.wxml</text>
+<view class="form">
+  <inputItem title='姓名'>
+    <input id='name' placeholder="请输入姓名" bindfocus="focus" bindinput="input" class="normal" placeholder-class='placeholder' value='{{submitData.name}}'></input>
+  </inputItem>
+  <inputItem title='性别' iconPath='/resources/images/down-arrow.png'>
+    <picker id='sex' style="width:100%" range="{{sexRange}}" range-key="name" value='{{submitData.sexIndex}}' bindchange="changePicker">
+      <view class="normal" wx:if='{{submitData.sex != null}}'>{{submitData.sex}}</view>
+      <view class="placeholder" wx:else>请选择性别</view>
+    </picker>
+  </inputItem>
+  <inputItem title='出生日期' iconPath='/resources/images/calendar.png'>
+    <picker id='birthday' mode='date' value='{{submitData.birthday}}' bindchange="changePicker">
+      <view class="normal" wx:if='{{submitData.birthday != null}}'>{{submitData.birthday}}</view>
+      <view class="placeholder" wx:else>请选择出生日期</view>
+    </picker>
+  </inputItem>
+  <inputItem title='手机号'>
+    <input id='phone' placeholder="请输入手机号" bindfocus="focus" bindinput="input" class="normal" placeholder-class="placeholder" value='{{submitData.phone}}'></input>
+  </inputItem>
+  <inputItem title='居委会' iconPath='/resources/images/down-arrow.png'>
+    <picker id='committee' range="{{committeeRange}}" range-key="name" value='{{submitData.committeeIndex}}' bindchange="changePicker">
+      <view class="normal" wx:if='{{submitData.committee != null}}'>{{submitData.committee.name}}</view>
+      <view class="placeholder" wx:else>请选择所属居委会</view>
+    </picker>
+  </inputItem>
+  <view class="notice" catchtap="tapContract">
+    <image class="check" src="{{submitData.checkContract?'/resources/images/checked.png':'/resources/images/unChecked.png'}}"></image>
+    <view class="title">我已阅读并同意</view>
+    <view class="contract">《用户须知》</view>
+  </view>
+  <view class="button" catchtap="tapRegister">注册</view>
+</view>
+<userInfoPush bind:getinfo='getInfo'></userInfoPush>
+<phonePush></phonePush>

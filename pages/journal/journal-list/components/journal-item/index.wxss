@@ -14,7 +14,7 @@
   align-items: center;
 }
 
-.avater{
+.avatar{
   width: 70rpx;
   height: 70rpx;
   border-radius: 35rpx;

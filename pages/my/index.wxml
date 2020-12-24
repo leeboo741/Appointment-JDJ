@@ -1,8 +1,8 @@
 <!--pages/my/index.wxml-->
 <view class="header">
   <view class="left-box">
-    <image class="avater" src="{{userData.avater}}" wx:if='{{userData}}'></image>
-    <image class="avater" src="/resources/images/logo.jpg" wx:else></image>
+    <image class="avatar" src="{{userData.avatar}}" wx:if='{{userData}}'></image>
+    <image class="avatar" src="/resources/images/logo.jpg" wx:else></image>
   </view>
   <view class="center-box">
     <block  wx:if='{{userData}}'>

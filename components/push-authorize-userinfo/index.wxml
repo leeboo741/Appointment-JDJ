@@ -1,0 +1,12 @@
+<!--components/push-authorize-userinfo/index.wxml-->
+<pushBox show='{{show}}'>
+  <view class="content">
+    <image class="logo" src="/resources/images/logo.jpg"></image>
+    <view class="title">授权获取微信基本信息</view>
+    <view class="detail">包括头像、昵称等微信基本信息</view>
+    <view class="button-box">
+      <button type='warn' plain='true' catchtap='cancel'>拒绝</button>
+      <button type='primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权</button>
+    </view>
+  </view>
+</pushBox>

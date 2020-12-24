@@ -1,0 +1,11 @@
+<!--pages/register/components/input-item.wxml-->
+<view class="input-item">
+  <view class="item-title">{{title}}</view>
+  <view class='item-splite'>:</view>
+  <view class="item-content">
+    <slot></slot>
+  </view>
+  <block wx:if='{{iconPath != null && iconPath.length > 0}}'>
+    <image class="item-icon" src="{{iconPath}}"></image>
+  </block>
+</view>

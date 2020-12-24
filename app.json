@@ -10,7 +10,9 @@
     "pages/user-info/index"
   ],
   "usingComponents": {
-    "pushLogin": "/components/push-login/index"
+    "pushLogin": "/components/push-login/index",
+    "vantCell": "@vant/weapp/cell/index",
+    "vantCellGroup": "@vant/weapp/cell-group/index"
   },
   "tabBar": {
     "selectedColor": "#FF7603",

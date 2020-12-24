@@ -1,18 +1,46 @@
 // pages/register/index.js
+import {checkEmpty} from '../../utils/util';
+import NotificationCenter from '../../global/notificationCenter';
+import { NOTIFICATION_SHOW_GETUSERINFO, NOTIFICATION_SHOW_GETPHONE } from '../../resources/strings/notificationName';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    wxCode: null,
+    submitData: {
+      avatarUrl: null,
+      name: "",
+      sexIndex: 0,
+      sex: null,
+      birthday: null,
+      phone:"",
+      committeeIndex: 0,
+      committee: null,
+      checkContract: false
+    },
+    sexRange: [
+      {
+        name: '男',
+        value: 0
+      },
+      {
+        name: '女',
+        value: 1
+      }
+    ],
+    committeeRange: [],
+    notGetUserInfo: true,
+    notGetPhone: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.wxCode = options.code;
+    console.log('注册-微信code', this.data.wxCode);
   },
 
   /**
@@ -62,5 +90,136 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 点击用户须知协议
+   */
+  tapContract: function(){
+    console.log('用户须知')
+  },
+
+  /**
+   * 点击注册
+   */
+  tapRegister: function(){
+    if (!this.checkSubmitData(this.data.submitData)) return;
+    console.log('注册')
+  },
+
+  /**
+   * 检查表单数据
+   * @retrun true可/false否
+   */
+  checkSubmitData: function(submitData){
+    if (this.checkDataEmpty(submitData.name,'姓名不能为空')) return false;
+    if (this.checkDataEmpty(submitData.sex,'性别不能为空')) return false;
+    if (this.checkDataEmpty(submitData.birthday,'生日不能为空')) return false;
+    if (this.checkDataEmpty(submitData.phone,'电话不能为空')) return false;
+    if (this.checkDataEmpty(submitData.committee,'社区不能为空')) return false;
+    if (!submitData.checkContract) {
+      wx.showToast({
+        title: '请确认须知',
+        icon: 'none'
+      })
+      return false;
+    }
+    return true;
+  },
+
+  checkDataEmpty: function(data, msg) {
+    if (checkEmpty(data)) {
+      if (checkEmpty(msg)) msg = '必填项未填写';
+      wx.showToast({
+        title: msg,
+        icon: 'none'
+      })
+      return true;
+    }
+    return false;
+  },
+
+  /**
+   * 输入框聚焦
+   * @param {any} e 
+   */
+  focus: function(e) {
+    console.log('输入框聚焦', e);
+    let id = e.currentTarget.id;
+    if (id == 'name') {
+      if (this.data.notGetUserInfo) {
+        NotificationCenter.postNotification(NOTIFICATION_SHOW_GETUSERINFO, true);
+        this.data.notGetUserInfo = false;
+      }
+    } else if (id == 'phone') {
+      if (this.data.notGetPhone) {
+        NotificationCenter.postNotification(NOTIFICATION_SHOW_GETPHONE, true);
+        this.data.notGetPhone = false;
+      }
+    }
+  },
+
+  /**
+   * 输入框输入
+   * @param {any} e 
+   */
+  input: function(e) {
+    console.log('输入框输入', e);
+    let id = e.currentTarget.id;
+    if (id == 'name') {
+      this.setData({
+        'submitData.name': e.detail.value
+      })
+    } else if (id == 'phone') {
+      this.setData({
+        'submitData.phone': e.detail.value
+      })
+    }
+  },
+
+  /**
+   * 选择器选择
+   * @param {any} e 
+   */
+  changePicker: function(e) {
+    console.log('选择器选择', e);
+    let id = e.currentTarget.id;
+    if (id == 'sex') {
+      let index = parseInt(e.detail.value);
+      let sexObj = this.data.sexRange[index];
+      this.setData({
+        'submitData.sexIndex': index,
+        'submitData.sex': sexObj.name
+      })
+    } else if (id == 'birthday') {
+      this.setData({
+        'submitData.birthday': e.detail.value
+      })
+    } else if (id == 'committee') {
+      let index = parseInt(e.detail.value);
+      let committeeObj = this.data.committeeRange[index];
+      this.setData({
+        'submitData.committeeIndex': index,
+        'submitData.committee': committeeObj
+      })
+    }
+  },
+  getInfo: function(e) {
+    console.log('获取微信基本信息', e.detail.userInfo);
+    let name = e.detail.userInfo.nickName;
+    let avatarUrl = e.detail.userInfo.avatarUrl;
+    let sex = e.detail.userInfo.gender == 2?'女': '男';
+    let tempIndex = 0;
+    this.data.sexRange.forEach((item,index) => {
+      if (item.name == sex) {
+        tempIndex = index;
+      }
+    })
+    this.setData({
+      'submitData.name': name,
+      'submitData.avatarUrl': avatarUrl,
+      'submitData.sex': sex,
+      'submitData.sexIndex': tempIndex
+    })
   }
 })

@@ -18,7 +18,7 @@ Page({
       {
         id: 1234,
         name: "隔壁王大爷",
-        avater: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg',
+        avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg',
         time: "2020-02-11 13:33:33",
         title: "最美书法大赛",
         content: "最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛",

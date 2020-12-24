@@ -54,7 +54,7 @@ Page({
     this.setData({
       userData: {
         name: '社区王大爷',
-        avater: "/resources/images/logo.jpg"
+        avatar: "/resources/images/logo.jpg"
       }
     })
   },

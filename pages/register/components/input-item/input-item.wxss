@@ -1,0 +1,36 @@
+/* pages/register/components/input-item.wxss */
+.input-item{
+  height: 80rpx;
+  width: 710rpx;
+  border-radius: 40rpx;
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item-title{
+  width: 120rpx;
+  font-size: 28rpx;
+  color: #333333;
+  margin-left: 30rpx;
+  text-align: justify;
+  text-align-last: justify;
+}
+
+.item-splite{
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.item-content{
+  flex-grow: 1;
+  margin-right: 20rpx;
+  margin-left: 15rpx;
+}
+
+.item-icon{
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 20rpx;
+}

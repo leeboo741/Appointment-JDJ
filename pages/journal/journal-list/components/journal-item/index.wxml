@@ -1,7 +1,7 @@
 <!--pages/journal/journal-list/components/journal-item/index.wxml-->
 <view class="journal-item">
   <view class="header">
-    <image class="avater" src='{{data.avater}}'></image>
+    <image class="avatar" src='{{data.avatar}}'></image>
     <view class="header-content">
       <view class="name">{{data.name}}</view>
       <view class="time">{{data.time}}</view>

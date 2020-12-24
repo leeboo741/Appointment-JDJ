@@ -23,7 +23,7 @@
   color: #000000;
 }
 
-.avater{
+.avatar{
   width: 100%;
   height: 100%;
 }

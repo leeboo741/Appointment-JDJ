@@ -1,7 +1,7 @@
 <!--components/push-comment/comment-item/index.wxml-->
 <view class="comment-item">
   <view class="header">
-    <image class="avater" src="{{comment.avater}}"></image>
+    <image class="avatar" src="{{comment.avatar}}"></image>
     <view class="header-content">
       <view class="name">{{comment.name}}</view>
       <view class="time">{{comment.time}}</view>
