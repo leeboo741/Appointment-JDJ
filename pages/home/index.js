@@ -83,5 +83,44 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 点击搜索框 右侧按钮
+   */
+  tapSearchRight: function() {
+    console.log('tapSearchRight');
+  },
+
+  /**
+   * 搜索框输入
+   * @param {object} e 
+   */
+  inputSearch: function(e) {
+    console.log('inputSearch', e);
+  },
+
+  /**
+   * 搜索框输入确认
+   * @param {object} e 
+   */
+  confirmSearch: function(e) {
+    console.log('confirmSearch', e);
+  },
+
+  /**
+   * 搜索框输入聚焦
+   * @param {object} e 
+   */
+  focusSearch: function(e) {
+    console.log('focusSearch', e);
+  },
+
+  /**
+   * 搜索框输入失焦
+   * @param {object} e 
+   */
+  blurSearch: function(e) {
+    console.log('blurSearch', e);
   }
 })

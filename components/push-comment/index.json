@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "pushBox": "/components/push-box/index",
+    "searchBar": "/components/search-bar/index",
+    "commentItem": "./comment-item/index"
+  }
+}

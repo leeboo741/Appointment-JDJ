@@ -1,0 +1,21 @@
+<!--components/push-comment/index.wxml-->
+<pushBox show='{{show}}' bind:tapmask='tapMask'>
+  <view class="comment-box">
+    <view class="header">
+      <view class="title">评论列表</view>
+      <image class="close" src="/resources/images/close.png" catchtap="close"></image>
+    </view>
+    <scroll-view class="comment-list" scroll-y>
+      <block wx:if='{{commentList == null || commentList.length <= 0}}'>
+        <view class="empty">
+          <image class="empty-logo" src='/resources/images/empty.png'></image>
+          <view class="empty-title">还没有评论~快来评论吧!</view>
+        </view>
+      </block>
+      <block wx:else>
+        <commentItem wx:for='commentList' wx:key='index' comment='{{item}}'></commentItem>
+      </block>
+    </scroll-view>
+    <searchBar leftInputIconPath='/resources/images/message.png' rightButtonTitle='发送' value='{{inputComment}}' bind:input='input' bind:confirm='confirm' bind:tapright='confirm' placeholder='评论内容' style='width: 100%'></searchBar>
+  </view>
+</pushBox>

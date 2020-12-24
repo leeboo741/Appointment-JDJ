@@ -8,3 +8,4 @@
 </swiper>
 <journalItem wx:for='{{dataSource}}' wx:key='index' data='{{item}}' data-index='{{index}}' bind:like='like' bind:comment='comment'></journalItem>
 <pushLogin></pushLogin>
+<pushComment></pushComment>

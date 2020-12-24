@@ -1,0 +1,61 @@
+/* components/push-comment/index.wxss */
+.comment-box{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  z-index: 99;
+}
+
+.comment-list{
+  width: 100%;
+  height: 600rpx;
+  margin: 0 20rpx 20rpx 20rpx;
+  background: rgb(250, 250, 250);
+}
+
+.empty{
+  width: 100%;
+  margin-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-logo{
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 40rpx;
+}
+
+.empty-title{
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin: 20rpx;
+}
+
+.title{
+  font-size: 30rpx;
+  font-weight: bolder;
+  color: #000000;
+}
+
+.close{
+  width: 50rpx;
+  height: 50rpx;
+}

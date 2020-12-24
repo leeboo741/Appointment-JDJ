@@ -1,0 +1,52 @@
+/* components/push-comment/comment-item/index.wxss */
+.comment-item{
+  display: flex;
+  flex-direction: column;
+  margin: 15rpx;
+  border-radius: 10rpx;
+  background: #ffffff;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15rpx;
+}
+
+.avater{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 15rpx;
+}
+
+.header-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.name{
+  font-size: 28rpx;
+  color: #000000;
+}
+
+.time{
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.body{
+  display: flex;
+  margin: 15rpx;
+  flex-direction: column;
+}
+
+.body-content{
+  font-size: 28rpx;
+  color: darkgray;
+}
+
+.footer{
+  display: none;
+}

@@ -1,5 +1,5 @@
 <!--components/input-bar/index.wxml-->
 <view class="input-bar" style="background: {{backgroundColor}}">
-  <image class="input-header" src="/resources/images/search.png"></image>
-  <input class="input-area" type="{{inputType}}" placeholder="{{placeholderText}}" placeholder-style="color: {{placeholderColor}}" style="color:{{textColor}}" value="{{inputValue}}"></input>
+  <image class="input-header" src="{{iconPath}}" v-if='{{iconPath != null && iconPath.length >= 0}}'></image>
+  <input class="input-area" type="{{inputType}}" placeholder="{{placeholderText}}" placeholder-style="color: {{placeholderColor}}" style="color:{{textColor}}" value="{{inputValue}}" bindinput="input" bindfocus="focus" bindconfirm="confirm" bindblur="blur"></input>
 </view>

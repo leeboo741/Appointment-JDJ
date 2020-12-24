@@ -27,6 +27,10 @@ Component({
     textColor: {
       type: String,
       value: '#000000'
+    },
+    iconPath: {
+      type: String,
+      value: '/resources/images/search.png'
     }
   },
 
@@ -41,6 +45,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    input: function(e){
+      this.triggerEvent('input',{value: e.detail.value},{});
+    },
+    focus: function(e) {
+      this.triggerEvent('focus',{value: e.detail.value},{});
+    },
+    confirm: function(e) {
+      this.triggerEvent('confirm',{value: e.detail.value},{});
+    },
+    blur: function(e){
+      this.triggerEvent('blur',{value: e.detail.value},{});
+    }
   }
 })

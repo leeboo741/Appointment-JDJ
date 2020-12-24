@@ -1,7 +1,12 @@
 <!--components/search-bar/index.wxml-->
 <view class="search-bar">
-  <inputBar style="flex-grow: 1; margin-left: 15rpx; margin-right: 15rpx"></inputBar>
-  <view class="search-button">
-    <image class="search-button-image" src="/resources/images/message.png"></image>
+  <inputBar style="flex-grow: 1; margin-left: 15rpx; margin-right: 15rpx" iconPath='{{leftInputIconPath}}' bind:input='input' bind:confirm='confirm' bind:focus='focus' bind:blur='blur' inputValue='{{value}}' placeholderText='{{placeholder}}'></inputBar>
+  <view class="search-button" v-if='{{showRightButton}}' catchtap="tapRight">
+    <block wx:if='{{rightButtonTitle != null && rightButtonTitle.length >= 0}}'>
+      <view class="search-button-title">{{rightButtonTitle}}</view>
+    </block>
+    <block wx:else>
+      <image class="search-button-image" src="{{rightButtonIconPath}}" v-else></image>
+    </block>
   </view>
 </view>

@@ -2,11 +2,13 @@
  
 ### 代码文件结构
 
-|-- /components 组件
+|-- /components 公共组件
     |-- image-box 图片显示组件
     |-- input-bar 输入框组件
     |-- panel 面板组件
     |-- push-box 弹出页面盒子 组件
+    |-- push-comment 评论弹出页面 组件
+        |-- comment-item 评论item 组件
     |-- push-login 登录页面 组件
     |-- search-bar 搜索输入框组件
 |-- /global 全局数据处理

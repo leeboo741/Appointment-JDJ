@@ -1,5 +1,7 @@
 // pages/journal/journal-list/index.js
 import UserDataManager from '../../../global/manager/userDataManager';
+import NotificationCenter from '../../../global/notificationCenter';
+import {NOTIFICATION_SHOW_COMMENT} from '../../../resources/strings/notificationName';
 Page({
 
   /**
@@ -98,7 +100,9 @@ Page({
     if (this.data.userData) {
 
     } else {
-      UserDataManager.showNeedLoginAlert();
+      // UserDataManager.showNeedLoginAlert();
+
+      NotificationCenter.postNotification(NOTIFICATION_SHOW_COMMENT, true);
     }
   },
 
