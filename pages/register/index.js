@@ -221,5 +221,11 @@ Page({
       'submitData.sex': sex,
       'submitData.sexIndex': tempIndex
     })
+  },
+  getPhone: function(e) {
+    console.log('获取微信手机号', e.detail.phone);
+    this.setData({
+      'submitData.phone': e.detail.phone
+    })
   }
 })

@@ -122,5 +122,21 @@ Page({
    */
   blurSearch: function(e) {
     console.log('blurSearch', e);
+  },
+
+  /**
+   * 点击场馆预约
+   */
+  tapOrder: function(){
+    wx.navigateTo({
+      url: '/pages/venues/venues-list/index',
+    })
+  },
+
+  /**
+   * 点击场馆预约规则
+   */
+  tapOrderRule: function(){
+
   }
 })

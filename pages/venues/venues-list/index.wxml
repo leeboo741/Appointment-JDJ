@@ -1,0 +1,6 @@
+<!--pages/venues/venues-list/index.wxml-->
+<searchBar style='position: fixed; top: 0; left: 0; right: 0;' rightButtonTitle='筛选' value='{{keyword}}' bind:input='input' bind:confirm='confirm' bind:tapright='filterShow'></searchBar>
+<view style="height: 80rpx"></view>
+<view class="list">
+  <venuesItem wx:for='{{venuesList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' style=''></venuesItem>
+</view>

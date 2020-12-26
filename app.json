@@ -7,7 +7,11 @@
     "pages/journal/journal-my/index",
     "pages/journal/journal-create/index",
     "pages/register/index",
-    "pages/user-info/index"
+    "pages/user-info/index",
+    "pages/venues/venues-list/index",
+    "pages/venues/venues-appointment/index",
+    "pages/venues/venues-appointment-rule/index",
+    "pages/venues/venues-detail/index"
   ],
   "usingComponents": {
     "pushLogin": "/components/push-login/index",

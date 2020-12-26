@@ -58,5 +58,10 @@ Component({
   },
   detached: function(){
     NotificationCenter.removeNotificationObserver(this);
+  },
+  pageLifetimes: {
+    hide: function(){
+      NotificationCenter.postNotification(NOTIFICATION_SHOW_GETUSERINFO, false);
+    }
   }
 })

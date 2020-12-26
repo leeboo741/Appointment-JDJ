@@ -6,6 +6,8 @@
     |-- image-box 图片显示组件
     |-- input-bar 输入框组件
     |-- panel 面板组件
+    |-- push-authorize-getphone 获取微信手机号授权弹窗
+    |-- push-authorize-userinfo 获取微信基本信息授权弹窗
     |-- push-box 弹出页面盒子 组件
     |-- push-comment 评论弹出页面 组件
         |-- comment-item 评论item 组件
@@ -25,6 +27,8 @@
 |-- /pages 页面
     |-- index 起始页面/欢迎页（处理进入程序时的页面跳转）
     |-- register 注册
+        |-- /components
+            |-- input-item 输入框item 组件
     |-- home 首页
     |-- my 我的页面
     |-- user-info 用户信息
@@ -48,8 +52,9 @@
         |-- group-my-joined 我加入的团队
     |-- /journal 随拍
         |-- journal-list 随拍列表
-            |-- journal-item 随拍列表item组件
-            |-- journal-item-operate 随拍列表item操作组件
+            |-- /components
+                |-- journal-item 随拍列表item组件
+                |-- journal-item-operate 随拍列表item操作组件
         |-- journal-my 我的随拍
         |-- journal-create 发布随拍
 |-- /resources 资源文件

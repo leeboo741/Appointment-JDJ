@@ -1,0 +1,48 @@
+/* pages/venues/venues-list/components/venues-item/index.wxss */
+.venues-item{
+  background: #ffffff;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.venues-image{
+  width: 160rpx;
+  min-width: 160rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  margin: 30rpx 20rpx 30rpx 30rpx;
+}
+
+.venues-content{
+  flex-grow: 1;
+  margin: 30rpx 30rpx 30rpx 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.venues-content .name{
+  font-size: 32rpx;
+  font-weight: bolder;
+  color: #333333;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 30rpx;
+}
+
+.venues-content .type{
+  font-size: 24rpx;
+  color: #FF7603;
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+.venues-content .introduction{
+  font-size: 24rpx;
+  color: #999999;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

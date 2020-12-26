@@ -1,5 +1,6 @@
 <!--pages/register/index.wxml-->
 <view class="form">
+  <image class="avatar" src='{{submitData.avatarUrl}}' wx:if='{{submitData.avatarUrl != null && submitData.avatarUrl.length > 0}}'></image>
   <inputItem title='姓名'>
     <input id='name' placeholder="请输入姓名" bindfocus="focus" bindinput="input" class="normal" placeholder-class='placeholder' value='{{submitData.name}}'></input>
   </inputItem>
@@ -32,4 +33,4 @@
   <view class="button" catchtap="tapRegister">注册</view>
 </view>
 <userInfoPush bind:getinfo='getInfo'></userInfoPush>
-<phonePush></phonePush>
+<phonePush bind:getphone='getPhone'></phonePush>

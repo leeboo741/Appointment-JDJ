@@ -77,5 +77,10 @@ Component({
     tapMask: function(){
       NotificationCenter.postNotification(NOTIFICATION_SHOW_COMMENT, false);
     }
+  },
+  pageLifetimes: {
+    hide: function(){
+      NotificationCenter.postNotification(NOTIFICATION_SHOW_COMMENT, false);
+    }
   }
 })

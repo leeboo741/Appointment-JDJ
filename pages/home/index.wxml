@@ -10,7 +10,7 @@
 </swiper>
 <panel title='场馆预约' titleColor='#333333' titleFontSize='32'>
   <view slot='content' class="appointment">
-    <view class="appointment-button">
+    <view class="appointment-button" bindtap="tapOrder">
       <image class="appointment-icon" src="/resources/images/appointment.png"></image>
       <view class="appointment-content">
         <text class="appointment-title">立即预约</text>
@@ -19,7 +19,7 @@
     </view>
     <view class="appointment-button">
       <image class="appointment-icon" src="/resources/images/appointment-rule.png"></image>
-      <view class="appointment-content">
+      <view class="appointment-content" bindtap="tapOrderRule">
         <text class="appointment-title">预约规则</text>
         <text class="appointment-detail">查看预约规则</text>
       </view>

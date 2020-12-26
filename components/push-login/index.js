@@ -64,10 +64,10 @@ Component({
     },
     requestLogin: function(wxCode) {
       // request.request();
+      NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
       wx.navigateTo({
         url: `/pages/register/index?code=${wxCode}`,
       })
-      NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
     }
   },
   attached: function(){
@@ -80,5 +80,10 @@ Component({
   },
   detached: function(){
     NotificationCenter.removeNotificationObserver(this);
+  },
+  pageLifetimes: {
+    hide: function(){
+      NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
+    }
   }
 })

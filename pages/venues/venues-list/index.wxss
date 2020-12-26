@@ -1,0 +1,15 @@
+/* pages/venues/venues-list/index.wxss */
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list venuesItem{
+  width: 710rpx;
+  margin-top: 30rpx;
+}
+
+.list venuesItem:last-child{
+  margin-bottom: 30rpx;
+}
