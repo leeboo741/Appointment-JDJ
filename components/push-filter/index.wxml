@@ -1,2 +1,12 @@
 <!--components/push-filter/index.wxml-->
-<text>components/push-filter/index.wxml</text>
+<pushBox show='{{show}}' bind:tapmask='tapMask'>
+  <view class="filter-content">
+    <view class="content">
+      <slot></slot>
+    </view>
+    <view class="bottom-box">
+      <view class="bottom-button reset" catchtap="reset">重置</view>
+      <view class="bottom-button confirm" catchtap="confirm">确定</view>
+    </view>
+  </view>
+</pushBox>

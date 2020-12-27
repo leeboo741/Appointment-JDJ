@@ -1,3 +1,8 @@
+const notificationCenter = require("../../../global/notificationCenter");
+const { NOTIFICATION_SHOW_FILTER } = require("../../../resources/strings/notificationName");
+
+
+const filter_key = 'venues-list'
 // pages/venues/venues-list/index.js
 Page({
 
@@ -15,6 +20,7 @@ Page({
         coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
       }
     ], // 场馆列表
+    filterKey: "venues-list"
   },
 
   /**
@@ -102,6 +108,6 @@ Page({
    * @param {*} e 
    */
   filterShow: function(e) {
-
+    notificationCenter.postNotification(`${NOTIFICATION_SHOW_FILTER}-${this.data.filterKey}`, true);
   }
 })

@@ -1,0 +1,20 @@
+<!--components/push-filter/filter-section/index.wxml-->
+<panel title='{{title}}'>
+  <block wx:if='{{type=="tag-single" || type=="tag-multi"}}'>
+    <view class="tags">
+      <view wx:for='tagsData' wx:key='index' class="tags-item">{{item[key]}}</view>
+    </view>
+  </block>
+  <block wx:elif='{{type=="time-zone"}}'>
+    <view class="zone">
+      <picker class="zone-item" mode='date' value='{{startDate}}' bindchange="changeDate" id='start'></picker>
+      <picker class="zone-item" mode='date' value='{{endDate}}' bindchange="changeDate" id='end'></picker>
+    </view>
+  </block>
+  <block wx:elif='{{type=="count-zone"}}'>
+    <view class="zone">
+      <input class="zone-item normal" placeholder-class="placeholder" placeholder="最小值" value='{{startCount}}' bindinput="input" id='start'></input>
+      <input class="zone-item normal" placeholder-class="placeholder" placeholder="最大值" value='{{endCount}}'  bindinput="input" id='end'></input>
+    </view>
+  </block>
+</panel>

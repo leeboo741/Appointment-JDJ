@@ -1,1 +1,42 @@
 /* components/push-filter/index.wxss */
+.filter-content{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 95%;
+  background: #ffffff;
+  z-index: 99;
+}
+
+.bottom-box{
+  position: absolute;
+  bottom: 30rpx;
+  left: 0;
+  right: 0;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.bottom-button{
+  width: 45%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border: 1rpx solid #FF7603;
+}
+
+.reset{
+  color: #FF7603;
+  background: #ffffff;
+}
+
+.confirm{
+  color: #ffffff;
+  background: #FF7603;
+}
