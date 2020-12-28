@@ -20,7 +20,69 @@ Page({
         coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
       }
     ], // 场馆列表
-    filterKey: "venues-list"
+    filterKey: "venues-list",
+    zoneRange: [
+      {
+        id: 1,
+        name: '一区'
+      },
+      {
+        id: 2,
+        name: "二区"
+      },
+      {
+        id: 3,
+        name: '三区'
+      },
+      {
+        id: 4,
+        name: '二一区'
+      },
+      {
+        id: 5,
+        name: "二二区"
+      },
+      {
+        id: 6,
+        name: '二三区'
+      }
+    ],
+    selectedZone: [],
+    typeRange: [
+      {
+        id: 1,
+        name: '类型一',
+      },
+      {
+        id: 2,
+        name: '类型二',
+      },
+      {
+        id: 3,
+        name: '类型三',
+      },
+      {
+        id: 4,
+        name: '类型四',
+      },
+      {
+        id: 5,
+        name: '类型五',
+      },
+      {
+        id: 6,
+        name: '类型六',
+      },
+    ],
+    selectedType: [],
+    countZone: {
+      startCount: null,
+      endCount: null
+    },
+    timeZone: {
+      startDate: null,
+      endDate: null
+    }
   },
 
   /**
@@ -109,5 +171,43 @@ Page({
    */
   filterShow: function(e) {
     notificationCenter.postNotification(`${NOTIFICATION_SHOW_FILTER}-${this.data.filterKey}`, true);
+  },
+
+  /**
+   * 筛选 选择标签
+   * @param {any}} e 
+   */
+  selectedTag: function(e) {
+    if (e.currentTarget.id == 'zone') {
+      this.setData({
+        selectedZone: e.detail.value
+      })
+    } else if (e.currentTarget.id == 'type') {
+      this.setData({
+        selectedType: e.detail.value
+      })
+    }
+  },
+
+  /**
+   * 筛选 选择时间
+   * @param {any} e 
+   */
+  changeDate: function(e) {
+    this.setData({
+      'timeZone.startDate': e.detail.startDate,
+      'timeZone.endDate': e.detail.endDate
+    })
+  },
+
+  /**
+   * 筛选 输入数量
+   * @param {any} e 
+   */
+  inputCount: function(e) {
+    this.setData({
+      'countZone.startCount': e.detail.startCount,
+      'countZone.endCount': e.detail.endCount
+    })
   }
 })

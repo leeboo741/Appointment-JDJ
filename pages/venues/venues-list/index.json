@@ -2,7 +2,8 @@
   "usingComponents": {
     "searchBar": "/components/search-bar/index",
     "venuesItem": "./components/venues-item/index",
-    "pushFilter": "/components/push-filter/index"
+    "pushFilter": "/components/push-filter/index",
+    "pushSection": "/components/push-filter/filter-section/index"
   },
   "navigationBarTitleText": "场馆",
   "enablePullDownRefresh": true

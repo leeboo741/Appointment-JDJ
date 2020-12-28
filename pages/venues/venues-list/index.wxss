@@ -13,3 +13,10 @@
 .list venuesItem:last-child{
   margin-bottom: 30rpx;
 }
+
+.filter-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

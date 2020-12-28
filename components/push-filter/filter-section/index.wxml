@@ -1,20 +1,41 @@
 <!--components/push-filter/filter-section/index.wxml-->
 <panel title='{{title}}'>
-  <block wx:if='{{type=="tag-single" || type=="tag-multi"}}'>
-    <view class="tags">
-      <view wx:for='tagsData' wx:key='index' class="tags-item">{{item[key]}}</view>
+  <block wx:if='{{mode=="tag-single" || mode=="tag-multi"}}'>
+    <view class="tags" slot='content'>
+      <view wx:for='{{tags}}' wx:key='index' class="tags-item {{item.selected?'tag-selected':''}}" data-index='{{index}}' data-obj='{{item}}' bindtap="tapTag">{{item[key]}}{{parse(selectedTags,item)}}</view>
     </view>
   </block>
-  <block wx:elif='{{type=="time-zone"}}'>
-    <view class="zone">
-      <picker class="zone-item" mode='date' value='{{startDate}}' bindchange="changeDate" id='start'></picker>
-      <picker class="zone-item" mode='date' value='{{endDate}}' bindchange="changeDate" id='end'></picker>
+  <block wx:elif='{{mode=="time-zone"}}'>
+    <view class="zone" slot='content'>
+      <picker class="zone-item" mode='date' value='{{startDate}}' bindchange="changeDate" id='start'>
+        <view class="normal" wx:if='{{startDate != null && startDate.length > 0}}'>{{startDate}}</view>
+        <view class="placeholder" wx:else>起始时间</view>
+      </picker>
+      <view class="splite"></view>
+      <picker class="zone-item" mode='date' value='{{endDate}}' bindchange="changeDate" id='end'>
+        <view class="normal" wx:if='{{endDate != null && endDate.length > 0}}'>{{endDate}}</view>
+        <view class="placeholder" wx:else>结束时间</view>
+      </picker>
     </view>
   </block>
-  <block wx:elif='{{type=="count-zone"}}'>
-    <view class="zone">
-      <input class="zone-item normal" placeholder-class="placeholder" placeholder="最小值" value='{{startCount}}' bindinput="input" id='start'></input>
-      <input class="zone-item normal" placeholder-class="placeholder" placeholder="最大值" value='{{endCount}}'  bindinput="input" id='end'></input>
+  <block wx:elif='{{mode=="count-zone"}}'>
+    <view class="zone" slot='content'>
+      <input class="zone-item normal" type="digit" placeholder-class="placeholder" placeholder="最小值" value='{{startCount}}' bindinput="inputCount" id='start'></input>
+      <view class="splite"></view>
+      <input class="zone-item normal" type="digit" placeholder-class="placeholder" placeholder="最大值" value='{{endCount}}'  bindinput="inputCount" id='end'></input>
     </view>
   </block>
 </panel>
+
+<wxs module='parse'>
+  var isSelected = function(selectedList, item) {
+    for (var i = 0; i < selectedList.length; i++) {
+      var tempItem = selectedList[i];
+      if (tempItem.id == item.id) {
+        return true;
+      }
+    }
+    return false
+  }
+  module.exports.isSelected = isSelected;
+</wxs>

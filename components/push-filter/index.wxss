@@ -9,6 +9,11 @@
   z-index: 99;
 }
 
+.content{
+  width: 92%;
+  margin: 10rpx auto;
+}
+
 .bottom-box{
   position: absolute;
   bottom: 30rpx;

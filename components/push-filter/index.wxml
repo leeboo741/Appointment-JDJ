@@ -4,6 +4,7 @@
     <view class="content">
       <slot></slot>
     </view>
+    <view style="height: 120rpx"></view>
     <view class="bottom-box">
       <view class="bottom-button reset" catchtap="reset">重置</view>
       <view class="bottom-button confirm" catchtap="confirm">确定</view>
