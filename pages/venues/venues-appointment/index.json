@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "venuesInfo": "../venues-detail/components/venues-info/index",
-    "submitRow": "./components/submit-row/index"
+    "submitRow": "./components/submit-row/index",
+    "imageBox": "/components/image-box/index"
   },
   "navigationBarTitleText": "预约场馆"
 }

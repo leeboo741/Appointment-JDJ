@@ -1,3 +1,5 @@
+const { checkEmpty } = require("../../utils/util");
+
 // components/image-box/index.js
 Component({
   /**
@@ -16,6 +18,10 @@ Component({
       type: Number,
       value: 4
     }, // 最大数量
+    overMax: {
+      type: Boolean,
+      value: false
+    },
     ableAdd: {
       type: Boolean,
       value: false
@@ -28,6 +34,20 @@ Component({
       type: Boolean,
       value: false
     }, // 是否允许视频
+  },
+
+  observers: {
+    "imageList":function(imageList) {
+      if (checkEmpty(imageList)) {
+        this.setData({
+          overMax: false
+        })
+      } else {
+        this.setData({
+          overMax: imageList.length >= this.data.maxCount
+        })
+      }
+    }
   },
 
   /**
@@ -50,6 +70,30 @@ Component({
           console.log(error);
         }
       })
+    },
+    tapAdd: function(){
+      if (checkEmpty(this.data.imageList)) this.data.imageList = [];
+      let count = this.data.maxCount - this.data.imageList.length;
+      let $this = this;
+      wx.chooseImage({
+        count: count,
+        success(res) {
+          $this.data.imageList = $this.data.imageList.concat(res.tempFilePaths);
+          $this.setData({
+            imageList: $this.data.imageList
+          })
+        }
+      })
+    },
+    tapDelete: function(e){
+      let index = e.currentTarget.dataset.index;
+      this.data.imageList.splice(index, 1);
+      this.setData({
+        imageList: this.data.imageList
+      })
+    },
+    requestUploadFile: function(){
+
     }
   },
 
@@ -62,5 +106,6 @@ Component({
         height: res.width * 1.3 + 'px'
       })
     }).exec()
-}
+  },
+
 })

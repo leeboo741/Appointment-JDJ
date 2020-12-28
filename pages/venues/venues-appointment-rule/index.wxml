@@ -1,2 +1,11 @@
 <!--pages/venues/venues-appointment-rule/index.wxml-->
-<text>pages/venues/venues-appointment-rule/index.wxml</text>
+<view class="rule-box">
+  <view class="rule-header-box">
+    <view class="rule-header-title">预约规则</view>
+    <image class="rule-header-bg" src="/resources/images/rule-header.png"></image>
+  </view>
+  <view class="rule-body-box">
+    <rich-text nodes='{{rule}}' space='nbsp' class="rule"></rich-text>
+    <image class="rule-body-bg" src="/resources/images/rule-bg.png"></image>
+  </view>
+</view>

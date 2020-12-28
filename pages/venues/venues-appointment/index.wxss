@@ -41,3 +41,33 @@
   width: 75%; 
   align-self: flex-end;
 }
+
+.bottom-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 60rpx auto;
+  width: 80%;
+}
+
+.bottom-button{
+  width: 48%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+}
+
+.cancel-button{
+  border: 1rpx solid #e5e5e5;
+  color: #999999;
+  background: #ffffff;
+}
+
+.confirm-button{
+  background: linear-gradient(#FF9813, #FF7603);
+  border: 1rpx solid rgba(0, 0, 0, 0);
+  color: #ffffff;
+}

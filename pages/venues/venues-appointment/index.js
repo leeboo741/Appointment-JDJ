@@ -31,6 +31,17 @@ Page({
       },
     ], // 活动类型列表
     selectActivityTypeIndex: -1, // 选中的活动类型index
+    privateTypeRange: [
+      {
+        id: 1,
+        name: "公开",
+      },
+      {
+        id: 2,
+        name: '非公开'
+      }
+    ],
+    selectPrivateTypeIndex: -1,
   },
 
   /**

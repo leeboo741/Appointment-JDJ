@@ -2,10 +2,10 @@
 <view class="image-box">
   <view class="image-item" wx:for='{{imageList}}' wx:key='index' style="width: {{1 / columnCount * 100}}%; height: {{height}}">
     <image class="image-content" src="{{item}}" catchtap="tapPreview" data-url='{{item}}' mode="aspectFill"></image>
-    <image class="delete" src="/resources/images/delete.png" catchtap="tapDelete" data-index='{{index}}'></image>
+    <image class="delete" src="/resources/images/delete.png" catchtap="tapDelete" data-index='{{index}}' wx:if='{{ableDelete}}'></image>
   </view>
-  <view class="image-item" wx:if='{{ableAdd}}'>
-    <view class="image-content" catchtap="tapAdd">
+  <view class="image-item" wx:if='{{ableAdd && !overMax}}' style="width: {{1 / columnCount * 100}}%; height: {{height}}">
+    <view class="image-content border" catchtap="tapAdd">
       <image class="add-image" src="/resources/images/add-image.png"></image>
       <view class="add-title">点击添加图片</view>
     </view>

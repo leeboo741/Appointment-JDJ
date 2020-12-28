@@ -1,1 +1,57 @@
 /* pages/venues/venues-appointment-rule/index.wxss */
+.rule-box{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 100rpx 20rpx;
+}
+
+.rule-header-box{
+  position: absolute;
+  height: 116rpx;
+  width: 466rpx;
+  top: -66rpx;
+  left:50%;
+  transform:translate(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.rule-header-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.rule-header-title{
+  font-size: 40rpx;
+  color: #ffffff;
+  z-index: 4;
+}
+
+.rule-body-box{
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rule-body-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rule{
+  margin: 100rpx 30rpx;
+  z-index: 3;
+}
