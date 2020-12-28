@@ -7,11 +7,27 @@ Component({
     imageList: {
       type: Array,
       value: []
-    },
+    }, // 图片列表
     columnCount: {
       type: Number,
       value: 3
-    }
+    }, // 列数
+    maxCount: {
+      type: Number,
+      value: 4
+    }, // 最大数量
+    ableAdd: {
+      type: Boolean,
+      value: false
+    }, // 是否允许新增
+    ableDelete: {
+      type: Boolean,
+      value: false
+    }, // 是否允许删除
+    ableVideo:{
+      type: Boolean,
+      value: false
+    }, // 是否允许视频
   },
 
   /**

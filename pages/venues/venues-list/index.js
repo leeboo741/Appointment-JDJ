@@ -1,6 +1,7 @@
 const notificationCenter = require("../../../global/notificationCenter");
 const { NOTIFICATION_SHOW_FILTER } = require("../../../resources/strings/notificationName");
-
+import Request from '../../../global/http/request';
+import { checkIsFunction } from '../../../utils/util';
 
 const filter_key = 'venues-list'
 // pages/venues/venues-list/index.js
@@ -10,16 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page: 0,
     keyword: '', // 搜索关键字
-    venuesList: [
-      {
-        id: 123,
-        name: '金顶街历史博物馆',
-        type: '唱歌、跳舞',
-        introduction: '金顶街历史博物馆，展示金顶街历史，回味历史，畅享历史，浏览历史，想象历史，体会历史',
-        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
-      }
-    ], // 场馆列表
+    venuesList: [], // 场馆列表
     filterKey: "venues-list",
     zoneRange: [
       {
@@ -79,17 +73,13 @@ Page({
       startCount: null,
       endCount: null
     },
-    timeZone: {
-      startDate: null,
-      endDate: null
-    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.startPullDownRefresh();
   },
 
   /**
@@ -124,14 +114,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.refresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadMore();
   },
 
   /**
@@ -147,6 +137,9 @@ Page({
    */
   tapItem: function(e) {
     console.log('点击场馆列表 item', e.detail.value);
+    wx.navigateTo({
+      url: `/pages/venues/venues-detail/index?id=${e.detail.value.venueId}`,
+    })
   },
 
   /**
@@ -174,6 +167,29 @@ Page({
   },
 
   /**
+   * 筛选 确认
+   * @param {any} e 
+   */
+  confirmFilter: function(e) {
+
+  },
+
+  /**
+   * 筛选 重置
+   * @param {any} e 
+   */
+  resetFilter: function(e) {
+    this.setData({
+      selectedZone: [],
+      selectedType: [],
+      countZone: {
+        startCount: null,
+        endCount: null
+      }
+    })
+  },
+
+  /**
    * 筛选 选择标签
    * @param {any}} e 
    */
@@ -190,17 +206,6 @@ Page({
   },
 
   /**
-   * 筛选 选择时间
-   * @param {any} e 
-   */
-  changeDate: function(e) {
-    this.setData({
-      'timeZone.startDate': e.detail.startDate,
-      'timeZone.endDate': e.detail.endDate
-    })
-  },
-
-  /**
    * 筛选 输入数量
    * @param {any} e 
    */
@@ -208,6 +213,61 @@ Page({
     this.setData({
       'countZone.startCount': e.detail.startCount,
       'countZone.endCount': e.detail.endCount
+    })
+  },
+
+  /**
+   * 数据请求
+   * @param {function(boolean, data)} callback  回调
+   */
+  requestList: function(page, callback){
+    Request.request({
+      url: 'getVenueList',
+      data: {
+        page,
+        size: 20
+      }
+    }, function(success, data) {
+      if (checkIsFunction(callback)) {
+        callback(success, data);
+      }
+    })
+  },
+
+  refresh: function() {
+    this.data.page = 1;
+    let $this = this;
+    this.requestList(this.data.page, function(success, data) {
+      wx.stopPullDownRefresh()
+      if (success) {
+        $this.setData({
+          venuesList: data
+        })
+        $this.data.page ++;
+      } else {
+        wx.showToast({
+          title: data,
+          icon: 'none'
+        })
+      }
+    })
+  },
+
+  loadMore: function(){
+    let $this = this;
+    this.requestList(this.data.page, function(success, data) {
+      if (success) {
+        $this.data.venuesList = $this.data.venuesList.concat(data);
+        $this.setData({
+          venuesList
+        })
+        $this.data.page ++;
+      } else {
+        wx.showToast({
+          title: data,
+          icon: 'none'
+        })
+      }
     })
   }
 })

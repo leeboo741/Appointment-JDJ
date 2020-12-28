@@ -1,9 +1,9 @@
 <!--pages/venues/venues-list/components/venues-item/index.wxml-->
 <view class="venues-item" catchtap="tapItem">
-  <image class="venues-image" src="{{data.coverImg}}" mode="aspectFill"></image>
+  <image class="venues-image" src="{{data.iconUrl}}" mode="aspectFill"></image>
   <view class="venues-content">
-    <view class="name">{{data.name}}</view>
-    <view class="type">支持活动类型：{{data.type}}</view>
+    <view class="name">{{data.venueName}}</view>
+    <view class="type">支持活动类型：{{data.supportActiveType}}</view>
     <view class="introduction">场馆简介：{{data.introduction}}</view>
   </view>
 </view>

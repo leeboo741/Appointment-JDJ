@@ -1,0 +1,20 @@
+/* pages/venues/venues-appointment/components/submit-row/index.wxss */
+.submit-row{
+  display: flex;
+  flex-direction: row;
+  min-height: 110rpx;
+}
+
+.title{
+  margin: 30rpx;
+  font-size: 30rpx;
+  color: #000000;
+  font-weight: bolder;
+}
+
+.content{
+  display: flex;
+  align-items: center;
+  margin: 30rpx 30rpx 30rpx 0;
+  flex-grow: 1;
+}

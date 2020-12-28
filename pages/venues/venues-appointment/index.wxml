@@ -1,2 +1,29 @@
 <!--pages/venues/venues-appointment/index.wxml-->
-<text>pages/venues/venues-appointment/index.wxml</text>
+<view class="content">
+  <venuesInfo venues='{{venues}}' style='width: 100%'></venuesInfo>
+  <view class="input-zone">
+    <submitRow title='活动名称'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入活动名称" bindinput="input" id='name' style="width:100%"></input>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='活动人数'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入活动人数" bindinput="input" id='count' type="number" style="width:100%"></input>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='活动类型'>
+      <picker range="{{activityTypeRange}}" range-key="name" value='{{selectActivityTypeIndex}}' style="width:100%">
+        <view class="normal" wx:if='{{selectActivityTypeIndex != -1}}'>{{activityTypeRange[selectActivityTypeIndex].name}}</view>
+        <view class="placeholder" wx:else>请选择活动类型</view>
+      </picker>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='活动内容'>
+      <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='count' style="width: 100%; height: 160rpx"></textarea>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='活动内容'>
+      <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='count' style="width: 100%; height: 160rpx"></textarea>
+    </submitRow>
+    <view class="splite"></view>
+  </view>
+</view>

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "venuesInfo": "./components/venues-info/index"
+  },
+  "navigationBarTitleText": "场馆详情"
 }

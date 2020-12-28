@@ -1,10 +1,10 @@
 import {checkEmpty, checkIsString, throwError, checkIsDict, checkIsNumber, checkIsFunction} from '../../utils/util'
 
-const baseUrl = "http://vvv841.w3.luyouxia.net"
+const baseUrl = "http://test.mock.com/"
 
 /**
  * 数据请求
- * @param {obj{url,data,header,method,timeout,needFailInfo}} param 请求参数
+ * @param {obj{url,data,header,method,timeout}} param 请求参数
  * @param {function(success,data/msg)} callback 请求回调 
  */
 function request(param, callback) {
@@ -15,14 +15,20 @@ function request(param, callback) {
     ...{
       success(res){
         console.log('请求返回', res);
-        const {data, code, msg} = res;
-        if (code == 1) {
+        const {data, header, statusCode, cookies, errMsg} = res;
+        if (statusCode != 200) {
           if (checkIsFunction(callback)) {
-            callback(true, data);
+            callback(false, errMsg);
           }
         } else {
-          if (checkIsFunction(callback)) {
-            callback(false, msg);
+          if (data.code == 1) {
+            if (checkIsFunction(callback)) {
+              callback(true, data.data);
+            }
+          } else {
+            if (checkIsFunction(callback)) {
+              callback(false, data.msg);
+            }
           }
         }
       },
@@ -43,27 +49,22 @@ function request(param, callback) {
 function checkAndReturnOption(param) {
   if (checkEmpty(param)) throwError('请求参数不能为空')
   if (!checkIsDict(param)) throwError('请求参数需为object')
-  let {url, data, header, method, timeout, needFailInfo} = param;
+  let {url, data, header, method, timeout} = param;
   let option = {};
   if (checkEmpty(url)) throwError('请求地址不能为空')
   if (!checkIsString(url)) throwError('请求地址需为string')
   if (!checkEmpty(method) && !checkIsString(method)) throwError('请求方式需为string')
   if (checkEmpty(method)) {
-    method = 'GET';
+    method = 'POST';
   } 
   if (!checkEmpty(timeout) && !checkIsNumber(timeout)) throwError('请求超时需为number')
   if (checkEmpty(timeout)) {
     timeout = 3000;
   }
-  if (!checkEmpty(needFailInfo) && !checkIsNumber(needFailInfo)) throwError('needFailInfo需为boolean')
-  if (checkEmpty(needFailInfo)) {
-    needFailInfo = false;
-  }
   option = {
     url: `${baseUrl}${url}`,
 		method,
-    timeout,
-    needFailInfo
+    timeout
   }
   if (!checkEmpty(data) && !checkIsDict(data)) throwError('请求表单数据需为object')
   if (!checkEmpty(data)) {

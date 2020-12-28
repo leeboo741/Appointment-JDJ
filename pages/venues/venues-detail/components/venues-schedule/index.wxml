@@ -1,0 +1,13 @@
+<!--pages/venues/venues-detail/components/venues-schedule/index.wxml-->
+<view class="content">
+  <view class="title">{{currentDate}}</view>
+  <view class="examples">
+    <view class="examples-item" wx:for='{{colorList}}' wx:key='index'>
+      <view class="color" style="background: {{item.color}}"></view>
+      <view class="title">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="schedule">
+    <view class="time-list"></view>
+  </view>
+</view>

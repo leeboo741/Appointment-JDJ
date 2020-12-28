@@ -13,8 +13,30 @@
   justify-content: center;
 }
 
+.delete{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
 .image-content{
   width: 95%;
   height: 95%;
   border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-image{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.add-title{
+  font-size: 22rpx;
+  color: #999999;
+  margin-top: 20rpx;
 }

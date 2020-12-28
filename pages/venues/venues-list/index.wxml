@@ -4,13 +4,12 @@
 <view class="list">
   <venuesItem wx:for='{{venuesList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' style=''></venuesItem>
 </view>
-<pushFilter key='{{filterKey}}'>
+<pushFilter key='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
   <scroll-view class="filter-content" scroll-y>
     <view style="display: inline-block">
       <pushSection title='区域' mode='tag-single' tags='{{zoneRange}}' selectedTags='{{selectedZone}}' bind:selectedtag='selectedTag' id='zone'></pushSection>
-      <pushSection title='类型' mode='tag-multi' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
+      <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
       <pushSection title='人数' mode='count-zone' startCount='{{countZone.startCount}}' endCount='{{countZone.endCount}}' bind:inputcount='inputCount'></pushSection>
-      <pushSection title='时间' mode='time-zone' startDate='{{timeZone.startDate}}' endCount='{{timeZone.endDate}}' bind:changedate='changeDate' ></pushSection>
     </view>
   </scroll-view>
 </pushFilter>

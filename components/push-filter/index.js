@@ -36,7 +36,7 @@ Component({
       this.close();
     },
     tapMask: function(){
-      this.close();
+      // this.close();
     },
     close: function(){
       NotificationCenter.postNotification(this.data.notifcationKey, false);

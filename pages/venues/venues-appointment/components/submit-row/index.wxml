@@ -1,0 +1,7 @@
+<!--pages/venues/venues-appointment/components/submit-row/index.wxml-->
+<view class="submit-row">
+  <view class="title">{{title}}</view>
+  <view class="content">
+    <slot></slot>
+  </view>
+</view>
