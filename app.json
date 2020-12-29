@@ -18,7 +18,6 @@
     "pages/activities/activity-list/index",
     "pages/activities/activity-my-joined/index",
     "pages/groups/group-create/index",
-    "pages/groups/group-detail/index",
     "pages/groups/group-list/index",
     "pages/groups/group-my-created/index",
     "pages/groups/group-my-joined/index"

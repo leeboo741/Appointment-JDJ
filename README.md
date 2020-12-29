@@ -56,7 +56,6 @@
         |-- groups-list 团队列表
             |-- components
                 |-- group-item 团队列表 item 组件
-        |-- group-detail 团队详情
         |-- group-create 团队创建
         |-- group-my-created 我创建的团队
         |-- group-my-joined 我加入的团队
