@@ -105,9 +105,12 @@ Page({
    * 点击item
    * @param {any}} e 
    */
-  join: function(e) {
+  tapItem: function(e) {
     console.log('点击团队列表 item', e.detail.value);
     // 发起加入团队请求
+    wx.navigateTo({
+      url: `/pages/groups/group-detail/index?id=${e.detail.value.teamId}`,
+    })
   },
 
   /**

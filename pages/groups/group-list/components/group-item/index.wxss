@@ -22,11 +22,27 @@
   align-self: center;
 }
 
-.group-info .name{
+.group-info .name-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.name-row .name{
   font-size: 32rpx;
   color: #333333;
-  margin-bottom: 10rpx;
   font-weight: bolder;
+}
+
+.name-row .full{
+  border: 1rpx solid #ee2c2c;
+  color: #ee2c2c;
+  background: #fff;
+  font-size: 20rpx;
+  padding: 5rpx 15rpx;
+  border-radius: 8rpx;
+  margin-left: 15rpx;
 }
 
 .group-info .type{
@@ -73,7 +89,4 @@
 }
 
 .full{
-  border: 1rpx solid #ee2c2c;
-  color: #fff;
-  background: #ee2c2c;
 }

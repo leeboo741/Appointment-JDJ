@@ -1,13 +1,14 @@
 <!--pages/groups/group-list/components/group-item/index.wxml-->
-<view class="group-item">
+<view class="group-item" bindtap="tapItem">
   <image class="avatar" src="{{data.coverImg}}"></image>
   <view class="group-info">
-    <view class="name">{{data.tname}}</view>
+    <view class='name-row'>
+      <view class="name">{{data.tname}}</view>
+      <view class="full">已满</view>
+    </view>
     <view class="type">类型：{{data.activityType}}</view>
     <view class="content">活动内容：{{data.activityContent}}</view>
     <view class="condition">加入条件：{{data.enterCondition}}</view>
     <view class="count">招募人数：{{data.peopleCount}}人</view>
   </view>
-  <view class="group-join-button unfull" wx:if='true' catchtap="tapJoin" data-able='true'>加入</view>
-  <view class="group-join-button full" wx:else catchtap="tapJoin" data-able='false'>已满</view>
 </view>

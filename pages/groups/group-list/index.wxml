@@ -2,7 +2,7 @@
 <searchBar style='position: fixed; top: 0; left: 0; right: 0;' rightButtonTitle='筛选' value='{{keyword}}' bind:input='input' bind:confirm='confirm' bind:tapright='filterShow'></searchBar>
 <view style="height: 80rpx"></view>
 <view class="list">
-  <groupItem wx:for='{{groupList}}' wx:key='index' data='{{item}}' bind:join='join'></groupItem>
+  <groupItem wx:for='{{groupList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem'></groupItem>
 </view>
 <pushFilter pushNotificationKey='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
   <scroll-view class="filter-content" scroll-y>

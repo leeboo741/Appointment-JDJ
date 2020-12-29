@@ -21,16 +21,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    tapJoin: function(e) {
-      if (e.currentTarget.dataset.able == 'true') {
-        this.triggerEvent('join', {value: this.data.data}, {});
-      } else {
-        wx.showToast({
-          title: '该团队已满员',
-          icon: 'none',
-          duration: 2000
-        })
-      }
+    tapItem: function(e) {
+      this.triggerEvent('tapitem',{value: this.data.data}, {});
     }
   }
 })
