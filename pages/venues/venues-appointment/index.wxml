@@ -11,14 +11,14 @@
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动类型'>
-      <picker range="{{activityTypeRange}}" range-key="name" value='{{selectActivityTypeIndex}}' style="width:100%">
+      <picker range="{{activityTypeRange}}" range-key="name" value='{{selectActivityTypeIndex}}' style="width:100%" bindchange="changePicker" id='type'>
         <view class="normal" wx:if='{{selectActivityTypeIndex != -1}}'>{{activityTypeRange[selectActivityTypeIndex].name}}</view>
         <view class="placeholder" wx:else>请选择活动类型</view>
       </picker>
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动内容'>
-      <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='count' style="width: 100%; height: 160rpx"></textarea>
+      <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='content' style="width: 100%; height: 160rpx"></textarea>
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动照片'>
@@ -26,7 +26,7 @@
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动形式'>
-      <picker range="{{privateTypeRange}}" range-key="name" value='{{selectPrivateTypeIndex}}' style="width:100%">
+      <picker range="{{privateTypeRange}}" range-key="name" value='{{selectPrivateTypeIndex}}' style="width:100%" bindchange="changePicker" id='private'>
         <view class="normal" wx:if='{{selectPrivateTypeIndex != -1}}'>{{privateTypeRange[selectPrivateTypeIndex].name}}</view>
         <view class="placeholder" wx:else>请选择活动类型</view>
       </picker>
@@ -36,7 +36,7 @@
     </submitRow>
   </view>
   <view class="bottom-box">
-    <view class="bottom-button cancel-button">取消</view>
-    <view class="bottom-button confirm-button">确定</view>
+    <view class="bottom-button cancel-button" bindtap="cancel">取消</view>
+    <view class="bottom-button confirm-button" bindtap="confirm">确定</view>
   </view>
 </view>

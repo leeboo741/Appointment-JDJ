@@ -1,1 +1,58 @@
 /* pages/activities/activity-detail/index.wxss */
+.banner{
+  margin: 0rpx;
+  height: 260rpx;
+  width: 100%;
+}
+
+.banner-item{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-content{
+  width: 100%;
+  height: 100%;
+  margin: 0rpx;
+}
+
+.whiteBlock{
+  width: 710rpx;
+  margin: 30rpx auto;
+  margin-bottom: 0;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.whiteBlock:last-child{
+  margin-bottom: 30rpx;
+}
+
+.info-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.info-list infoRow{
+  margin: 30rpx 20rpx;
+  margin-bottom: 0;
+}
+
+.info-list infoRow:last-child{
+  margin-bottom: 30rpx;
+}
+
+.bottom-button{
+  width: 710rpx;
+  margin: 60rpx auto;
+  text-align: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  background: linear-gradient(#FF9813, #FF7603);
+  font-size: 32rpx;
+  color: #fff;
+}

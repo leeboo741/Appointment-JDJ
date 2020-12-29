@@ -146,7 +146,9 @@ Page({
    * 点击创建团队
    */
   tapCreatedGroup: function(){
-
+    wx.navigateTo({
+      url: '/pages/groups/group-create/index',
+    })
   },
 
   /**

@@ -108,5 +108,62 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 点击取消
+   * @param {any} e 
+   */
+  cancel: function(e) {
+    wx.navigateBack({});
+  },
+
+  /**
+   * 点击确定
+   */
+  confirm: function(){
+    console.log('提交预约', this.data.submitData);
+  },
+
+  /**
+   * 输入
+   * @param {any} e 
+   */
+  input: function(e) {
+    console.log('input 输入', e);
+    let id = e.currentTarget.id;
+    if (id == 'name') {
+      this.setData({
+        'submitData.activityIdName': e.detail.value
+      })
+    } else if (id == 'count') {
+      this.setData({
+        'submitData.activityCount': e.detail.value
+      })
+    } else if (id == 'content') {
+      this.setData({
+        'submitData.activityContent': e.detail.value
+      })
+    }
+  },
+
+  /**
+   * 选择
+   * @param {any} e 
+   */
+  changePicker: function(e) {
+    console.log('picker 选择', e);
+    let id = e.currentTarget.id;
+    if (id == 'type') {
+      this.setData({
+        selectActivityTypeIndex: e.detail.value,
+        'submitData.activityType': this.data.activityTypeRange[e.detail.value].name
+      })
+    } else if (id == 'private') {
+      this.setData({
+        selectPrivateTypeIndex: e.detail.value,
+        'submitData.privated': this.data.privateTypeRange[e.detail.value].name
+      })
+    }
   }
 })

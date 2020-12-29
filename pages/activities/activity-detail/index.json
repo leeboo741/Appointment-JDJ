@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "infoRow": "./components/info-row/index"
+  },
+  "navigationBarTitleText": "活动详情"
 }

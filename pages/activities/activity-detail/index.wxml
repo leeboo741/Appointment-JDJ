@@ -1,2 +1,30 @@
 <!--pages/activities/activity-detail/index.wxml-->
-<text>pages/activities/activity-detail/index.wxml</text>
+<swiper class="banner" indicator-dots='true' indicator-color='#ffffff' indicator-active-color='#FF7603'>
+  <swiper-item wx:for="{{[activityDetail.activityIconUrl]}}" wx:key='index'>
+    <view class="banner-item">
+      <image class="banner-content" src="{{item}}" mode="aspectFill"></image>
+    </view>
+  </swiper-item>
+</swiper>
+<view class="whiteBlock">
+  <view class="info-list">
+    <infoRow title='活动时间' value='2020.01.11 至 2020.03.03'></infoRow>
+    <infoRow title='所在社区' value='金顶街街道文化中心'></infoRow>
+    <infoRow title='活动地点' value='北京市西城区金融街金顶街'></infoRow>
+    <infoRow title='活动场馆' value='金顶街街道文焕中心'></infoRow>
+  </view>
+</view>
+<view class="whiteBlock">
+  <view class="info-list">
+    <infoRow title='报名要求' value='有闲有钱有颜没对象'></infoRow>
+    <infoRow title='名额限制' value='166人'></infoRow>
+    <infoRow title='已报名人数' value='100人'></infoRow>
+  </view>
+</view>
+<view class="whiteBlock">
+  <view class="info-list">
+    <infoRow title='活动介绍' value='活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍活动结束后活动介绍'></infoRow>
+  </view>
+</view>
+
+<view class="bottom-button" bindtap="tapOrder">立即报名</view>

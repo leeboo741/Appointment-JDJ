@@ -3,6 +3,7 @@
 ### 代码文件结构
 
 |-- /components 公共组件
+    |-- submit-row
     |-- image-box 图片显示组件
     |-- input-bar 输入框组件
     |-- panel 面板组件
@@ -37,7 +38,11 @@
     |-- convener 申请成为召集人
     |-- /activities 活动
         |-- activity-list 活动列表
+            |-- components
+                |-- activity-item
         |-- activity-detail 活动详情
+            |-- components
+                |-- info-row
         |-- activity-my-joined 我参加的活动
     |-- /venues 场馆
         |-- venues-list 场馆列表
@@ -48,8 +53,6 @@
                 |-- venues-info
                 |-- venues-schedule
         |-- venue-appointment 场馆预约
-            |-- components
-                |-- submit-row
         |-- venue-appointment-rule 预约规则
         |-- venue-my-appointmented 我预约的场馆
     |-- /groups 团队

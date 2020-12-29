@@ -1,2 +1,34 @@
 <!--pages/groups/group-create/index.wxml-->
-<text>pages/groups/group-create/index.wxml</text>
+<view class="content">
+  <view class="input-zone">
+    <submitRow title='团队名称'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入团队名称" bindinput="input" id='name' style="width:100%"></input>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='招募人数'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入招募人数" bindinput="input" id='count' type="number" style="width:100%"></input>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='活动类型'>
+      <picker range="{{activityTypeRange}}" range-key="name" value='{{selectActivityTypeIndex}}' style="width:100%" bindchange="changePicker" id='type'>
+        <view class="normal" wx:if='{{selectActivityTypeIndex != -1}}'>{{activityTypeRange[selectActivityTypeIndex].name}}</view>
+        <view class="placeholder" wx:else>请选择活动类型</view>
+      </picker>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='活动内容'>
+      <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='content' style="width: 100%; height: 160rpx"></textarea>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='加入条件'>
+      <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='condition' style="width: 100%; height: 160rpx"></textarea>
+    </submitRow>
+    <submitRow title='团队照片'>
+      <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='2' maxCount='1'></imageBox>
+    </submitRow>
+  </view>
+  <view class="bottom-box">
+    <view class="bottom-button cancel-button" bindtap="cancel">取消</view>
+    <view class="bottom-button confirm-button" bindtap="confirm">确定</view>
+  </view>
+</view>

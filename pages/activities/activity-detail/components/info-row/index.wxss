@@ -1,0 +1,21 @@
+/* pages/activities/activity-detail/components/info-row/index.wxss */
+.info-row{
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.value{
+  font-size: 28rpx;
+  color: #999;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

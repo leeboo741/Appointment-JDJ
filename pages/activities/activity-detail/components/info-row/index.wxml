@@ -1,0 +1,5 @@
+<!--pages/activities/activity-detail/components/info-row/index.wxml-->
+<view class="info-row">
+  <view class="title">{{title}}：</view>
+  <view class="value">{{value}}</view>
+</view>
