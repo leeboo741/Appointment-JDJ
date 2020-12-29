@@ -140,5 +140,30 @@ Page({
     wx.navigateTo({
       url: '/pages/venues/venues-appointment-rule/index',
     })
+  },
+
+  /**
+   * 点击创建团队
+   */
+  tapCreatedGroup: function(){
+
+  },
+
+  /**
+   * 点击加入团队
+   */
+  tapJoinedGroup: function(){
+    wx.navigateTo({
+      url: '/pages/groups/group-list/index',
+    })
+  },
+
+  /**
+   * 点击查看更多活动
+   */
+  tapMoreActivity: function() {
+    wx.navigateTo({
+      url: '/pages/activities/activity-list/index',
+    })
   }
 })

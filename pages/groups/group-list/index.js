@@ -1,10 +1,8 @@
-const notificationCenter = require("../../../global/notificationCenter");
-const { NOTIFICATION_SHOW_FILTER } = require("../../../resources/strings/notificationName");
+// pages/groups/group-list/index.js
 import Request from '../../../global/http/request';
+import notificationCenter from '../../../global/notificationCenter';
 import { checkIsFunction } from '../../../utils/util';
 
-const filter_key = 'venues-list'
-// pages/venues/venues-list/index.js
 Page({
 
   /**
@@ -13,35 +11,8 @@ Page({
   data: {
     page: 0,
     keyword: '', // 搜索关键字
-    venuesList: [], // 场馆列表
-    filterKey: "venues-list-filter",
-    zoneRange: [
-      {
-        id: 1,
-        name: '一区'
-      },
-      {
-        id: 2,
-        name: "二区"
-      },
-      {
-        id: 3,
-        name: '三区'
-      },
-      {
-        id: 4,
-        name: '二一区'
-      },
-      {
-        id: 5,
-        name: "二二区"
-      },
-      {
-        id: 6,
-        name: '二三区'
-      }
-    ],
-    selectedZone: [],
+    groupList: [],
+    filterKey: "group-list-filter",
     typeRange: [
       {
         id: 1,
@@ -130,16 +101,13 @@ Page({
   onShareAppMessage: function () {
 
   },
-
   /**
    * 点击item
    * @param {any}} e 
    */
-  tapItem: function(e) {
-    console.log('点击场馆列表 item', e.detail.value);
-    wx.navigateTo({
-      url: `/pages/venues/venues-detail/index?id=${e.detail.value.venueId}`,
-    })
+  join: function(e) {
+    console.log('点击团队列表 item', e.detail.value);
+    // 发起加入团队请求
   },
 
   /**
@@ -171,7 +139,7 @@ Page({
    * @param {any} e 
    */
   confirmFilter: function(e) {
-    wx.startPullDownRefresh()
+    wx.startPullDownRefresh();
   },
 
   /**
@@ -180,7 +148,6 @@ Page({
    */
   resetFilter: function(e) {
     this.setData({
-      selectedZone: [],
       selectedType: [],
       countZone: {
         startCount: null,
@@ -197,11 +164,7 @@ Page({
    * @param {any}} e 
    */
   selectedTag: function(e) {
-    if (e.currentTarget.id == 'zone') {
-      this.setData({
-        selectedZone: e.detail.value
-      })
-    } else if (e.currentTarget.id == 'type') {
+    if (e.currentTarget.id == 'type') {
       this.setData({
         selectedType: e.detail.value
       })
@@ -225,12 +188,11 @@ Page({
    */
   requestList: function(page, callback){
     Request.request({
-      url: 'getVenueList',
+      url: 'getTeamList',
       data: {
         page,
         size: 20,
         keyword: this.data.keyword,
-        zone: this.data.selectedZone.name,
         type: this.data.selectedType.name,
         startCount: this.data.countZone.startCount,
         endCount: this.data.countZone.endCount
@@ -249,7 +211,7 @@ Page({
       wx.stopPullDownRefresh()
       if (success) {
         $this.setData({
-          venuesList: data
+          groupList: data
         })
         $this.data.page ++;
       } else {
@@ -265,9 +227,9 @@ Page({
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
       if (success) {
-        $this.data.venuesList = $this.data.venuesList.concat(data);
+        $this.data.groupList = $this.data.groupList.concat(data);
         $this.setData({
-          venuesList
+          groupList
         })
         $this.data.page ++;
       } else {

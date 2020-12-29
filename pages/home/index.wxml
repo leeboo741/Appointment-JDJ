@@ -27,6 +27,10 @@
   </view>
 </panel>
 <panel title='社区活动' titleColor='#333333' titleFontSize='32'>
+  <view slot='header' class="more" catchtap="tapMoreActivity">
+    <view class="more-title">查看更多活动</view>
+    <image class="more-icon" src="/resources/images/right-arrow.png"></image>
+  </view>
   <scroll-view slot='content' scroll-x class="activity" style="width: 100%">
     <view class="activity-item" wx:for='{{activities}}' wx:key='index'>
       <image class="activity-item-image" src="{{item.coverImg}}"></image>
@@ -43,14 +47,14 @@
 </panel>
 <panel title='团队活动' titleColor='#333333' titleFontSize='32'>
   <view slot='content' class="groups">
-    <view class="groups-button">
+    <view class="groups-button" bindtap="tapCreatedGroup">
       <image class="groups-bg" src="/resources/images/group-create.png"></image>
       <view class="groups-content">
         <text class="groups-title">创建团队</text>
         <text class="groups-detail">点击立即创建团队</text>
       </view>
     </view>
-    <view class="groups-button">
+    <view class="groups-button" bindtap="tapJoinedGroup">
       <image class="groups-bg" src="/resources/images/group-join.png"></image>
       <view class="groups-content">
         <text class="groups-title">加入团队</text>

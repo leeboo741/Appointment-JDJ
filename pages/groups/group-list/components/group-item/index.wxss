@@ -1,0 +1,79 @@
+/* pages/groups/group-list/components/group-item/index.wxss */
+.group-item{
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.avatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin: 30rpx 0 30rpx 30rpx;
+  min-width: 120rpx;
+}
+
+.group-info{
+  margin: 30rpx 15rpx;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-self: center;
+}
+
+.group-info .name{
+  font-size: 32rpx;
+  color: #333333;
+  margin-bottom: 10rpx;
+  font-weight: bolder;
+}
+
+.group-info .type{
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.group-info .content{
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+  flex-wrap: wrap;
+}
+
+.group-info .condition{
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+  flex-wrap: wrap;
+}
+
+.group-info .count{
+  font-size: 26rpx;
+  color: #999;
+}
+
+.group-join-button{
+  margin-right: 30rpx;
+  align-self: center;
+  width: 140rpx;
+  min-width: 140rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+}
+
+.unfull{
+  border: 1rpx solid #FF7603;
+  color: #FF7603;
+  background: #fff;
+}
+
+.full{
+  border: 1rpx solid #ee2c2c;
+  color: #fff;
+  background: #ee2c2c;
+}

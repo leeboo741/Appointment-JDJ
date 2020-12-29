@@ -1,0 +1,22 @@
+/* pages/groups/group-list/index.wxss */
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list groupItem{
+  width: 710rpx;
+  margin-top: 30rpx;
+}
+
+.list groupItem:last-child{
+  margin-bottom: 30rpx;
+}
+
+.filter-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

@@ -10,7 +10,7 @@ Component({
       type: Boolean,
       value: false
     },
-    key: {
+    pushNotificationKey: {
       type: String,
       value: ""
     }
@@ -39,14 +39,13 @@ Component({
       // this.close();
     },
     close: function(){
-      NotificationCenter.postNotification(this.data.notifcationKey, false);
+      NotificationCenter.postNotification(this.data.pushNotificationKey, false);
     }
   },
 
   attached: function(){
-    this.data.notifcationKey = `${NOTIFICATION_SHOW_FILTER}-${this.data.key}`
     let $this = this;
-    NotificationCenter.addNormalNotificationObserver(this.data.notifcationKey, function(show){
+    NotificationCenter.addNormalNotificationObserver(this.data.pushNotificationKey, function(show){
       $this.setData({
         show
       })

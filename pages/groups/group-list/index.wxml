@@ -1,0 +1,14 @@
+<!--pages/groups/group-list/index.wxml-->
+<searchBar style='position: fixed; top: 0; left: 0; right: 0;' rightButtonTitle='筛选' value='{{keyword}}' bind:input='input' bind:confirm='confirm' bind:tapright='filterShow'></searchBar>
+<view style="height: 80rpx"></view>
+<view class="list">
+  <groupItem wx:for='{{groupList}}' wx:key='index' data='{{item}}' bind:join='join'></groupItem>
+</view>
+<pushFilter key='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
+  <scroll-view class="filter-content" scroll-y>
+    <view style="display: inline-block">
+      <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
+      <pushSection title='人数' mode='count-zone' startCount='{{countZone.startCount}}' endCount='{{countZone.endCount}}' bind:inputcount='inputCount'></pushSection>
+    </view>
+  </scroll-view>
+</pushFilter>

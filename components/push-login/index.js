@@ -53,7 +53,7 @@ Component({
         },
         fail(error) {
           wx.showToast({
-            title: '微信登录失败',
+            title: error.errMsg,
             icon: 'none'
           })
         }

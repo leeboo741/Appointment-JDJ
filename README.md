@@ -11,6 +11,8 @@
     |-- push-box 弹出页面盒子 组件
     |-- push-comment 评论弹出页面 组件
         |-- comment-item 评论item 组件
+    |-- push-filter 删选弹出页面 组件
+        |-- filter-section 删选条件section 组件
     |-- push-login 登录页面 组件
     |-- search-bar 搜索输入框组件
 |-- /global 全局数据处理
@@ -34,20 +36,28 @@
     |-- user-info 用户信息
     |-- convener 申请成为召集人
     |-- /activities 活动
-        |-- activities-list 活动列表
+        |-- activity-list 活动列表
         |-- activity-detail 活动详情
         |-- activity-my-joined 我参加的活动
     |-- /venues 场馆
         |-- venues-list 场馆列表
+            |-- components
+                |-- venues-item
         |-- venue-detail 场馆详情
+            |-- components
+                |-- venues-info
+                |-- venues-schedule
         |-- venue-appointment 场馆预约
+            |-- components
+                |-- submit-row
         |-- venue-appointment-rule 预约规则
         |-- venue-my-appointmented 我预约的场馆
     |-- /groups 团队
         |-- groups-list 团队列表
+            |-- components
+                |-- group-item 团队列表 item 组件
         |-- group-detail 团队详情
         |-- group-create 团队创建
-        |-- group-join 团队加入
         |-- group-my-created 我创建的团队
         |-- group-my-joined 我加入的团队
     |-- /journal 随拍
