@@ -4,7 +4,7 @@
 <view class="list">
   <groupItem wx:for='{{groupList}}' wx:key='index' data='{{item}}' bind:join='join'></groupItem>
 </view>
-<pushFilter key='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
+<pushFilter pushNotificationKey='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
   <scroll-view class="filter-content" scroll-y>
     <view style="display: inline-block">
       <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>

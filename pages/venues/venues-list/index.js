@@ -1,10 +1,7 @@
+// pages/venues/venues-list/index.js
 const notificationCenter = require("../../../global/notificationCenter");
-const { NOTIFICATION_SHOW_FILTER } = require("../../../resources/strings/notificationName");
 import Request from '../../../global/http/request';
 import { checkIsFunction } from '../../../utils/util';
-
-const filter_key = 'venues-list'
-// pages/venues/venues-list/index.js
 Page({
 
   /**

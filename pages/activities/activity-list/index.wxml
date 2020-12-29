@@ -1,2 +1,15 @@
 <!--pages/activities/activity-list/index.wxml-->
-<text>pages/activities/activity-list/index.wxml</text>
+<searchBar style='position: fixed; top: 0; left: 0; right: 0;' rightButtonTitle='筛选' value='{{keyword}}' bind:input='input' bind:confirm='confirm' bind:tapright='filterShow'></searchBar>
+<view style="height: 80rpx"></view>
+<view class="list">
+  <activityItem wx:for='{{activityList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' style=''></activityItem>
+</view>
+<pushFilter pushNotificationKey='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
+  <scroll-view class="filter-content" scroll-y>
+    <view style="display: inline-block">
+      <pushSection title='区域' mode='tag-single' tags='{{zoneRange}}' selectedTags='{{selectedZone}}' bind:selectedtag='selectedTag' id='zone'></pushSection>
+      <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
+      <pushSection title='人数' mode='count-zone' startCount='{{countZone.startCount}}' endCount='{{countZone.endCount}}' bind:inputcount='inputCount'></pushSection>
+    </view>
+  </scroll-view>
+</pushFilter>

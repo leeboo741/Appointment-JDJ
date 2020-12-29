@@ -4,7 +4,7 @@
 <view class="list">
   <venuesItem wx:for='{{venuesList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' style=''></venuesItem>
 </view>
-<pushFilter key='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
+<pushFilter pushNotificationKey='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
   <scroll-view class="filter-content" scroll-y>
     <view style="display: inline-block">
       <pushSection title='区域' mode='tag-single' tags='{{zoneRange}}' selectedTags='{{selectedZone}}' bind:selectedtag='selectedTag' id='zone'></pushSection>

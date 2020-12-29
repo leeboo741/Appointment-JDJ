@@ -1,5 +1,10 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "activityItem": "./components/activity-item/index",
+    "searchBar": "/components/search-bar/index",
+    "pushFilter": "/components/push-filter/index",
+    "pushSection": "/components/push-filter/filter-section/index"
+  },
   "navigationBarTitleText": "活动列表",
   "enablePullDownRefresh": true
 }
