@@ -71,3 +71,32 @@
   border: 1rpx solid rgba(0, 0, 0, 0);
   color: #ffffff;
 }
+
+.alert{
+  background: rgb(255, 231, 124);
+  color: #ee2c2c;
+  font-size: 26rpx;
+  width: 690rpx;
+  padding: 10rpx 30rpx;
+}
+
+.bottom-box{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 30rpx auto;
+  margin-bottom: 60rpx;
+}
+
+.bottom-button{
+  width: 90%;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  text-align: center;
+  background: linear-gradient(#FF9813, #FF7603);
+  font-size: 32rpx;
+  color: #fff;
+}

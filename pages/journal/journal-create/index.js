@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    submitData: {
+      content: '',
+      imageList: []
+    }
   },
 
   /**
@@ -62,5 +65,25 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  /**
+   * 点击确定
+   */
+  confirm: function(){
+    console.log('发布随拍', this.data.submitData);
+  },
+
+  /**
+   * 输入
+   * @param {any} e 
+   */
+  input: function(e) {
+    let id = e.currentTarget.id;
+    if (id == 'content') {
+      this.setData({
+        'submitData.content': e.detail.value
+      })
+    }
+  },
 })

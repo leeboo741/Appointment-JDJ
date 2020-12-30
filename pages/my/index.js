@@ -31,12 +31,12 @@ Page({
       {
         name: '我的随拍',
         icon: '/resources/images/journal.png',
-        url: '',
+        url: '/pages/journal/journal-my/index',
       },
       {
         name: '我的资料',
         icon: '/resources/images/info.png',
-        url: ''
+        url: '/pages/user-info/index'
       }
     ]
   },

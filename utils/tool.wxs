@@ -12,5 +12,9 @@ module.exports={
       return true;
     }
     return false;
+  },
+  
+  encrypPhone: function(phone) {
+    return phone.replace(phone.substring(3,7), "****")
   }
 }

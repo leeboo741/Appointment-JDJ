@@ -1,2 +1,37 @@
 <!--pages/user-info/index.wxml-->
-<text>pages/user-info/index.wxml</text>
+
+<view class="header">
+  <imageBox circle='true' ableAdd='true' style='width: 100%' columnCount='1' maxCount='1' ablePreview='false'></imageBox>
+</view>
+<view class="content">
+  <view class="input-zone">
+    <submitRow title='姓名'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入团队名称" bindinput="input" id='name' style="width:100%"></input>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='性别'>
+      <picker range="{{sexRange}}" range-key="name" value='{{selectSexIndex}}' style="width:100%" bindchange="changePicker" id='sex'>
+        <view class="normal" wx:if='{{selectSexIndex != -1}}'>{{sexRange[selectSexIndex].name}}</view>
+        <view class="placeholder" wx:else>请选择性别</view>
+      </picker>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='出生日期'>
+      <picker style="width:100%" mode='date' value='{{birthday}}' bindchange="changeDate" id='birthday'>
+        <view class="normal" wx:if='{{birthday != null && birthday.length > 0}}'>{{birthday}}</view>
+        <view class="placeholder" wx:else>请选择出生日期</view>
+      </picker>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='手机号'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入手机号码" disabled="true" style="width:100%" value='{{phone}}'></input>
+    </submitRow>
+    <view class="splite"></view>
+    <submitRow title='居委会'>
+      <input class="normal" placeholder-class="placeholder" placeholder="请选择居委会" disabled="true" style="width:100%" value='{{committee}}'></input>
+    </submitRow>
+  </view>
+  <view class="bottom-box">
+    <view class="bottom-button confirm-button" bindtap="confirm">修改</view>
+  </view>
+</view>

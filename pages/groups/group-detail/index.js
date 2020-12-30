@@ -12,7 +12,25 @@ Page({
       activityType: "跳舞",
       activityContent: "测试团队测试团队测试团队",
       enterCondition: "加入条件测试"
-    }
+    },
+    list: [
+      {
+        name: '李先生',
+        phone: '16607093121'
+      },
+      {
+        name: '李先生',
+        phone: '16607093121'
+      },
+      {
+        name: '李先生',
+        phone: '16607093121'
+      },
+      {
+        name: '李先生',
+        phone: '16607093121'
+      },
+    ]
   },
 
   /**

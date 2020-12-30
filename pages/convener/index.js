@@ -91,5 +91,9 @@ Page({
         'submitData.activityId': this.data.activityTypeRange[e.detail.value].id
       })
     }
+  },
+
+  tapApply: function(e) {
+    console.log('点击申请', this.data.submitData);
   }
 })

@@ -1,2 +1,5 @@
 <!--pages/journal/journal-my/index.wxml-->
-<text>pages/journal/journal-my/index.wxml</text>
+<journalItem wx:for='{{dataSource}}' wx:key='index' data='{{item}}' data-index='{{index}}' bind:like='like' bind:comment='comment'></journalItem>
+<view class="publish-button" bindtap="tapPublish">发帖</view>
+<pushLogin></pushLogin>
+<pushComment></pushComment>

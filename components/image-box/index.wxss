@@ -31,6 +31,10 @@
   justify-content: center;
 }
 
+.image-circle{
+  border-radius: 50%;
+}
+
 .border{
   border: 1rpx solid rgb(250, 250, 250);
   background: rgb(250, 250, 250);

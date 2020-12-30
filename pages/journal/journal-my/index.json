@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "journalItem": "../components/journal-item/index",
+    "pushComment": "/components/push-comment/index"
+  },
+  "navigationBarTitleText": "我的随拍"
 }

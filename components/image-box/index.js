@@ -1,4 +1,4 @@
-const { checkEmpty } = require("../../utils/util");
+const { checkEmpty, checkIsFunction } = require("../../utils/util");
 
 // components/image-box/index.js
 Component({
@@ -34,6 +34,14 @@ Component({
       type: Boolean,
       value: false
     }, // 是否允许视频
+    circle: {
+      type: Boolean,
+      value: false
+    }, // 是否圆形
+    ablePreview: {
+      type: Boolean,
+      value: true
+    }, // 是否允许预览图片  如果为false时 会查询ableAdd是否为true 如果ableAdd 会执行新增图片覆盖当前图片
   },
 
   observers: {
@@ -63,27 +71,42 @@ Component({
   methods: {
     tapPreview: function(res) {
       console.log(res);
-      wx.previewImage({
-        urls: this.data.imageList,
-        current: res.currentTarget.dataset.url,
-        fail(error){
-          console.log(error);
+      if (this.data.ablePreview) {
+        wx.previewImage({
+          urls: this.data.imageList,
+          current: res.currentTarget.dataset.url,
+          fail(error){
+            console.log(error);
+          }
+        })
+      } else {
+        if (this.data.ableAdd) {
+          let $this = this;
+          this.selectImage(1, function(){
+            $this.data.imageList = [];
+          })
         }
-      })
+      }
     },
-    tapAdd: function(){
-      if (checkEmpty(this.data.imageList)) this.data.imageList = [];
-      let count = this.data.maxCount - this.data.imageList.length;
+    selectImage:function(count, otherFunc) {
       let $this = this;
       wx.chooseImage({
         count: count,
         success(res) {
+          if (checkIsFunction(otherFunc)) {
+            otherFunc();
+          }
           $this.data.imageList = $this.data.imageList.concat(res.tempFilePaths);
           $this.setData({
             imageList: $this.data.imageList
           })
         }
       })
+    },
+    tapAdd: function(){
+      if (checkEmpty(this.data.imageList)) this.data.imageList = [];
+      let count = this.data.maxCount - this.data.imageList.length;
+      this.selectImage(count);
     },
     tapDelete: function(e){
       let index = e.currentTarget.dataset.index;
@@ -99,11 +122,12 @@ Component({
 
   ready:function() {
     var that = this
+    let rate = this.data.circle? 1.0 : 1.3;
     var query = wx.createSelectorQuery().in(this) //此处多了in(this)
     query.select(".image-content").boundingClientRect(function(res) {
       console.log(res)
       that.setData({
-        height: res.width * 1.3 + 'px'
+        height: res.width * rate + 'px'
       })
     }).exec()
   },

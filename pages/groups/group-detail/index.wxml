@@ -20,6 +20,15 @@
     <submitRow title='招募人数'>
       <input class="normal" placeholder-class="placeholder" placeholder="请输入招募人数" bindinput="input" id='count' type="number" style="width:100%" value='{{groupDetail.peopleCount}}' disabled="true"></input>
     </submitRow>
+    <view class="splite"></view>
+    <submitRow title='成员名单'>
+      <view class="list" style="width:100%">
+        <view class="item" wx:for='{{list}}' wx:key='index'>
+          <view class="name">{{item.name}}</view>
+          <view class="phone">{{parse.encrypPhone(item.phone)}}</view>
+        </view>
+      </view>
+    </submitRow>
   </view>
   <view class="bottom-box">
     <view class="bottom-button cancel-button" bindtap="cancel">取消</view>
@@ -27,3 +36,4 @@
   </view>
 </view>
 
+<wxs module="parse" src='../../../utils/tool.wxs'/>

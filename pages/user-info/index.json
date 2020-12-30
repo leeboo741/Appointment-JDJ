@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "submitRow": "/components/submit-row/index",
+    "imageBox": "/components/image-box/index"
+  },
+  "navigationBarTitleText": "个人信息"
 }

@@ -16,4 +16,10 @@
       <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='1' maxCount='2'></imageBox>
     </submitRow>
   </view>
+  <view class="alert">
+    须知：召集人必须拥护XXXXXXX，支持XXXXXXX
+  </view>
+  <view class="bottom-box">
+    <view class="bottom-button" bindtap="tapApply">申请</view>
+  </view>
 </view>

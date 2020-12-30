@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "journalItem": "./components/journal-item/index",
+    "journalItem": "../components/journal-item/index",
     "pushComment": "/components/push-comment/index"
   },
   "navigationBarTitleText": "随拍"
