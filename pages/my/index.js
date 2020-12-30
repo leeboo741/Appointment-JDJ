@@ -106,5 +106,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 点击申请成为召集人
+   */
+  tapApplyConvener: function() {
+    wx.navigateTo({
+      url: '/pages/convener/index',
+    })
   }
 })

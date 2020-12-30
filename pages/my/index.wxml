@@ -16,7 +16,7 @@
     <text wx:else>点我登录,登录之后更精彩</text>
   </view>
   <view class="right-box" wx:if='{{userData}}'>
-    <view class="apply-button">申请成为召集人</view>
+    <view class="apply-button" bindtap="tapApplyConvener">申请成为召集人</view>
   </view>
 </view>
 <view style="height: 20rpx"></view>

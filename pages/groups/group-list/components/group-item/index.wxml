@@ -4,7 +4,7 @@
   <view class="group-info">
     <view class='name-row'>
       <view class="name">{{data.tname}}</view>
-      <view class="full">已满</view>
+      <view class="full" wx:if='{{data.status == 3}}'>已满</view>
     </view>
     <view class="type">类型：{{data.activityType}}</view>
     <view class="content">活动内容：{{data.activityContent}}</view>

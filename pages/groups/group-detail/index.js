@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    groupDetail: {
+      teamId: 123,
+      tname: "团队名称1",
+      peopleCount: 12,
+      activityType: "跳舞",
+      activityContent: "测试团队测试团队测试团队",
+      enterCondition: "加入条件测试"
+    }
   },
 
   /**
