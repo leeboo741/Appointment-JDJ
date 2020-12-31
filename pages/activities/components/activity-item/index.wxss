@@ -3,6 +3,11 @@
   background: #ffffff;
   border-radius: 10rpx;
   display: flex;
+  flex-direction: column;
+}
+
+.activity-info{
+  display: flex;
   flex-direction: row;
 }
 
@@ -27,29 +32,44 @@
   color: #333333;
   width: 100%;
   flex-wrap: wrap;
-  margin-bottom: 30rpx;
+  margin-bottom: 15rpx;
 }
 
 .activity-content .type{
   font-size: 24rpx;
   color: #FF7603;
   width: 100%;
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
 }
 
-.activity-content .count{
+.activity-content .time{
   font-size: 24rpx;
-  color: #FF7603;
+  color: #999999;
   width: 100%;
-  margin-bottom: 20rpx;
 }
 
 .activity-content .content{
   font-size: 24rpx;
-  color: #999999;
+  color: #FF7603;
   width: 100%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.splite{
+  height: 1rpx;
+  background: rgb(250, 250, 250);
+  width: 95%;
+  margin: 10rpx auto;
+}
+
+.operate-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20rpx 30rpx;
 }

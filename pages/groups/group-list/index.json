@@ -1,10 +1,11 @@
 {
   "usingComponents": {
-    "groupItem": "./components/group-item/index",
+    "groupItem": "../components/group-item/index",
     "searchBar": "/components/search-bar/index",
     "pushFilter": "/components/push-filter/index",
     "pushSection": "/components/push-filter/filter-section/index"
   },
   "navigationBarTitleText": "团队列表",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

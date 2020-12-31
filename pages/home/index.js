@@ -167,5 +167,23 @@ Page({
     wx.navigateTo({
       url: '/pages/activities/activity-list/index',
     })
+  },
+
+  /**
+   * 点击活动
+   * @param {any} e 
+   */
+  tapActivity: function(e) {
+    wx.navigateTo({
+      url: `/pages/activities/activity-detail/index?id=${e.currentTarget.dataset.obj.activityId}`,
+    })
+  },
+
+  /**
+   * 点击参加活动
+   * @param {any} e 
+   */
+  tapCancelActivity: function(e) {
+    console.log('点击参加活动', e.currentTarget.dataset.obj);
   }
 })

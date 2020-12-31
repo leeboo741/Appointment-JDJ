@@ -1,7 +1,7 @@
 <!--pages/user-info/index.wxml-->
 
 <view class="header">
-  <imageBox circle='true' ableAdd='true' style='width: 100%' columnCount='1' maxCount='1' ablePreview='false'></imageBox>
+  <imageBox circle='true' ableAdd='true' style='width: 100%' columnCount='1' maxCount='1' ablePreview='{{false}}' addButtonBackground='#fff' addButtonTitle='添加头像'></imageBox>
 </view>
 <view class="content">
   <view class="input-zone">

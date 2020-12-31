@@ -1,0 +1,18 @@
+<!--pages/activities/activity-list/components/activity-item/index.wxml-->
+<view class="activity-item" catchtap="tapItem">
+  <view class="activity-info">
+    <image class="activity-image" src="{{data.activityIconUrl}}" mode="aspectFill"></image>
+    <view class="activity-content">
+      <view class="name">{{data.activityIdName}}</view>
+      <view class="type">{{data.activityType}}  ({{data.activityCount}}人)</view>
+      <view class="content">内容：{{data.activityContent}}</view>
+      <view class="time">{{data.acitivityTime}}</view>
+    </view>
+  </view>
+  <block wx:if='{{showOperateBox}}'>
+    <view class="splite"></view>
+    <view class="operate-box">
+      <slot></slot>
+    </view>
+  </block>
+</view>

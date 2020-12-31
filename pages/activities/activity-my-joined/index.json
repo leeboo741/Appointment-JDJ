@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "activityItem": "../components/activity-item/index"
+  },
+  "navigationBarTitleText": "我参加的活动",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

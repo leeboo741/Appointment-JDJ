@@ -3,7 +3,7 @@
 .header{
   width: 180rpx;
   height: 180rpx;
-  margin: 150rpx auto;
+  margin: 60rpx auto;
   margin-bottom: 60rpx;
 }
 

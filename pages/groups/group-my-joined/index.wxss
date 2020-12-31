@@ -1,1 +1,15 @@
 /* pages/groups/group-my-joined/index.wxss */
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list groupItem{
+  width: 710rpx;
+  margin-top: 30rpx;
+}
+
+.list groupItem:last-child{
+  margin-bottom: 30rpx;
+}

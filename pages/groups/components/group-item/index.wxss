@@ -15,7 +15,7 @@
 }
 
 .group-info{
-  margin: 30rpx 15rpx;
+  margin: 30rpx 30rpx;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -47,7 +47,7 @@
 
 .group-info .type{
   font-size: 26rpx;
-  color: #999;
+  color: #FF7603;
   margin-bottom: 10rpx;
 }
 
@@ -60,7 +60,7 @@
 
 .group-info .condition{
   font-size: 26rpx;
-  color: #999;
+  color: #FF7603;
   margin-bottom: 10rpx;
   flex-wrap: wrap;
 }

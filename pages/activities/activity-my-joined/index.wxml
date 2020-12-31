@@ -1,2 +1,6 @@
 <!--pages/activities/activity-my-joined/index.wxml-->
-<text>pages/activities/activity-my-joined/index.wxml</text>
+<view class="list">
+  <activityItem wx:for='{{activityList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' showOperateBox='{{true}}'>
+    <view class="cancel-button" bindtap="cancel" data-index='{{index}}'>退出活动</view>
+  </activityItem>
+</view>

@@ -31,8 +31,8 @@
     </submitRow>
   </view>
   <view class="bottom-box">
-    <view class="bottom-button cancel-button" bindtap="cancel">取消</view>
-    <view class="bottom-button confirm-button" bindtap="confirm">加入团队</view>
+    <view class="bottom-button cancel-button" bindtap="cancel" wx:if='{{options.joined}}'>退出团队</view>
+    <view class="bottom-button confirm-button" bindtap="confirm" wx:else>加入团队</view>
   </view>
 </view>
 

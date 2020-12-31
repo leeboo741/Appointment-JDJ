@@ -5,6 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: {
+      id: null,
+      joined: null,
+    },
     groupDetail: {
       teamId: 123,
       tname: "团队名称1",
@@ -37,7 +41,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      options
+    })
   },
 
   /**
@@ -87,5 +93,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 退出团队
+   */
+  cancel: function(){
+    console.log('退出团队')
+  },
+
+  /**
+   * 加入团队
+   */
+  confirm: function(){
+    console.log('加入团队')
   }
 })

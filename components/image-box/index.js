@@ -42,6 +42,14 @@ Component({
       type: Boolean,
       value: true
     }, // 是否允许预览图片  如果为false时 会查询ableAdd是否为true 如果ableAdd 会执行新增图片覆盖当前图片
+    addButtonBackground: {
+      type: String,
+      value: ""
+    }, // 新增按钮 背景颜色 不传 默认 rgb(250,250,250)
+    addButtonTitle: {
+      type: String,
+      value: '点击添加图片'
+    }, // 新增按钮 标题
   },
 
   observers: {

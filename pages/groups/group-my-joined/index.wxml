@@ -1,2 +1,4 @@
 <!--pages/groups/group-my-joined/index.wxml-->
-<text>pages/groups/group-my-joined/index.wxml</text>
+<view class="list">
+  <groupItem wx:for='{{groupList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem'></groupItem>
+</view>

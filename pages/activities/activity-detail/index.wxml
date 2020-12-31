@@ -27,4 +27,5 @@
   </view>
 </view>
 
-<view class="bottom-button" bindtap="tapOrder">立即报名</view>
+<view class="bottom-button cancel" bindtap="tapCancel" wx:if='{{options.joined}}'>退出活动</view>
+<view class="bottom-button" bindtap="tapOrder" wx:else>立即报名</view>

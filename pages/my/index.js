@@ -11,22 +11,22 @@ Page({
       {
         name: '我加入的活动',
         icon: '/resources/images/activity.png',
-        url: ''
+        url: '/pages/activities/activity-my-joined/index'
       },
       {
         name: '我加入的团队',
         icon: '/resources/images/group.png',
-        url: ''
+        url: '/pages/groups/group-my-joined/index'
       },
       {
         name: '我发起的团队',
         icon: '/resources/images/group-2.png',
-        url: '',
+        url: '/pages/groups/group-my-created/index',
       },
       {
         name: '我预约的场馆',
         icon: '/resources/images/venue.png',
-        url: '',
+        url: '/pages/venues/venues-appointment/index',
       },
       {
         name: '我的随拍',

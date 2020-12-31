@@ -101,6 +101,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  
   /**
    * 点击item
    * @param {any}} e 

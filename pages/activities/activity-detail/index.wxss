@@ -56,3 +56,9 @@
   font-size: 32rpx;
   color: #fff;
 }
+
+.cancel{
+  background: #fff;
+  border: 1rpx solid #FF7603;
+  color: #FF7603;
+}
