@@ -72,6 +72,18 @@
   color: #ffffff;
 }
 
+.close-button{
+  background: #fff;
+  border: 1rpx solid #999;
+  color: #999;
+}
+
+.open-button{
+  border: 1rpx solid #FF7603;
+  color: #FF7603;
+  background: #ffffff;
+}
+
 submitRow .list{
   display: flex;
   flex-direction: column;

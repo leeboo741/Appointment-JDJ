@@ -1,0 +1,19 @@
+<!--pages/venues/components/venues-item-my/index.wxml-->
+<view class="venues-item" catchtap="tapItem">
+  <view class="venues-info">
+    <image class="venues-image" src="{{venues.iconUrl}}" mode="aspectFill"></image>
+    <view class="venues-content">
+      <view class="name">{{venues.venueName}}</view>
+      <view class="max">可容纳：{{venues.maxPeople}}人</view>
+      <view class="address">地址：{{venues.address}}</view>
+    </view>
+  </view>
+  <view class="row">
+    <view class="title">报名人数：</view>
+    <view class="value">{{venues.peopleCount}}</view>
+  </view>
+  <view class="row">
+    <view class="title">活动时间：</view>
+    <view class="value">{{venues.timeZone}}</view>
+  </view>
+</view>

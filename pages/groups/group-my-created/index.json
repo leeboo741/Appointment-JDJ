@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "groupItem": "../components/group-item/index"
+  },
+  "navigationBarTitleText": "我创建的团队",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
 }

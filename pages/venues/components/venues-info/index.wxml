@@ -3,7 +3,7 @@
   <image class="venues-image" src="{{venues.iconUrl}}" mode="aspectFill"></image>
   <view class="venues-content">
     <view class="name">{{venues.venueName}}</view>
-    <view class="max">可容纳人数：{{venues.maxPeople}}人</view>
+    <view class="max">可容纳：{{venues.maxPeople}}人</view>
     <view class="address">地址：{{venues.address}}</view>
   </view>
 </view>

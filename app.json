@@ -21,7 +21,8 @@
     "pages/groups/group-list/index",
     "pages/groups/group-my-created/index",
     "pages/groups/group-my-joined/index",
-    "pages/groups/group-detail/index"
+    "pages/groups/group-detail/index",
+    "pages/venues/venues-my-appointmented-detail/index"
   ],
   "usingComponents": {
     "pushLogin": "/components/push-login/index",

@@ -26,7 +26,7 @@ Page({
       {
         name: '我预约的场馆',
         icon: '/resources/images/venue.png',
-        url: '/pages/venues/venues-appointment/index',
+        url: '/pages/venues/venues-my-appointmented/index',
       },
       {
         name: '我的随拍',

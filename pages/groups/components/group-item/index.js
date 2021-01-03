@@ -7,6 +7,10 @@ Component({
     data: {
       type: Object,
       value: {}
+    },
+    showOperateBox: {
+      type: Boolean,
+      value: false
     }
   },
 

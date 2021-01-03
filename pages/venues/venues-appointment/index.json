@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "venuesInfo": "../venues-detail/components/venues-info/index",
+    "venuesInfo": "../components/venues-info/index",
     "submitRow": "/components/submit-row/index",
     "imageBox": "/components/image-box/index"
   },

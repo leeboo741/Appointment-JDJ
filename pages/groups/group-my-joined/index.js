@@ -122,7 +122,7 @@ Page({
       if (success) {
         $this.data.groupList = $this.data.groupList.concat(data);
         $this.setData({
-          groupList
+          groupList: $this.data.groupList
         })
         $this.data.page ++;
       } else {

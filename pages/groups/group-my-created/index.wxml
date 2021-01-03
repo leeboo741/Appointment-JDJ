@@ -1,2 +1,7 @@
 <!--pages/groups/group-my-created/index.wxml-->
-<text>pages/groups/group-my-created/index.wxml</text>
+<view class="list">
+  <groupItem wx:for='{{groupList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' showOperateBox='{{item.status==1||item.status==2}}'>
+    <view class="close-button" catchtap="close" data-index='{{index}}' wx:if='{{item.status==1}}'>临时关闭</view>
+    <view class="open-button" catchtap="open" data-index='{{index}}' wx:elif='{{item.status==2}}'>重新开放</view>
+  </groupItem>
+</view>

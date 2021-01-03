@@ -32,6 +32,8 @@
   </view>
   <view class="bottom-box">
     <view class="bottom-button cancel-button" bindtap="cancel" wx:if='{{options.joined}}'>退出团队</view>
+    <view class="bottom-button close-button" bindtap="close" wx:elif='{{options.my && groupDetail.status==1}}'>临时关闭</view>
+    <view class="bottom-button open-button" bindtap="open" wx:elif='{{options.my && groupDetail.status==2}}'>重新开放</view>
     <view class="bottom-button confirm-button" bindtap="confirm" wx:else>加入团队</view>
   </view>
 </view>

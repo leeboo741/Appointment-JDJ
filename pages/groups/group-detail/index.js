@@ -8,14 +8,17 @@ Page({
     options: {
       id: null,
       joined: null,
+      my: null,
     },
     groupDetail: {
       teamId: 123,
       tname: "团队名称1",
+      currentPeopleCount: 10,
       peopleCount: 12,
       activityType: "跳舞",
       activityContent: "测试团队测试团队测试团队",
-      enterCondition: "加入条件测试"
+      enterCondition: "加入条件测试",
+      status: 2,
     },
     list: [
       {
@@ -107,5 +110,19 @@ Page({
    */
   confirm: function(){
     console.log('加入团队')
+  },
+
+  /**
+   * 关闭
+   */
+  close: function(){
+    console.log('关闭')
+  },
+
+  /**
+   * 开放
+   */
+  open: function(){
+    console.log('开放')
   }
 })

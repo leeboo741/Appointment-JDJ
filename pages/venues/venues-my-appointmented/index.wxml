@@ -1,2 +1,4 @@
 <!--pages/venues/venues-my-appointmented/index.wxml-->
-<text>pages/venues/venues-my-appointmented/index.wxml</text>
+<view class="list">
+  <venuesItem wx:for='{{venuesList}}' wx:key='index' venues='{{item}}' bind:tapitem='tapItem' style=''></venuesItem>
+</view>
