@@ -3,7 +3,7 @@
 ### 代码文件结构
 
 |-- /components 公共组件
-    |-- submit-row
+    |-- submit-row 
     |-- image-box 图片显示组件
     |-- input-bar 输入框组件
     |-- panel 面板组件
@@ -37,36 +37,39 @@
     |-- user-info 用户信息
     |-- convener 申请成为召集人
     |-- /activities 活动
+        |-- /components
+            |-- activity-item
         |-- activity-list 活动列表
-            |-- components
-                |-- activity-item
         |-- activity-detail 活动详情
             |-- components
                 |-- info-row
         |-- activity-my-joined 我参加的活动
     |-- /venues 场馆
+        |-- /components
+            |-- venues-info
+            |-- venues-item
+            |-- venues-item-my
         |-- venues-list 场馆列表
+        |-- venues-detail 场馆详情
             |-- components
-                |-- venues-item
-        |-- venue-detail 场馆详情
-            |-- components
-                |-- venues-info
                 |-- venues-schedule
-        |-- venue-appointment 场馆预约
-        |-- venue-appointment-rule 预约规则
-        |-- venue-my-appointmented 我预约的场馆
+        |-- venues-appointment 场馆预约
+        |-- venues-appointment-rule 预约规则
+        |-- venues-my-appointmented 我预约的场馆
+        |-- venues-my-appointmented-detail 我预约的场馆详情
     |-- /groups 团队
-        |-- groups-list 团队列表
-            |-- components
-                |-- group-item 团队列表 item 组件
+        |-- /components
+            |-- group-item
+        |-- group-detail 团队详情
+        |-- group-list 团队列表
         |-- group-create 团队创建
         |-- group-my-created 我创建的团队
         |-- group-my-joined 我加入的团队
     |-- /journal 随拍
+        |-- /components
+            |-- journal-item
+            |-- journal-item-operate
         |-- journal-list 随拍列表
-            |-- /components
-                |-- journal-item 随拍列表item组件
-                |-- journal-item-operate 随拍列表item操作组件
         |-- journal-my 我的随拍
         |-- journal-create 发布随拍
 |-- /resources 资源文件
@@ -74,7 +77,14 @@
     |-- /strings 文本资源
         |-- notificationName 通知名称
 |-- /utils 工具包
+    |-- tool wxs工具库
     |-- util 工具
 |-- app.js
 |-- app.json
 |-- app.wxss
+|-- package.json
+|-- package-lock.json
+|-- project.config.json
+|-- sitemap.json
+|-- README.md
+|-- .gitattributes
