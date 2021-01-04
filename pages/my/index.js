@@ -9,31 +9,43 @@ Page({
     userData: null,
     operate: [
       {
+        id: 'scan',
+        name: "扫一扫",
+        icon: '/resources/images/scan.png',
+        hidden: false,
+      },
+      {
+        id: 'my-activity',
         name: '我加入的活动',
         icon: '/resources/images/activity.png',
         url: '/pages/activities/activity-my-joined/index'
       },
       {
+        id: 'my-group-joined',
         name: '我加入的团队',
         icon: '/resources/images/group.png',
         url: '/pages/groups/group-my-joined/index'
       },
       {
+        id: 'my-group-created',
         name: '我发起的团队',
         icon: '/resources/images/group-2.png',
         url: '/pages/groups/group-my-created/index',
       },
       {
+        id: 'my-venue',
         name: '我预约的场馆',
         icon: '/resources/images/venue.png',
         url: '/pages/venues/venues-my-appointmented/index',
       },
       {
+        id: 'my-journal',
         name: '我的随拍',
         icon: '/resources/images/journal.png',
         url: '/pages/journal/journal-my/index',
       },
       {
+        id: 'my-info',
         name: '我的资料',
         icon: '/resources/images/info.png',
         url: '/pages/user-info/index'
@@ -115,5 +127,17 @@ Page({
     wx.navigateTo({
       url: '/pages/convener/index',
     })
+  },
+
+  tapCell: function(e) {
+    console.log(e.currentTarget.dataset.id);
+    if (e.currentTarget.dataset.id == 'scan') {
+      wx.scanCode({
+        onlyFromCamera: true,
+        success(res) {
+          console.log('扫码内容', res.result);
+        }
+      })
+    }
   }
 })

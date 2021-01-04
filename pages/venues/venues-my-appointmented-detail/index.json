@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "venuesInfo": "../components/venues-info/index",
+    "submitRow": "/components/submit-row/index"
+  },
+  "navigationBarTitleText": "场馆预约详情"
 }

@@ -21,10 +21,21 @@
 </view>
 <view style="height: 20rpx"></view>
 <vantCellGroup>
-  <vantCell is-link wx:for='{{operate}}' wx:key='index' link-type='navigateTo' url='{{item.url}}'>
+  <vantCell wx:for='{{operate}}' wx:key='index' is-link='{{parse.isLink(item.id)}}' link-type='navigateTo' url='{{item.url}}' data-id='{{item.id}}' bindtap="tapCell" wx:if='{{!item.hidden}}'>
     <text slot='title' class="cell-title">{{item.name}}</text>
     <image slot='icon' class="cell-icon" src="{{item.icon}}"></image>
   </vantCell>
 </vantCellGroup>
 
 <pushLogin></pushLogin>
+
+<wxs module='parse'>
+  module.exports={
+    isLink: function(id) {
+      if (id == 'scan') {
+        return false;
+      }
+      return true;
+    }
+  }
+</wxs>

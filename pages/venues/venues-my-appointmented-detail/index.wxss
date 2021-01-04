@@ -1,1 +1,38 @@
 /* pages/venues/venues-my-appointmented-detail/index.wxss */
+.white-block{
+  width: 710rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx auto;
+}
+
+.qrcode{
+  width: 270rpx;
+  height: 270rpx;
+  align-self: center;
+  margin: 30rpx;
+}
+
+.list{
+  display: flex;
+  flex-direction: column;
+}
+
+.list .item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 20rpx;
+}
+
+.item .name{
+  flex-grow: 1;
+}
+
+.item .phone{
+  flex-grow: 1;
+}

@@ -1,2 +1,22 @@
 <!--pages/venues/venues-my-appointmented-detail/index.wxml-->
-<text>pages/venues/venues-my-appointmented-detail/index.wxml</text>
+<venuesInfo venues='{{appointmentDetail.venues}}' style='width: 100%'></venuesInfo>
+
+<view class="white-block">
+  <image class="qrcode" src="/resources/images/test_qrcode.jpeg"></image>
+  <submitRow title='报名人数'>
+    <input type="number" disabled="{{true}}" value='{{appointmentDetail.currentPeopleCount}}人' style="width: 100%"></input>
+  </submitRow>
+  <submitRow title='活动时间'>
+    <input type="text" disabled="{{true}}" value='{{appointmentDetail.date}}' style="width: 100%"></input>
+  </submitRow>
+  <submitRow title='报名名单'>
+    <view class="list" style="width:100%">
+      <view class="item" wx:for='{{appointmentDetail.list}}' wx:key='index'>
+        <view class="name">{{item.name}}</view>
+        <view class="phone">{{parse.encrypPhone(item.phone)}}</view>
+      </view>
+    </view>
+  </submitRow>
+</view>
+
+<wxs module="parse" src='../../../utils/tool.wxs'></wxs>
