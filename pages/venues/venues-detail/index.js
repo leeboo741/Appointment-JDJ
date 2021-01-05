@@ -10,7 +10,212 @@ Page({
     venueId: null,
     venuesDetail: {},
     selectedDate: '2020.12.28',
-    selectedTime: '09:00'
+    selectedTime: '09:00',
+    scheduleData: [
+      {
+        date: "2020.01.01",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+      {
+        date: "2020.01.02",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+      {
+        date: "2020.01.03",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+      {
+        date: "2020.01.04",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+      {
+        date: "2020.01.05",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+      {
+        date: "2020.01.06",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+      {
+        date: "2020.01.07",
+        list: [
+          {
+            time: "08:00-10:00",
+            state: 1,
+          },
+          {
+            time: "10:00-12:00",
+            state: 2,
+          },
+          {
+            time: "14:00-16:00",
+            state: 3,
+          },
+          {
+            time: "16:00-18:00",
+            state: 3,
+          },
+          {
+            time: "18:00-20:00",
+            state: 4,
+          },
+          {
+            time: "20:00-22:00",
+            state: 3
+          }
+        ],
+      },
+    ]
   },
 
   /**
@@ -110,5 +315,13 @@ Page({
     wx.navigateTo({
       url: `/pages/venues/venues-appointment/index?id=${this.data.venuesDetail.venueId}&date=${this.data.selectedDate}&time=${this.data.selectedTime}`,
     })
+  },
+
+  /**
+   * 点击排期
+   * @param {any} e 
+   */
+  tapSchedule: function(e) {
+    console.log('点击排期', e.detail.date, e.detail.time, e.detail.state);
   }
 })

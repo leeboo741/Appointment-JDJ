@@ -8,6 +8,39 @@
     </view>
   </view>
   <view class="schedule">
-    <view class="time-list"></view>
+    <view class="schedule-time-list" style="position: absolute; left: 0; top: 20rpx; bottom: 0; background: #fff; z-index: 3">
+      <view class="time-item empty"></view>
+      <view class="time-item" wx:for="{{data[0].list}}" wx:key='index'>{{item.time}}</view>
+    </view>
+    <scroll-view scroll-x class="schedule-content">
+      <view class="schedule-time-list">
+        <view class="time-item empty"></view>
+      </view>
+      <view class="schedule-date-list" wx:for="{{data}}" wx:key='index'>
+        <view class="date-item date">{{parse.getDateWithoutYear(item.date)}}</view>
+        <view class="date-item" wx:for="{{item.list}}" wx:for-item='stateItem' wx:for-index='stateIndex' wx:key='stateIndex' style="background: {{parse.getBackground(stateItem.state, colorList)}}; color:{{parse.getBackground(stateItem.state, colorList)}}" catchtap="tapItem" data-section='{{index}}' data-row='{{stateIndex}}'>{{stateItem.state}}</view>
+      </view>
+    </scroll-view>
   </view>
 </view>
+
+<wxs module="parse">
+  module.exports={
+    getBackground: function(state, colorList) {
+      for (var i = 0; i < colorList.length; i ++) {
+        var color = colorList[i];
+        if (state == color.state) {
+          return color.color
+        }
+      }
+      return "#fff";
+    },
+    getDateWithoutYear: function(date) {
+      var list = date.split(".");
+      if (list.length == 3) {
+        return list[1] + '.' + list[2];
+      }
+      return date;
+    }
+  }
+</wxs>
