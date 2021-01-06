@@ -1,6 +1,6 @@
 import {checkEmpty, checkIsString, throwError, checkIsDict, checkIsNumber, checkIsFunction} from '../../utils/util'
 
-const baseUrl = "http://test.mock.com/"
+const baseUrl = "https://www.jindingjieorg.cn:9020/"
 
 /**
  * 数据请求
