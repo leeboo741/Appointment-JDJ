@@ -6,28 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerData: [
-      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2690349196,3296263947&fm=26&gp=0.jpg",
-      "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276709640,3891421934&fm=26&gp=0.jpg",
-      "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg"
-    ],
-    activities: [
-      {
-        title: '社区老年书法比赛',
-        content: '社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛',
-        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
-      },
-      {
-        title: '社区老年书法比赛社区老年书法比赛',
-        content: '社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛',
-        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
-      },
-      {
-        title: '社区老年书法比赛',
-        content: '社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛社区老年书法比赛',
-        coverImg: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81'
-      }
-    ]
+    bannerData: [],
+    activities: []
   },
 
   /**
@@ -191,7 +171,7 @@ Page({
       if (success) {
         wx.showModal({
           title: '成功参加活动',
-          content: `您已成功参加活动${e.currentTarget.dataset.obj.activityName}`,
+          content: `您已成功参加活动${e.currentTarget.dataset.obj.activityIdName}`,
           showCancel: false
         })
       }

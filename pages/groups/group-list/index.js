@@ -12,32 +12,7 @@ Page({
     keyword: '', // 搜索关键字
     groupList: [],
     filterKey: "group-list-filter",
-    typeRange: [
-      {
-        id: 1,
-        name: '类型一',
-      },
-      {
-        id: 2,
-        name: '类型二',
-      },
-      {
-        id: 3,
-        name: '类型三',
-      },
-      {
-        id: 4,
-        name: '类型四',
-      },
-      {
-        id: 5,
-        name: '类型五',
-      },
-      {
-        id: 6,
-        name: '类型六',
-      },
-    ],
+    typeRange: [],
     selectedType: [],
     countZone: {
       startCount: null,
@@ -50,6 +25,7 @@ Page({
    */
   onLoad: function (options) {
     wx.startPullDownRefresh();
+    this.getActivityType();
   },
 
   /**
@@ -108,10 +84,10 @@ Page({
   tapItem: function(e) {
     console.log('点击团队列表 item', e.detail.value);
     let app = getApp();
-    app.globalData.selectedGroup = e.deail.value;
+    app.globalData.selectedGroup = e.detail.value;
     // 跳转团队详情
     wx.navigateTo({
-      url: `/pages/groups/group-detail/index?id=${e.detail.value.teamId}`,
+      url: `/pages/groups/group-detail/index?id=${e.detail.value.tid}`,
     })
   },
 
@@ -225,6 +201,20 @@ Page({
         wx.showToast({
           title: data,
           icon: 'none'
+        })
+      }
+    })
+  },
+  
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          typeRange: data
         })
       }
     })

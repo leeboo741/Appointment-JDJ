@@ -22,15 +22,23 @@ function request(param, callback) {
           if (checkIsFunction(callback)) {
             callback(false, errMsg);
           }
+          wx.showToast({
+            title: errMsg,
+            icon: 'none'
+          })
         } else {
           if (data.code == 0) {
             if (checkIsFunction(callback)) {
-              callback(true, data.rows);
+              callback(true, data.rows?data.rows:data.bDics?data.bDics:data.scheduleData?data.scheduleData:data.raws);
             }
           } else {
             if (checkIsFunction(callback)) {
               callback(false, data.msg);
             }
+            wx.showToast({
+              title: data.msg,
+              icon: 'none'
+            })
           }
         }
       },
@@ -38,6 +46,11 @@ function request(param, callback) {
         if (checkIsFunction(callback)) {
           callback(false, error.errMsg);
         }
+        
+        wx.showToast({
+          title: error.errMsg,
+          icon: 'none'
+        })
       }
     }
   })

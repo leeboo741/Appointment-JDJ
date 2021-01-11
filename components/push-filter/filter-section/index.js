@@ -23,6 +23,10 @@ Component({
       type: Array,
       value: []
     }, // 选中的标签 tag-single / tag-multi 生效
+    idKey: {
+      type: String,
+      value: 'id'
+    },
     key: {
       type: String,
       value: 'name'
@@ -59,7 +63,7 @@ Component({
         let selected = false;
         for (let i = 0; i < selectedTags.length; i++){
           let selectedItem = selectedTags[i];
-          if (selectedItem.id == item.id) {
+          if (selectedItem[this.data.idKey] == item[this.data.idKey]) {
             selected = true;
             break;
           }
@@ -84,7 +88,7 @@ Component({
         if (checkEmpty(this.data.selectedTags)) {
           this.data.selectedTags.push(tempTag);
         } else {
-          if (tempTag.id == this.data.selectedTags[0].id) {
+          if (tempTag[this.data.idKey] == this.data.selectedTags[0][this.data.idKey]) {
             this.data.selectedTags = [];
           } else {
             this.data.selectedTags = [];
@@ -98,7 +102,7 @@ Component({
           let tempIndex = -1;
           for (let i = 0; i < this.data.selectedTags.length; i++) {
             let selectedTag = this.data.selectedTags[i];
-            if (selectedTag.id == tempTag.id) {
+            if (selectedTag[this.data.idKey] == tempTag[this.data.idKey]) {
               tempIndex = i;
               break;
             }

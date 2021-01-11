@@ -6,7 +6,7 @@
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动类型'>
-      <input class="normal" placeholder-class="placeholder" placeholder="请输入团队名称" bindinput="input" id='name' value='{{groupDetail.activityType}}' style="width:100%" disabled="true"></input>
+      <input class="normal" placeholder-class="placeholder" placeholder="请输入团队名称" bindinput="input" id='name' value='{{groupDetail.activityTypeDesc}}' style="width:100%" disabled="true"></input>
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动内容'>

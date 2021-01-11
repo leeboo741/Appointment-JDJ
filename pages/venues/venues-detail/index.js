@@ -1,5 +1,5 @@
 // pages/venues/venues-detail/index.js
-import { checkIsFunction } from "../../../utils/util";
+import { checkEmpty, checkIsFunction } from "../../../utils/util";
 import httpManager from "../../../global/manager/httpManager"
 Page({
 
@@ -11,211 +11,7 @@ Page({
     venuesDetail: {},
     selectedDate: '2020.12.28',
     selectedTime: '09:00',
-    scheduleData: [
-      {
-        date: "2020.01.01",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-      {
-        date: "2020.01.02",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-      {
-        date: "2020.01.03",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-      {
-        date: "2020.01.04",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-      {
-        date: "2020.01.05",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-      {
-        date: "2020.01.06",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-      {
-        date: "2020.01.07",
-        list: [
-          {
-            time: "08:00-10:00",
-            state: 1,
-          },
-          {
-            time: "10:00-12:00",
-            state: 2,
-          },
-          {
-            time: "14:00-16:00",
-            state: 3,
-          },
-          {
-            time: "16:00-18:00",
-            state: 3,
-          },
-          {
-            time: "18:00-20:00",
-            state: 4,
-          },
-          {
-            time: "20:00-22:00",
-            state: 3
-          }
-        ],
-      },
-    ]
+    scheduleData: []
   },
 
   /**
@@ -223,19 +19,8 @@ Page({
    */
   onLoad: function (options) {
     this.data.venueId = options.id;
-    let $this = this;
-    this.requestData(this.data.venueId, function(success, data) {
-      if (success) {
-        $this.setData({
-          venuesDetail: data
-        })
-      } else {
-        wx.showToast({
-          title: data,
-          icon: 'none'
-        })
-      }
-    });
+    this.requestData(this.data.venueId);
+    this.getVenuesOrderStatus(this.data.venueId);
   },
 
   /**
@@ -290,10 +75,27 @@ Page({
   /**
    * 场馆详情数据请求
    * @param {string} venueId 场馆id
-   * @param {function(success, object)} callback 回调函数
    */
-  requestData: function(venueId, callback){
-    httpManager.getVenuesDetail(venueId, callback);
+  requestData: function(venueId){
+    let $this = this;
+    httpManager.getVenuesDetail(venueId, function(success, data) {
+      if (success) {
+        $this.setData({
+          venuesDetail: data
+        })
+      }
+    });
+  },
+
+  getVenuesOrderStatus: function(venueId) {
+    let $this = this;
+    httpManager.getVenuesOrderStatus(venueId, function(success, data) {
+      if (success) {
+        $this.setData({
+          scheduleData: data
+        })
+      }
+    })
   },
 
   /**
@@ -314,5 +116,25 @@ Page({
    */
   tapSchedule: function(e) {
     console.log('点击排期', e.detail.date, e.detail.time, e.detail.state);
+    let msg = null;
+    // if (e.detail.state == 1) {
+    //   msg = '该日期已选择'
+    // } else 
+    if (e.detail.state == 2) {
+      msg = '该日期不可选'
+    } else if (e.detail.state == 4) {
+      msg = '该日期已预约'
+    }
+    if (checkEmpty(msg)) {
+      this.data.selectedDate = e.detail.date;
+      this.data.selectedTime = e.detail.time;
+    } else {
+      this.data.selectedDate = null;
+      this.data.selectedTime = null;
+      wx.showToast({
+        title: msg,
+        icon: 'none'
+      })
+    }
   },
 })

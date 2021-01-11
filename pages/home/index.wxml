@@ -33,10 +33,10 @@
   </view>
   <scroll-view slot='content' scroll-x class="activity" style="width: 100%">
     <view class="activity-item" wx:for='{{activities}}' wx:key='index' bindtap="tapActivity" data-obj='{{item}}'>
-      <image class="activity-item-image" src="{{item.coverImg}}"></image>
+      <image class="activity-item-image" src="{{item.activityIconUrl}}"></image>
       <view class="activity-item-content">
-        <text class="activity-item-title">{{item.title}}</text>
-        <text class="activity-item-detail">{{item.content}}</text>
+        <text class="activity-item-title">{{item.activityIdName}}</text>
+        <text class="activity-item-detail">{{item.activityContent}}</text>
       </view>
       <view class="activity-item-join-button" catchtap="tapJoinActivity" data-obj='{{item}}'>
         <text class="join-button-title">参加</text>

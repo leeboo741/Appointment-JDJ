@@ -12,60 +12,11 @@ Page({
     keyword: '', // 搜索关键字
     venuesList: [], // 场馆列表
     filterKey: "venues-list-filter",
-    zoneRange: [
-      {
-        id: 1,
-        name: '一区'
-      },
-      {
-        id: 2,
-        name: "二区"
-      },
-      {
-        id: 3,
-        name: '三区'
-      },
-      {
-        id: 4,
-        name: '二一区'
-      },
-      {
-        id: 5,
-        name: "二二区"
-      },
-      {
-        id: 6,
-        name: '二三区'
-      }
-    ],
+    zoneRange: [],
     selectedZone: [],
-    typeRange: [
-      {
-        id: 1,
-        name: '类型一',
-      },
-      {
-        id: 2,
-        name: '类型二',
-      },
-      {
-        id: 3,
-        name: '类型三',
-      },
-      {
-        id: 4,
-        name: '类型四',
-      },
-      {
-        id: 5,
-        name: '类型五',
-      },
-      {
-        id: 6,
-        name: '类型六',
-      },
-    ],
+    typeRange: [],
     selectedType: [],
+    count: 10,
     countZone: {
       startCount: null,
       endCount: null
@@ -77,6 +28,8 @@ Page({
    */
   onLoad: function (options) {
     wx.startPullDownRefresh();
+    this.getCommitteeList();
+    this.getActivityType();
   },
 
   /**
@@ -221,7 +174,7 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    httpManager.getVenuesList(page, callback);
+    httpManager.getVenuesList(page, this.data.keyword, checkEmpty(this.data.selectedZone)?null:this.data.selectedZone[0].cid, checkEmpty(this.data.selectedType)?null:this.data.selectedType[0].id, this.data.count, callback);
   },
 
   refresh: function() {
@@ -254,6 +207,34 @@ Page({
         wx.showToast({
           title: data,
           icon: 'none'
+        })
+      }
+    })
+  },
+
+  /**
+   * 获取居委会列表
+   */
+  getCommitteeList: function(){
+    let $this = this;
+    httpManager.getCommitteeList(function(success, data){
+      if(success) {
+        $this.setData({
+          zoneRange: data
+        })
+      }
+    })
+  },
+
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          typeRange: data
         })
       }
     })

@@ -1,4 +1,6 @@
 // pages/user-info/index.js
+import httpManager from '../../global/manager/httpManager'
+import UserManager from '../../global/manager/userDataManager'
 Page({
 
   /**
@@ -6,17 +8,10 @@ Page({
    */
   data: {
     userInfo: null,
-    activityTypeRange: [
-      {
-        id: 1,
-        name: "跳舞"
-      },
-      {
-        id: 2,
-        name: "唱歌"
-      },
-    ], // 活动类型列表
+    activityTypeRange: [], // 活动类型列表
     selectActivityTypeIndex: -1, // 选中的活动类型index
+    zoneRange: [],
+    selectZoneIndex: -1,
     sexRange: [
       {
         id: 1,
@@ -34,7 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCommitteeList();
+    this.getActivityType();
+    this.getUserById();
   },
 
   /**
@@ -91,6 +88,7 @@ Page({
    */
   confirm: function(){
     console.log('修改信息', this.data.userInfo);
+    this.updateUser(this.data.userInfo.uname, this.data.userInfo.sex, this.data.userInfo.birthday);
   },
 
   /**
@@ -127,5 +125,65 @@ Page({
         'userInfo.sex': this.data.sexRange[e.detail.value].name
       })
     }
+  },
+
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          activityTypeRange: data
+        })
+      }
+    })
+  },
+
+  getUserById: function() {
+    let $this = this;
+    httpManager.getUserById(function(success, data) {
+      if (success) {
+        $this.setData({
+          userInfo: data
+        })
+      }
+    })
+  },
+
+  /**
+   * 获取居委会列表
+   */
+  getCommitteeList: function(){
+    let $this = this;
+    httpManager.getCommitteeList(function(success, data){
+      if(success) {
+        $this.setData({
+          zoneRange: data
+        })
+      }
+    })
+  },
+
+  /**
+   * 编辑用户
+   */
+  updateUser: function(userName, sex, birthday){
+    let $this = this;
+    httpManager.updateUser(userName, sex, birthday, function(success, data){
+      if (success) {
+        wx.showModal({
+          title: '成功修改信息',
+          content: '您已成功提交信息的修改',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
   }
 })

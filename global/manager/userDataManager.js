@@ -64,7 +64,7 @@ function showNeedLoginAlert() {
  * 获取用户id
  */
 function getUserId(){
-  return "";
+  return "9b62829f1303468985cf0813b51f1ee7";
 }
 
 module.exports = {

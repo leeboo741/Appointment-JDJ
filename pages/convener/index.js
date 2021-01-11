@@ -1,4 +1,5 @@
 // pages/convener/index.js
+import httpManager from '../../global/manager/httpManager'
 Page({
 
   /**
@@ -10,16 +11,7 @@ Page({
       idcardFrontUrl: "",
       idcardBackUrl: ""
     },
-    activityTypeRange: [
-      {
-        id: 1,
-        name: "跳舞"
-      },
-      {
-        id: 2,
-        name: "唱歌"
-      },
-    ], // 活动类型列表
+    activityTypeRange: [], // 活动类型列表
     selectActivityTypeIndex: -1, // 选中的活动类型index
   },
 
@@ -27,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getActivityType();
   },
 
   /**
@@ -95,5 +87,33 @@ Page({
 
   tapApply: function(e) {
     console.log('点击申请', this.data.submitData);
+    httpManager.applyConvener(this.data.submitData.activityId, this.data.submitData.idcardFrontUrl, this.data.submitData.idcardBackUrl, function(success, data) {
+      if (success) {
+        wx.showModal({
+          title: '申请召集人',
+          content: '您已成功申请成为召集人',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
+  },
+
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          activityTypeRange: data
+        })
+      }
+    })
   }
 })

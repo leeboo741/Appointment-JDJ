@@ -14,6 +14,6 @@
   </view>
   <view class="row">
     <view class="title">活动时间：</view>
-    <view class="value">{{venues.timeZone}}</view>
+    <view class="value">{{venues.bookDate}} {{venues.bookTime}}</view>
   </view>
 </view>

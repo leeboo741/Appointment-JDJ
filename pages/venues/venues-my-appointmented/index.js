@@ -1,7 +1,7 @@
 // pages/venues/venues-my-appointmented/index.js
 const notificationCenter = require("../../../global/notificationCenter");
-import Request from '../../../global/http/request';
 import { checkIsFunction } from '../../../utils/util';
+import httpManager from '../../../global/manager/httpManager';
 Page({
 
   /**
@@ -84,17 +84,7 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    Request.request({
-      url: 'getVenueList',
-      data: {
-        page,
-        size: 20,
-      }
-    }, function(success, data) {
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getBookedVenuesList(callback)
   },
 
   refresh: function() {

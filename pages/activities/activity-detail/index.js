@@ -1,4 +1,5 @@
 // pages/activities/activity-detail/index.js
+import httpManager from "../../../global/manager/httpManager"
 Page({
 
   /**
@@ -9,9 +10,7 @@ Page({
       id: null,
       joined: null
     },
-    activityDetail: {
-      activityIconUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181229%2Fa0184cd52a7a437c8cab31f34048c958.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611241234&t=e812c030e3e48c6375997fef13d88a81"
-    },
+    activityDetail: {},
   },
 
   /**
@@ -21,6 +20,7 @@ Page({
     this.setData({
       options
     })
+    this.getDetail(this.options.id);
   },
 
   /**
@@ -77,6 +77,21 @@ Page({
    */
   tapOrder: function(){
     console.log('报名活动')
+    let $this = this;
+    httpManager.joinActivity(this.data.options.id, function(success, data) {
+      if (success) {
+        wx.showModal({
+          title: '报名成功',
+          content: `您已成功报名活动《${$this.data.activityDetail.activityIdName}》`,
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -84,5 +99,20 @@ Page({
    */
   tapCancel: function() {
     console.log('退出活动')
+  },
+
+  /**
+   * 获取详情
+   * @param {string} activityId 
+   */
+  getDetail: function(activityId){
+    let $this = this;
+    httpManager.getActivityDetail(activityId, function(success, data){
+      if (success) {
+        $this.setData({
+          activityDetail: data
+        })
+      }
+    })
   }
 })

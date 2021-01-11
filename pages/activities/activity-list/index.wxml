@@ -7,9 +7,9 @@
 <pushFilter pushNotificationKey='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
   <scroll-view class="filter-content" scroll-y>
     <view style="display: inline-block">
-      <pushSection title='区域' mode='tag-single' tags='{{zoneRange}}' selectedTags='{{selectedZone}}' bind:selectedtag='selectedTag' id='zone'></pushSection>
-      <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
       <pushSection title='人数' mode='count-zone' startCount='{{countZone.startCount}}' endCount='{{countZone.endCount}}' bind:inputcount='inputCount'></pushSection>
+      <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
+      <pushSection title='区域' mode='tag-single' tags='{{zoneRange}}' key='cname' idKey='cid' selectedTags='{{selectedZone}}' bind:selectedtag='selectedTag' id='zone'></pushSection>
     </view>
   </scroll-view>
 </pushFilter>

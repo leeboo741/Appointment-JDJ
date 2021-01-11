@@ -1,7 +1,7 @@
 // pages/activities/activity-list/index.js
 const notificationCenter = require("../../../global/notificationCenter");
-import Request from '../../../global/http/request';
 import { checkIsFunction } from '../../../utils/util';
+import httpManager from '../../../global/manager/httpManager';
 Page({
 
   /**
@@ -12,59 +12,9 @@ Page({
     keyword: '', // 搜索关键字
     activityList: [], // 场馆列表
     filterKey: "activity-list-filter",
-    zoneRange: [
-      {
-        id: 1,
-        name: '一区'
-      },
-      {
-        id: 2,
-        name: "二区"
-      },
-      {
-        id: 3,
-        name: '三区'
-      },
-      {
-        id: 4,
-        name: '二一区'
-      },
-      {
-        id: 5,
-        name: "二二区"
-      },
-      {
-        id: 6,
-        name: '二三区'
-      }
-    ],
+    zoneRange: [],
     selectedZone: [],
-    typeRange: [
-      {
-        id: 1,
-        name: '类型一',
-      },
-      {
-        id: 2,
-        name: '类型二',
-      },
-      {
-        id: 3,
-        name: '类型三',
-      },
-      {
-        id: 4,
-        name: '类型四',
-      },
-      {
-        id: 5,
-        name: '类型五',
-      },
-      {
-        id: 6,
-        name: '类型六',
-      },
-    ],
+    typeRange: [],
     selectedType: [],
     countZone: {
       startCount: null,
@@ -77,6 +27,8 @@ Page({
    */
   onLoad: function (options) {
     wx.startPullDownRefresh();
+    this.getCommitteeList();
+    this.getActivityType();
   },
 
   /**
@@ -221,37 +173,21 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    Request.request({
-      url: 'getActList',
-      data: {
-        page,
-        size: 20,
-        keyword: this.data.keyword,
-        zone: this.data.selectedZone.name,
-        type: this.data.selectedType.name,
-        startCount: this.data.countZone.startCount,
-        endCount: this.data.countZone.endCount
-      }
-    }, function(success, data) {
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getActivityListData(page, callback)
   },
 
   /**
    * 刷新数据
    */
   refresh: function() {
-    this.data.page = 1;
     let $this = this;
-    this.requestList(this.data.page, function(success, data) {
+    this.requestList(1, function(success, data) {
       wx.stopPullDownRefresh()
       if (success) {
         $this.setData({
+          page: 2,
           activityList: data
         })
-        $this.data.page ++;
       } else {
         wx.showToast({
           title: data,
@@ -268,15 +204,42 @@ Page({
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
       if (success) {
-        $this.data.activityList = $this.data.activityList.concat(data);
         $this.setData({
-          activityList
+          page: $this.data.page + 1,
+          activityList:  $this.data.activityList.concat(data)
         })
-        $this.data.page ++;
       } else {
         wx.showToast({
           title: data,
           icon: 'none'
+        })
+      }
+    })
+  },
+  
+  /**
+   * 获取居委会列表
+   */
+  getCommitteeList: function(){
+    let $this = this;
+    httpManager.getCommitteeList(function(success, data){
+      if(success) {
+        $this.setData({
+          zoneRange: data
+        })
+      }
+    })
+  },
+
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          typeRange: data
         })
       }
     })

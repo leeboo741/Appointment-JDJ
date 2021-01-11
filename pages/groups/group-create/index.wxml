@@ -23,7 +23,7 @@
     <submitRow title='加入条件'>
       <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入活动内容" bindinput="input" id='condition' style="width: 100%; height: 160rpx"></textarea>
     </submitRow>
-    <submitRow title='团队照片'>
+    <submitRow title='团队照片' wx:if="{{false}}">
       <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='2' maxCount='1'></imageBox>
     </submitRow>
   </view>

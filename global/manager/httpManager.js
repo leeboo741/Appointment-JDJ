@@ -19,8 +19,19 @@ function getBannerData(type, callback) {
  */
 function getActivityListData(page, callback) {
   Request.request({
-    url: `api/activities/getActList?page=1`
+    url: `api/activities/getActList?page=${page}`
   },callback)
+}
+
+/**
+ * 获取活动详情
+ * @param {string} activityId 活动id
+ * @param {function(boolean, object)} callback 
+ */
+function getActivityDetail(activityId, callback) {
+  Request.request({
+    url: `api/activities/getActById?activityId=${activityId}`
+  }, callback)
 }
 
 /**
@@ -31,6 +42,28 @@ function getActivityListData(page, callback) {
 function joinActivity(activityId, callback) {
   Request.request({
     url:`api/activities/entryActById?activityId=${activityId}&userId=${UserManager.getUserId()}`
+  },callback)
+}
+
+/**
+ * 取消参加活动
+ * @param {string} activityId 活动id
+ * @param {function(boolean, object)} callback 
+ */
+function quitActivity(activityId, callback) {
+  Request.request({
+    url: `api/activities/cancelActById?activityId=${activityId}&userId=${UserManager.getUserId()}`
+  },callback)
+}
+
+/**
+ * 活动签到
+ * @param {string} activityId 活动id
+ * @param {function(boolean, object)} callback 
+ */
+function signActivity(activityId, callback) {
+  Request.request({
+    url: `api/activities/signActById?activityId=${activityId}&userId=${UserManager.getUserId()}`
   },callback)
 }
 
@@ -48,11 +81,28 @@ function getJournalList(page, callback) {
 /**
  * 获取场馆列表
  * @param {number} page 页数
+ * @param {string} keyword 关键字
+ * @param {string} committeeId 居委会id
+ * @param {string} activityType 活动类型id
+ * @param {string} queryCount 人数
  * @param {function(boolean, object)} callback 
  */
-function getVenuesList(page, callback) {
+function getVenuesList(page, keyword, committeeId, activityType, queryCount, callback) {
+  let url = `api/venueinfo/getVenueList?page=${page}`;
+  if (keyword) {
+    url = `${url}&queryCGName=${keyword}`
+  }
+  if (committeeId) {
+    url = `${url}&queryComId=${committeeId}`
+  }
+  if (activityType) {
+    url = `${url}&queryActType=${activityType}`
+  }
+  if (queryCount) {
+    url = `${url}&queryCount=${queryCount}`
+  }
   Request.request({
-    url: `api/venueinfo/getVenueList?page=${page}`
+    url
   },callback)
 }
 
@@ -69,16 +119,33 @@ function getVenuesDetail(venueId, callback) {
 
 /**
  * 预约场馆
- * @param {string} venueId 场馆id
- * @param {string} bookDate 预约日期
- * @param {string} bookTime 预约时间
- * @param {string} activityName 活动名称 
+ * @param {object} submitData 提交数据 
  * @param {function(boolean, object)} callback 
  */
-function orderVenues(venueId, bookDate, bookTime, activityName, callback) {
+function orderVenues(submitData, callback) {
   Request.request({
-    url: `api/venueinfo/bookVenueById?userId=${UserManager.getUserId()}&venueId=${venueId}& bookDate=${bookDate}&bookTime=${bookTime}&activityIdName=${activityName}`
+    url: `api/venueinfo/bookVenueById?userId=${UserManager.getUserId()}&venueId=${submitData.venueId}&bookDate=${submitData.bookDate}&bookTime=${submitData.bookTime}&activityIdName=${submitData.activityIdName}`
   },callback)
+}
+
+/**
+ * 获取场馆预约状态
+ * @param {string} venueId 场馆id
+ * @param {function(boolean, object)} callback 
+ */
+function getVenuesOrderStatus(venueId, callback) {
+  Request.request({
+    url: `api/venueinfo/getBookStatusList?venueId=${venueId}`
+  }, callback)
+}
+
+/**
+ * 获取用户预约的场馆列表
+ */
+function getBookedVenuesList(callback){
+  Request.request({
+    url: `api/venueinfo/queryBookByUserId?uid=${UserManager.getUserId()}`
+  }, callback)
 }
 
 /**
@@ -89,6 +156,17 @@ function orderVenues(venueId, bookDate, bookTime, activityName, callback) {
 function getGroupList(page, callback) {
   Request.request({
     url: `api/team/getTeamList?page=${page}`
+  }, callback)
+}
+
+/**
+ * 获取团队详情
+ * @param {string} teamId 团队id
+ * @param {function(boolean,object)} callback 
+ */
+function getGroupDetail(teamId, callback) {
+  Request.request({
+    url: `api/team/getBTeamById?teamId=${teamId}`
   }, callback)
 }
 
@@ -114,19 +192,112 @@ function createGroup(submitData, callback){
   }, callback)
 }
 
+/**
+ * 更新团队状态
+ * @param {string} teamId 团队id
+ * @param {string} status 状态
+ * @param {function(boolean, object)} callback 
+ */
+function updateGroupStatus(teamId, status, callback) {
+  Request.request({
+    url: `api/team/updateTeamStatus?teamId=${teamId}&status=${status}`
+  }, callback)
+}
+
+/**
+ * 申请成为召集人
+ * @param {string} activityId 活动类型id
+ * @param {string} idCardFontUrl 身份证正面
+ * @param {string} idCardBackUrl 身份证反面
+ * @param {function(boolean, object)} callback 
+ */
+function applyConvener(activityId,idCardFontUrl,idCardBackUrl,callback) {
+  Request.request({
+    url: `api/convenerinfo/applyConvener?userId=${UserManager.getUserId()}&activityId=${activityId}&idcardFrontUrl=${idCardFontUrl}&idcardBackUrl=${idCardBackUrl}`
+  }, callback)
+}
+
+/**
+ * 获取居委会列表
+ * @param {function(boolean, object)} callback 
+ */
+function getCommitteeList(callback){
+  Request.request({
+    url: `api/committee/getComList`
+  }, callback)
+}
+
+/**
+ * 获取字典
+ * @param {string} code 字典code
+ * @param {function(boolean, object)} callback 
+ */
+function getDict(code, callback){
+  Request.request({
+    url: `api/dic/getDicsByCode?typeCode=${code}`
+  }, callback)
+}
+
+/**
+ * 获取活动类型字典
+ * @param {function(boolean, object)} callback 
+ */
+function getActivityTypeDict(callback){
+  this.getDict('activityType', callback);
+}
+
+/**
+ * 获取用户信息
+ * @param {string} userId 用户id
+ * @param {function(boolean, object)} callback 
+ */
+function getUserById(callback) {
+  Request.request({
+    url: `api/user/getUserById?userId=${UserManager.getUserId()}`
+  }, callback)
+}
+
+/**
+ * 更新用户信息
+ * @param {string} userName 用户名称
+ * @param {string} sex 性别
+ * @param {string} birthday 生日
+ * @param {function(boolean, object)} callback 
+ */
+function updateUser(userName, sex, birthday, callback) {
+  Request.request({
+    url: `api/user/updateUser?uid=${UserManager.getUserId()}&uname=${userName}&sex=${sex}&birthday=${birthday}`
+  }, callback)
+}
+
 module.exports = {
-  getBannerData,
+  getBannerData, // *
+  applyConvener, // *
+  getCommitteeList, // *
 
-  getActivityListData,
-  joinActivity,
+  getUserById, // *
+  updateUser, // *
 
-  getJournalList,
+  getDict, // *
+  getActivityTypeDict, // *
 
-  getVenuesList,
-  getVenuesDetail,
-  orderVenues,
+  getActivityListData, // *
+  getActivityDetail, // *
+  quitActivity,
+  signActivity,
+  joinActivity, // *
 
-  getGroupList,
-  joinGroup,
-  createGroup
+  getJournalList, // *
+
+  getVenuesList, // *
+  getVenuesDetail, // *
+  orderVenues, // 接口报错 未知错误
+  getVenuesOrderStatus, // *
+  getBookedVenuesList,
+
+  getGroupList, // *
+  getGroupDetail, // activityTypeDesc 为空
+  updateGroupStatus,
+  joinGroup, // 接口异常
+  createGroup, // *
 }

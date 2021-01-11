@@ -20,16 +20,7 @@ Page({
       userId: '', // 预约人id
       venueId: '', // 场馆id
     },
-    activityTypeRange: [
-      {
-        id: 1,
-        name: "跳舞"
-      },
-      {
-        id: 2,
-        name: "唱歌"
-      },
-    ], // 活动类型列表
+    activityTypeRange: [], // 活动类型列表
     selectActivityTypeIndex: -1, // 选中的活动类型index
     privateTypeRange: [
       {
@@ -59,6 +50,8 @@ Page({
       "submitData.bookDate": options.date,
       'submitData.bookTime': options.time
     })
+    
+    this.getActivityType();
   },
 
   /**
@@ -170,5 +163,19 @@ Page({
         'submitData.privated': this.data.privateTypeRange[e.detail.value].name
       })
     }
+  },
+  
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          activityTypeRange: data
+        })
+      }
+    })
   }
 })

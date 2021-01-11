@@ -1,4 +1,5 @@
 // pages/groups/group-create/index.js
+import httpManager from '../../../global/manager/httpManager'
 Page({
 
   /**
@@ -13,16 +14,7 @@ Page({
       activityContent: '',
       enterCondition: ''
     },
-    activityTypeRange: [
-      {
-        id: 1,
-        name: "跳舞"
-      },
-      {
-        id: 2,
-        name: "唱歌"
-      },
-    ], // 活动类型列表
+    activityTypeRange: [], // 活动类型列表
     selectActivityTypeIndex: -1, // 选中的活动类型index
   },
 
@@ -30,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getActivityType();
   },
 
   /**
@@ -94,6 +86,21 @@ Page({
    */
   confirm: function(){
     console.log('创建团队', this.data.submitData);
+    let $this = this;
+    httpManager.createGroup(this.data.submitData, function(success, data) {
+      if (success) {
+        wx.showModal({
+          title: '创建团队成功',
+          content: `您已成功创建团队《${$this.data.submitData.tname}》`,
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -126,8 +133,22 @@ Page({
     if (id == 'type') {
       this.setData({
         selectActivityTypeIndex: e.detail.value,
-        'submitData.activityType': this.data.activityTypeRange[e.detail.value].name
+        'submitData.activityType': this.data.activityTypeRange[e.detail.value].id
       })
     }
+  },
+  
+  /**
+   * 获取活动类型列表
+   */
+  getActivityType: function(){
+    let $this = this;
+    httpManager.getActivityTypeDict(function(success, data) {
+      if (success) {
+        $this.setData({
+          activityTypeRange: data
+        })
+      }
+    })
   }
 })

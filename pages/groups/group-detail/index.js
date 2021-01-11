@@ -1,4 +1,5 @@
 // pages/groups/group-detail/index.js
+import httpManager from '../../../global/manager/httpManager'
 Page({
 
   /**
@@ -10,16 +11,7 @@ Page({
       joined: null,
       my: null,
     },
-    groupDetail: {
-      teamId: 123,
-      tname: "团队名称1",
-      currentPeopleCount: 10,
-      peopleCount: 12,
-      activityType: "跳舞",
-      activityContent: "测试团队测试团队测试团队",
-      enterCondition: "加入条件测试",
-      status: 2,
-    },
+    groupDetail: {},
     list: [
       {
         name: '李先生',
@@ -47,6 +39,7 @@ Page({
     this.setData({
       options
     })
+    this.getDetail(options.id)
   },
 
   /**
@@ -110,6 +103,7 @@ Page({
    */
   confirm: function(){
     console.log('加入团队')
+    this.joinGroup(this.data.options.id);
   },
 
   /**
@@ -124,5 +118,34 @@ Page({
    */
   open: function(){
     console.log('开放')
+  },
+
+  getDetail: function(teamId) {
+    let $this = this;
+    httpManager.getGroupDetail(teamId, function(success, data) {
+      if (success) {
+        $this.setData({
+          groupDetail: data
+        })
+      }
+    })
+  },
+
+  joinGroup: function(teamId) {
+    let $this = this;
+    httpManager.joinGroup(teamId, function(success, data) {
+      if (success) {
+        wx.showModal({
+          title: '成功加入团队',
+          content: `您已成功加入团队《${$this.data.groupDetail.tname}》`,
+          showCancel:false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
   }
 })
