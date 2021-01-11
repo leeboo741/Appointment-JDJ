@@ -10,20 +10,22 @@ const baseUrl = "https://www.jindingjieorg.cn:9020/"
 function request(param, callback) {
   let option = checkAndReturnOption(param)
   console.log('请求参数', option);
+  console.log('请求参数str', JSON.stringify(option));
   wx.request({
     ...option,
     ...{
       success(res){
         console.log('请求返回', res);
+        console.log('请求返回str', JSON.stringify(res));
         const {data, header, statusCode, cookies, errMsg} = res;
         if (statusCode != 200) {
           if (checkIsFunction(callback)) {
             callback(false, errMsg);
           }
         } else {
-          if (data.code == 1) {
+          if (data.code == 0) {
             if (checkIsFunction(callback)) {
-              callback(true, data.data);
+              callback(true, data.rows);
             }
           } else {
             if (checkIsFunction(callback)) {

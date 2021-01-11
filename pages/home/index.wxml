@@ -4,7 +4,7 @@
 <swiper class="banner" indicator-dots='true' indicator-color='#ffffff' indicator-active-color='#FF7603'>
   <swiper-item wx:for="{{bannerData}}" wx:key='index'>
     <view class="banner-item">
-      <image class="banner-content" src="{{item}}"></image>
+      <image class="banner-content" src="{{item.bannerImgUrl}}"></image>
     </view>
   </swiper-item>
 </swiper>
@@ -38,7 +38,7 @@
         <text class="activity-item-title">{{item.title}}</text>
         <text class="activity-item-detail">{{item.content}}</text>
       </view>
-      <view class="activity-item-join-button" catchtap="tapCancelActivity" data-obj='{{item}}'>
+      <view class="activity-item-join-button" catchtap="tapJoinActivity" data-obj='{{item}}'>
         <text class="join-button-title">参加</text>
         <image class="join-button-image" src="/resources/images/button-bg.png"></image>
       </view>

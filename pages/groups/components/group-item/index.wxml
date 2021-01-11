@@ -7,7 +7,7 @@
         <view class="name">{{data.tname}}</view>
         <view class="full" wx:if='{{data.status == 3}}'>已满</view>
       </view>
-      <view class="type">{{data.activityType}}  ({{data.currentPeopleCount}}/{{data.peopleCount}}人)</view>
+      <view class="type">{{data.activityTypeDesc}}  ({{data.currentPeopleCount}}/{{data.peopleCount}}人)</view>
       <view class="condition">加入条件：{{data.enterCondition}}</view>
       <view class="content">活动内容：{{data.activityContent}}</view>
     </view>

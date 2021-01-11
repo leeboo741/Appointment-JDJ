@@ -1,4 +1,5 @@
 // pages/home/home.js
+import httpManager from '../../global/manager/httpManager';
 Page({
 
   /**
@@ -33,7 +34,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getBannerData();
+    this.getActivityData();
   },
 
   /**
@@ -183,7 +185,46 @@ Page({
    * 点击参加活动
    * @param {any} e 
    */
-  tapCancelActivity: function(e) {
+  tapJoinActivity: function(e) {
     console.log('点击参加活动', e.currentTarget.dataset.obj);
+    this.joinActivity(e.currentTarget.dataset.obj.activityId, function(success, data){
+      if (success) {
+        wx.showModal({
+          title: '成功参加活动',
+          content: `您已成功参加活动${e.currentTarget.dataset.obj.activityName}`,
+          showCancel: false
+        })
+      }
+    })
+  },
+
+  /**
+   * 获取banner数据
+   */
+  getBannerData: function(){
+    let $this = this;
+    httpManager.getBannerData(0, function(success, data) {
+      if (success) {
+        $this.setData({
+          bannerData: data
+        })
+      }
+    })
+  },
+
+  getActivityData: function(){
+    let $this = this;
+    httpManager.getActivityListData(1, function(success, data) {
+      if (success) {
+        $this.setData({
+          activities: data
+        })
+      }
+    })
+  },
+
+  joinActivity: function(activityId, callback) {
+    let $this = this;
+    httpManager.joinActivity(activityId, callback);
   }
 })

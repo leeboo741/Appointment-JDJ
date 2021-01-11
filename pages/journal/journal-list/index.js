@@ -2,6 +2,8 @@
 import UserDataManager from '../../../global/manager/userDataManager';
 import NotificationCenter from '../../../global/notificationCenter';
 import {NOTIFICATION_SHOW_COMMENT} from '../../../resources/strings/notificationName';
+import httpManager from '../../../global/manager/httpManager'
+import { checkEmpty } from '../../../utils/util';
 Page({
 
   /**
@@ -31,7 +33,8 @@ Page({
         likeCount: 13,
         commentCount: 30
       }
-    ]
+    ],
+    page: 1,
   },
 
   /**
@@ -43,6 +46,10 @@ Page({
       that.setData({
         userData
       })
+    })
+    this.getBannerData();
+    wx.startPullDownRefresh({
+      success: (res) => {},
     })
   },
 
@@ -78,14 +85,37 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    let $this = this;
+    this.getJournalList(1, function(success, data){
+      wx.stopPullDownRefresh({
+        success: (res) => {},
+      })
+      if (success && !checkEmpty(data)) {
+        $this.setData({
+          page: 2,
+          dataSource: data
+        })
+      } else {
 
+      }
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    let $this = this;
+    this.getJournalList(this.data.page, function(success, data){
+      if (success && !checkEmpty(data)) {
+        $this.setData({
+          page: $this.data.page + 1,
+          dataSource: $this.data.dataSource.concat(data)
+        })
+      } else {
 
+      }
+    })
   },
 
   /**
@@ -113,5 +143,21 @@ Page({
     } else {
       UserDataManager.showNeedLoginAlert();
     }
+  },
+
+  getBannerData: function(){
+    let $this = this;
+    httpManager.getBannerData(1, function(success, data) {
+      if (success) {
+        $this.setData({
+          bannerData: data
+        })
+      }
+    })
+  },
+
+  getJournalList: function(page, callback) {
+    let $this = this;
+    httpManager.getJournalList(page, callback);
   }
 })

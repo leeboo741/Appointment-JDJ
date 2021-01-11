@@ -56,12 +56,17 @@
 .introduction{
   font-size: 24rpx;
   color: #000000;
+  background: white;
+  padding: 30rpx 0;
+  width: 100%;
+}
+
+.introduction view{
+  margin: 0 20rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  background: white;
-  padding: 30rpx 20rpx;
 }
 
 .order-button{

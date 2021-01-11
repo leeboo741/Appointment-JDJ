@@ -1,7 +1,7 @@
 // pages/venues/venues-list/index.js
 const notificationCenter = require("../../../global/notificationCenter");
-import Request from '../../../global/http/request';
-import { checkIsFunction } from '../../../utils/util';
+import { checkEmpty, checkIsFunction } from '../../../utils/util';
+import httpManager from "../../../global/manager/httpManager";
 Page({
 
   /**
@@ -221,34 +221,18 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    Request.request({
-      url: 'getVenueList',
-      data: {
-        page,
-        size: 20,
-        keyword: this.data.keyword,
-        zone: this.data.selectedZone.name,
-        type: this.data.selectedType.name,
-        startCount: this.data.countZone.startCount,
-        endCount: this.data.countZone.endCount
-      }
-    }, function(success, data) {
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getVenuesList(page, callback);
   },
 
   refresh: function() {
-    this.data.page = 1;
     let $this = this;
-    this.requestList(this.data.page, function(success, data) {
+    this.requestList(1, function(success, data) {
       wx.stopPullDownRefresh()
       if (success) {
         $this.setData({
+          page: 2,
           venuesList: data
         })
-        $this.data.page ++;
       } else {
         wx.showToast({
           title: data,
@@ -261,12 +245,11 @@ Page({
   loadMore: function(){
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
-      if (success) {
-        $this.data.venuesList = $this.data.venuesList.concat(data);
+      if (success && !checkEmpty(data)) {
         $this.setData({
-          venuesList
+          page: $this.data.page + 1,
+          venuesList: $this.data.venuesList.concat(data)
         })
-        $this.data.page ++;
       } else {
         wx.showToast({
           title: data,

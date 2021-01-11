@@ -1,5 +1,5 @@
 const { checkEmpty } = require("../../../utils/util");
-
+import httpManager from '../../../global/manager/httpManager';
 // pages/venues/venues-appointment/index.js
 Page({
 
@@ -123,6 +123,11 @@ Page({
    */
   confirm: function(){
     console.log('提交预约', this.data.submitData);
+    httpManager.orderVenues(this.data.submitData, function(success, data){
+      if (success) {
+        
+      }
+    })
   },
 
   /**

@@ -2,7 +2,11 @@
 <view class="content">
   <venuesInfo venues='{{venuesDetail}}' style='width: 100%'></venuesInfo>
   <view style="height: 30rpx"></view>
-  <view class="introduction">简介：{{venuesDetail.describtion}}</view>
+  <view class="introduction">
+    <view>
+      简介：{{venuesDetail.describtion}}
+    </view> 
+  </view>
   <view style="height: 30rpx"></view>
   <schedule style="width: 100%" data='{{scheduleData}}' bind:tapschedule='tapSchedule'></schedule>
   <view class="order-button" bindtap="tapOrder">立即预约</view>

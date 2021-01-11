@@ -3,5 +3,6 @@
     "journalItem": "../components/journal-item/index",
     "pushComment": "/components/push-comment/index"
   },
-  "navigationBarTitleText": "随拍"
+  "navigationBarTitleText": "随拍",
+  "enablePullDownRefresh": true
 }

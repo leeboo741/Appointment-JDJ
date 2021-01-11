@@ -1,6 +1,6 @@
 // pages/venues/venues-detail/index.js
-import Request from "../../../global/http/request";
 import { checkIsFunction } from "../../../utils/util";
+import httpManager from "../../../global/manager/httpManager"
 Page({
 
   /**
@@ -293,16 +293,7 @@ Page({
    * @param {function(success, object)} callback 回调函数
    */
   requestData: function(venueId, callback){
-    Request.request({
-      url: 'getVenueById',
-      data: {
-        venueId
-      }
-    }, function(success, data){
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getVenuesDetail(venueId, callback);
   },
 
   /**
@@ -323,5 +314,5 @@ Page({
    */
   tapSchedule: function(e) {
     console.log('点击排期', e.detail.date, e.detail.time, e.detail.state);
-  }
+  },
 })

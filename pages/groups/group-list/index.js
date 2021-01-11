@@ -1,8 +1,7 @@
 // pages/groups/group-list/index.js
-import Request from '../../../global/http/request';
 import notificationCenter from '../../../global/notificationCenter';
-import { checkIsFunction } from '../../../utils/util';
-
+import { checkEmpty, checkIsFunction } from '../../../utils/util';
+import httpManager from "../../../global/manager/httpManager";
 Page({
 
   /**
@@ -108,7 +107,9 @@ Page({
    */
   tapItem: function(e) {
     console.log('点击团队列表 item', e.detail.value);
-    // 发起加入团队请求
+    let app = getApp();
+    app.globalData.selectedGroup = e.deail.value;
+    // 跳转团队详情
     wx.navigateTo({
       url: `/pages/groups/group-detail/index?id=${e.detail.value.teamId}`,
     })
@@ -191,33 +192,18 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    Request.request({
-      url: 'getTeamList',
-      data: {
-        page,
-        size: 20,
-        keyword: this.data.keyword,
-        type: this.data.selectedType.name,
-        startCount: this.data.countZone.startCount,
-        endCount: this.data.countZone.endCount
-      }
-    }, function(success, data) {
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getGroupList(page, callback);
   },
 
   refresh: function() {
-    this.data.page = 1;
     let $this = this;
-    this.requestList(this.data.page, function(success, data) {
+    this.requestList(1, function(success, data) {
       wx.stopPullDownRefresh()
-      if (success) {
+      if (success && !checkEmpty(data)) {
         $this.setData({
+          page: 2,
           groupList: data
         })
-        $this.data.page ++;
       } else {
         wx.showToast({
           title: data,
@@ -230,12 +216,11 @@ Page({
   loadMore: function(){
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
-      if (success) {
-        $this.data.groupList = $this.data.groupList.concat(data);
+      if (success && !checkEmpty(data)) {
         $this.setData({
-          groupList: $this.data.groupList
+          page: $this.data.page + 1,
+          groupList: $this.data.groupList.concat(data)
         })
-        $this.data.page ++;
       } else {
         wx.showToast({
           title: data,

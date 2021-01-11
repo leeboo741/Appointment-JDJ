@@ -60,10 +60,18 @@ function showNeedLoginAlert() {
   NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, true);
 }
 
+/**
+ * 获取用户id
+ */
+function getUserId(){
+  return "";
+}
+
 module.exports = {
   deleteUserData,
   updateUserData,
   queryUserData,
   removeUserDataChangeObserver,
-  showNeedLoginAlert
+  showNeedLoginAlert,
+  getUserId
 }

@@ -2,7 +2,7 @@
 <swiper class="banner" indicator-dots='true' indicator-color='#ffffff' indicator-active-color='#FF7603'>
   <swiper-item wx:for="{{bannerData}}" wx:key='index'>
     <view class="banner-item">
-      <image class="banner-content" src="{{item}}"></image>
+      <image class="banner-content" src="{{item.bannerImgUrl}}"></image>
     </view>
   </swiper-item>
 </swiper>
