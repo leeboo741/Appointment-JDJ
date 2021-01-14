@@ -1,19 +1,18 @@
 <!--pages/my/index.wxml-->
 <view class="header">
   <view class="left-box">
-    <image class="avatar" src="{{userData.avatar}}" wx:if='{{userData}}'></image>
-    <image class="avatar" src="/resources/images/logo.jpg" wx:else></image>
+    <image class="avatar" src="{{userData.iconUrl?userData.iconUrl:'/resources/images/logo.jpg'}}" wx:if='{{userData}}'></image>
+    <image class="avatar" src="/resources/images/logo.jpg" wx:else bindtap="tapLogin"></image>
   </view>
   <view class="center-box">
     <block  wx:if='{{userData}}'>
-      <view class="user-name">{{userData.name}}</view>
+      <view class="user-name">{{userData.uname}}</view>
       <view class="user-role">
-        <view class="role-item">社区居民</view>
-        <view class="role-item">召集人</view>
-        <view class="role-item">团队队长</view>
+        <view class="role-item" wx:if='{{userData.userRole == 1}}'>社区居民</view>
+        <view class="role-item" wx:elif='{{userData.userRole == 2}}'>召集人</view>
       </view>
     </block>
-    <text wx:else>点我登录,登录之后更精彩</text>
+    <text wx:else bindtap="tapLogin">点我登录,登录之后更精彩</text>
   </view>
   <view class="right-box" wx:if='{{userData}}'>
     <view class="apply-button" bindtap="tapApplyConvener">申请成为召集人</view>

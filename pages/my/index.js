@@ -58,17 +58,20 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    this.userData = UserDataManager.queryUserData(this, function(userData){
+    this.data.userData = UserDataManager.queryUserData(this, function(userData){
       that.setData({
         userData
       })
     })
     this.setData({
-      userData: {
-        name: '社区王大爷',
-        avatar: "/resources/images/logo.jpg"
-      }
+      userData: this.data.userData
     })
+    // this.setData({
+    //   userData: {
+    //     name: '社区王大爷',
+    //     avatar: "/resources/images/logo.jpg"
+    //   }
+    // })
   },
 
   /**
@@ -139,5 +142,8 @@ Page({
         }
       })
     }
+  },
+  tapLogin: function(){
+    UserDataManager.showNeedLoginAlert();
   }
 })

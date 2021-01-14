@@ -1,6 +1,7 @@
 import {checkEmpty, checkIsString, throwError, checkIsDict, checkIsNumber, checkIsFunction} from '../../utils/util'
 
 const baseUrl = "https://www.jindingjieorg.cn:9020/"
+// const baseUrl = "http://111.192.37.132:8080/"
 
 /**
  * 数据请求

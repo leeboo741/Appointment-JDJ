@@ -2,13 +2,15 @@
 import {checkEmpty} from '../../utils/util';
 import NotificationCenter from '../../global/notificationCenter';
 import { NOTIFICATION_SHOW_GETUSERINFO, NOTIFICATION_SHOW_GETPHONE } from '../../resources/strings/notificationName';
+import httpManager from '../../global/manager/httpManager';
+import UserDataManager from "../../global/manager/userDataManager";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wxCode: null,
+    openId: null,
     submitData: {
       avatarUrl: null,
       name: "",
@@ -18,7 +20,8 @@ Page({
       phone:"",
       committeeIndex: 0,
       committee: null,
-      checkContract: false
+      checkContract: true,
+      openId: null
     },
     sexRange: [
       {
@@ -39,8 +42,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.wxCode = options.code;
-    console.log('注册-微信code', this.data.wxCode);
+    this.data.openId = options.openid;
+    this.data.submitData.openId = this.data.openId;
+    console.log('注册-openid', this.data.openId);
+    this.getCommitteeList();
   },
 
   /**
@@ -105,6 +110,23 @@ Page({
   tapRegister: function(){
     if (!this.checkSubmitData(this.data.submitData)) return;
     console.log('注册')
+    httpManager.register(this.data.submitData, function(success, data){
+      if (success) {
+        if (!checkEmpty(data)) {
+          UserDataManager.updateUserData(data);
+        }
+        wx.showModal({
+          title: '注册成功',
+          content: '欢迎注册金顶街预约系统！',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -145,18 +167,18 @@ Page({
    */
   focus: function(e) {
     console.log('输入框聚焦', e);
-    let id = e.currentTarget.id;
-    if (id == 'name') {
-      if (this.data.notGetUserInfo) {
-        NotificationCenter.postNotification(NOTIFICATION_SHOW_GETUSERINFO, true);
-        this.data.notGetUserInfo = false;
-      }
-    } else if (id == 'phone') {
-      if (this.data.notGetPhone) {
-        NotificationCenter.postNotification(NOTIFICATION_SHOW_GETPHONE, true);
-        this.data.notGetPhone = false;
-      }
-    }
+    // let id = e.currentTarget.id;
+    // if (id == 'name') {
+    //   if (this.data.notGetUserInfo) {
+    //     NotificationCenter.postNotification(NOTIFICATION_SHOW_GETUSERINFO, true);
+    //     this.data.notGetUserInfo = false;
+    //   }
+    // } else if (id == 'phone') {
+    //   if (this.data.notGetPhone) {
+    //     NotificationCenter.postNotification(NOTIFICATION_SHOW_GETPHONE, true);
+    //     this.data.notGetPhone = false;
+    //   }
+    // }
   },
 
   /**
@@ -226,6 +248,16 @@ Page({
     console.log('获取微信手机号', e.detail.phone);
     this.setData({
       'submitData.phone': e.detail.phone
+    })
+  },
+  getCommitteeList: function(){
+    let $this = this;
+    httpManager.getCommitteeList(function(success, data){
+      if (success) {
+        $this.setData({
+          committeeRange: data
+        })
+      }
     })
   }
 })

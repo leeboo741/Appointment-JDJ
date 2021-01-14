@@ -2,6 +2,9 @@
 import NotificationCenter from '../../global/notificationCenter';
 import {NOTIFICATION_SHOW_LOGIN} from '../../resources/strings/notificationName';
 import request from '../../global/http/request';
+import httpManager from '../../global/manager/httpManager';
+import { checkEmpty } from '../../utils/util';
+import UserDataManager from '../../global/manager/userDataManager'
 Component({
   /**
    * 组件的属性列表
@@ -63,11 +66,29 @@ Component({
       NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
     },
     requestLogin: function(wxCode) {
-      // request.request();
-      NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
-      wx.navigateTo({
-        url: `/pages/register/index?code=${wxCode}`,
+      httpManager.login(wxCode, function(success, data){
+        if (success){
+          if (!checkEmpty(data)) {
+            NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
+            if (checkEmpty(data.uid)) {
+              wx.navigateTo({
+                url: `/pages/register/index?openid=${data.openId}`,
+              })
+            } else {
+              UserDataManager.updateUserData(data);
+            }
+          } else {
+            wx.showToast({
+              title: '登录接口错误',
+              icon: 'none'
+            })
+          }
+        }
       })
+      // NotificationCenter.postNotification(NOTIFICATION_SHOW_LOGIN, false);
+      // wx.navigateTo({
+      //   url: `/pages/register/index?code=${wxCode}`,
+      // })
     }
   },
   attached: function(){

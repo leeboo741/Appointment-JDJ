@@ -1,7 +1,7 @@
 <!--pages/user-info/index.wxml-->
 
 <view class="header">
-  <imageBox circle='true' ableAdd='true' style='width: 100%' columnCount='1' maxCount='1' ablePreview='{{false}}' addButtonBackground='#fff' addButtonTitle='添加头像'></imageBox>
+  <imageBox imageList="{{['/resources/images/logo.jpg']}}" circle='true' ableAdd='{{false}}' style='width: 100%' columnCount='1' maxCount='1' ablePreview='{{false}}' addButtonBackground='#fff' addButtonTitle='添加头像'></imageBox>
 </view>
 <view class="content">
   <view class="input-zone">
@@ -18,7 +18,7 @@
     <view class="splite"></view>
     <submitRow title='出生日期'>
       <picker style="width:100%" mode='date' value='{{userInfo.birthday}}' bindchange="changeDate" id='birthday'>
-        <view class="normal" wx:if='{{birthday != null && birthday.length > 0}}'>{{birthday}}</view>
+        <view class="normal" wx:if='{{userInfo.birthday != null && userInfo.birthday.length > 0}}'>{{userInfo.birthday}}</view>
         <view class="placeholder" wx:else>请选择出生日期</view>
       </picker>
     </submitRow>
@@ -28,7 +28,7 @@
     </submitRow>
     <view class="splite"></view>
     <submitRow title='居委会'>
-      <input class="normal" placeholder-class="placeholder" placeholder="请选择居委会" disabled="true" style="width:100%" value='{{userInfo.committeeId}}'></input>
+      <input class="normal" placeholder-class="placeholder" placeholder="请选择居委会" disabled="true" style="width:100%" value='{{userInfo.committeeName}}'></input>
     </submitRow>
   </view>
   <view class="bottom-box">

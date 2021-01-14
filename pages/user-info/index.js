@@ -112,7 +112,7 @@ Page({
     let id = e.currentTarget.id;
     if (id == 'name') {
       this.setData({
-        'userInfo.tname': e.detail.value
+        'userInfo.uname': e.detail.value
       })
     } 
   },
@@ -122,7 +122,7 @@ Page({
     if (id == 'sex') {
       this.setData({
         selectSexIndex: e.detail.value,
-        'userInfo.sex': this.data.sexRange[e.detail.value].name
+        'userInfo.sex': e.detail.value
       })
     }
   },
@@ -146,7 +146,8 @@ Page({
     httpManager.getUserById(function(success, data) {
       if (success) {
         $this.setData({
-          userInfo: data
+          userInfo: data,
+          selectSexIndex: parseInt(data.sex)
         })
       }
     })

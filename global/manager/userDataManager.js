@@ -64,7 +64,12 @@ function showNeedLoginAlert() {
  * 获取用户id
  */
 function getUserId(){
-  return "9b62829f1303468985cf0813b51f1ee7";
+  let user = queryUserData();
+  if (checkEmpty(user)) {
+    return null;
+  } else {
+    return user.uid;
+  }
 }
 
 module.exports = {

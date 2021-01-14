@@ -2,6 +2,28 @@ import Request from '../http/request'
 import UserManager from './userDataManager'
 
 /**
+ * 登录
+ * @param {string} code 
+ * @param {function(boolean, object)} callback 
+ */
+function login(code, callback) {
+  Request.request({
+    url: `api/user/uerLogin?code=${code}`
+  },callback)
+}
+
+/**
+ * 注册
+ * @param {object} submitData 
+ * @param {function(boolean, object)} callback 
+ */
+function register(submitData, callback){
+  Request.request({
+    url: `api/user/uerRegister?uname=${submitData.name}&sex=${submitData.sexIndex}&birthday=${submitData.birthday}&mobile=${submitData.phone}&committeeId=${submitData.committee.cid}&openId=${submitData.openId}`
+  }, callback);
+}
+
+/**
  * 获取banner
  * @param {number} type 0 首页 1 随拍
  * @param {function(boolean, object)} callback 
@@ -213,6 +235,16 @@ function createGroup(submitData, callback){
 }
 
 /**
+ * 我创建的团队列表
+ * @param {function(boolean, object)} callback 
+ */
+function getCreatedGroup(callback) {
+  Request.request({
+    url: `api/team/listTeamByCreateUserId?uid=${UserManager.getUserId()}`
+  }, callback);
+}
+
+/**
  * 更新团队状态
  * @param {string} teamId 团队id
  * @param {string} status 状态
@@ -291,6 +323,9 @@ function updateUser(userName, sex, birthday, callback) {
 }
 
 module.exports = {
+  login, // *
+  register, // *
+
   getBannerData, // *
   applyConvener, // *
   getCommitteeList, // *
@@ -321,5 +356,6 @@ module.exports = {
   updateGroupStatus,
   joinGroup, // 接口异常
   createGroup, // *
+  getCreatedGroup, // 
   getJoinedGroup, // *
 }

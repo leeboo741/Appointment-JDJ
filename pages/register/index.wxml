@@ -20,8 +20,8 @@
     <input id='phone' placeholder="请输入手机号" bindfocus="focus" bindinput="input" class="normal" placeholder-class="placeholder" value='{{submitData.phone}}'></input>
   </inputItem>
   <inputItem title='居委会' iconPath='/resources/images/down-arrow.png'>
-    <picker id='committee' range="{{committeeRange}}" range-key="name" value='{{submitData.committeeIndex}}' bindchange="changePicker">
-      <view class="normal" wx:if='{{submitData.committee != null}}'>{{submitData.committee.name}}</view>
+    <picker id='committee' range="{{committeeRange}}" range-key="cname" value='{{submitData.committeeIndex}}' bindchange="changePicker">
+      <view class="normal" wx:if='{{submitData.committee != null}}'>{{submitData.committee.cname}}</view>
       <view class="placeholder" wx:else>请选择所属居委会</view>
     </picker>
   </inputItem>
