@@ -46,6 +46,16 @@ function joinActivity(activityId, callback) {
 }
 
 /**
+ * 我报名的活动
+ * @param {function(boolean, object)} callback 
+ */
+function getJoinedActivity(callback) {
+  Request.request({
+    url: `api/activities/listActByUserId?uid=${UserManager.getUserId()}`
+  }, callback);
+}
+
+/**
  * 取消参加活动
  * @param {string} activityId 活动id
  * @param {function(boolean, object)} callback 
@@ -182,6 +192,16 @@ function joinGroup(teamId, callback) {
 }
 
 /**
+ * 我参加的团队
+ * @param {function(boolean, object)} callback 
+ */
+function getJoinedGroup(callback) {
+  Request.request({
+    url: `api/team/listTeamByUserId?uid=${UserManager.getUserId()}`
+  },callback);
+}
+
+/**
  * 创建团队
  * @param {object} submitData 表单数据
  * @param {function(boolean, object)} callback 
@@ -286,6 +306,7 @@ module.exports = {
   quitActivity,
   signActivity,
   joinActivity, // *
+  getJoinedActivity, 
 
   getJournalList, // *
 
@@ -300,4 +321,5 @@ module.exports = {
   updateGroupStatus,
   joinGroup, // 接口异常
   createGroup, // *
+  getJoinedGroup,
 }

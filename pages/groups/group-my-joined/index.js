@@ -1,6 +1,6 @@
 // pages/groups/group-my-joined/index.js
-import Request from '../../../global/http/request';
 import { checkIsFunction } from '../../../utils/util';
+import httpManager from '../../../global/manager/httpManager'
 Page({
 
   /**
@@ -84,17 +84,7 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    Request.request({
-      url: 'getTeamList',
-      data: {
-        page,
-        size: 20
-      }
-    }, function(success, data) {
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getJoinedGroup(callback);
   },
 
   refresh: function() {

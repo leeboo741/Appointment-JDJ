@@ -1,6 +1,6 @@
 // pages/activities/activity-my-joined/index.js
-import Request from '../../../global/http/request';
 import { checkIsFunction } from '../../../utils/util';
+import httpManager from "../../../global/manager/httpManager";
 Page({
 
   /**
@@ -82,17 +82,7 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    Request.request({
-      url: 'getActList',
-      data: {
-        page,
-        size: 20
-      }
-    }, function(success, data) {
-      if (checkIsFunction(callback)) {
-        callback(success, data);
-      }
-    })
+    httpManager.getJoinedActivity(callback);
   },
 
   /**
@@ -126,7 +116,7 @@ Page({
       if (success) {
         $this.data.activityList = $this.data.activityList.concat(data);
         $this.setData({
-          activityList
+          activityList: $this.data.activityList
         })
         $this.data.page ++;
       } else {
@@ -143,6 +133,23 @@ Page({
    * @param {any} e 
    */
   cancel: function(e) {
-    console.log('点击取消参加活动', e.currentTarget.dateset.index);
+    let $this = this;
+    let activity = this.data.activityList[e.currentTarget.dataset.index];
+    wx.showModal({
+      title: '确认退出',
+      content: `确认退出活动：${activity.activityIdName}`,
+      cancelText: '点错了',
+      confirmText: '确认退出',
+      cancelColor: '#ee2c2c',
+      success(res) {
+        if (res.confirm) {
+          httpManager.quitActivity(activity.activityId,function(success, data){
+            if (success) {
+              wx.navigateBack({})
+            }
+          })
+        }
+      }
+    })
   }
 })
