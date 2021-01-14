@@ -303,10 +303,10 @@ module.exports = {
 
   getActivityListData, // *
   getActivityDetail, // *
-  quitActivity,
+  quitActivity, // * 失败
   signActivity,
   joinActivity, // *
-  getJoinedActivity, 
+  getJoinedActivity, // *
 
   getJournalList, // *
 
@@ -314,12 +314,12 @@ module.exports = {
   getVenuesDetail, // *
   orderVenues, // 接口报错 未知错误
   getVenuesOrderStatus, // *
-  getBookedVenuesList,
+  getBookedVenuesList, // *
 
   getGroupList, // *
   getGroupDetail, // activityTypeDesc 为空
   updateGroupStatus,
   joinGroup, // 接口异常
   createGroup, // *
-  getJoinedGroup,
+  getJoinedGroup, // *
 }
