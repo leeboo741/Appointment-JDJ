@@ -124,7 +124,7 @@ Component({
       })
     },
     requestUploadFile: function(){
-
+      
     }
   },
 

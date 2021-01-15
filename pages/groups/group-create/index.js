@@ -1,5 +1,7 @@
 // pages/groups/group-create/index.js
 import httpManager from '../../../global/manager/httpManager'
+import UserManager from '../../../global/manager/userDataManager';
+import { checkEmpty } from '../../../utils/util';
 Page({
 
   /**
@@ -86,21 +88,25 @@ Page({
    */
   confirm: function(){
     console.log('创建团队', this.data.submitData);
-    let $this = this;
-    httpManager.createGroup(this.data.submitData, function(success, data) {
-      if (success) {
-        wx.showModal({
-          title: '创建团队成功',
-          content: `您已成功创建团队《${$this.data.submitData.tname}》`,
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              wx.navigateBack({})
+    if (checkEmpty(UserManager.getUserId())) {
+      UserManager.showNeedLoginAlert();
+    } else {
+      let $this = this;
+      httpManager.createGroup(this.data.submitData, function(success, data) {
+        if (success) {
+          wx.showModal({
+            title: '创建团队成功',
+            content: `您已成功创建团队《${$this.data.submitData.tname}》`,
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                wx.navigateBack({})
+              }
             }
-          }
-        })
-      }
-    })
+          })
+        }
+      })
+    }
   },
 
   /**

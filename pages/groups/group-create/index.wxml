@@ -32,3 +32,5 @@
     <view class="bottom-button confirm-button" bindtap="confirm">确定</view>
   </view>
 </view>
+
+<pushLogin></pushLogin>
