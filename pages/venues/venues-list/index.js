@@ -17,10 +17,8 @@ Page({
     typeRange: [],
     selectedType: [],
     count: 10,
-    countZone: {
-      startCount: null,
-      endCount: null
-    },
+    queryCount:null
+    
   },
 
   /**
@@ -132,6 +130,7 @@ Page({
     this.setData({
       selectedZone: [],
       selectedType: [],
+      queryCount:null,
       countZone: {
         startCount: null,
         endCount: null
@@ -163,9 +162,9 @@ Page({
    * @param {any} e 
    */
   inputCount: function(e) {
+
     this.setData({
-      'countZone.startCount': e.detail.startCount,
-      'countZone.endCount': e.detail.endCount
+      'queryCount':e.detail.value
     })
   },
 
@@ -174,14 +173,21 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    httpManager.getVenuesList(page, this.data.keyword, checkEmpty(this.data.selectedZone)?null:this.data.selectedZone[0].cid, checkEmpty(this.data.selectedType)?null:this.data.selectedType[0].id, this.data.count, callback);
+  
+    httpManager.getVenuesList(page, this.data.keyword, checkEmpty(this.data.selectedZone)?null:this.data.selectedZone[0].cid, checkEmpty(this.data.selectedType)?null:this.data.selectedType[0].id,checkEmpty(this.data.queryCount)?null:this.data.queryCount, callback);
   },
 
   refresh: function() {
     let $this = this;
+    this.data.count = null;
     this.requestList(1, function(success, data) {
       wx.stopPullDownRefresh()
       if (success) {
+        console.log("场馆列表",data); 
+        data.forEach(item => {
+          let iconUrl ='https://www.jindingjieorg.cn:9020' +item.iconUrl ;
+          item.iconUrl = iconUrl
+        });
         $this.setData({
           page: 2,
           venuesList: data
@@ -199,6 +205,11 @@ Page({
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
       if (success && !checkEmpty(data)) {
+        console.log("场馆列表",data); 
+        data.forEach(item => {
+          let iconUrl ='https://www.jindingjieorg.cn:9020' +item.iconUrl ;
+          item.iconUrl = iconUrl
+        });
         $this.setData({
           page: $this.data.page + 1,
           venuesList: $this.data.venuesList.concat(data)

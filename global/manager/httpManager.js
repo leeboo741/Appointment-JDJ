@@ -33,6 +33,17 @@ function getBannerData(type, callback) {
     url: `api/banner/getBannerList?type=${type}`
   },callback)
 }
+/**
+ * 取消
+ * @param {number} activityId  活动ID
+ * @param {function(boolean, object)} callback 
+ */
+
+function cancelActivity(activityId,callback) {
+  Request.request({
+    url: `api/activities/cancelActById?activityId=${activityId}&userId=${UserManager.getUserId()}`
+  },callback)
+}
 
 /**
  * 获取活动列表
@@ -109,6 +120,28 @@ function getJournalList(page, callback) {
     url: `api/photoinfo/getPhotoList?page=${page}`
   },callback)
 }
+/**
+ * 获取我的随拍列表
+ * @param {number} page 页数
+ * @param {function(boolean, object)} callback 
+ */
+function getMyJournalList(page, callback) {
+  Request.request({
+    url: `api/photoinfo/getPhotoList?page=${page}&uid=${UserManager.getUserId()}`
+  },callback)
+}
+
+/**
+ * 发布随拍
+ * @param {object} submitData  
+ * @param {function(boolean, object)} callback 
+ */
+function sendPhoto(submitData, callback) {
+  Request.request({
+    url: `api/photoinfo/sendPhoto?uid=${UserManager.getUserId()}&content=${submitData.content}&comId=${submitData.comId}&pitureUrls=${submitData.imageUrl}`
+  },callback)
+}
+
 
 /**
  * 获取场馆列表
@@ -148,6 +181,16 @@ function getVenuesDetail(venueId, callback) {
     url: `api/venueinfo/getVenueById?venueId=${venueId}`
   }, callback);
 }
+/**
+ * 获取我预约的场馆详情
+ * @param {string} venueId 场馆id
+ * @param {function(boolean, object)} callback 
+ */
+function getMyVenuesDetail(venueId, callback) {
+  Request.request({
+    url: `api/venueinfo/queryBookByUserId?venueId=${venueId}&uid=${UserManager.getUserId()}`
+  }, callback);
+}
 
 /**
  * 预约场馆
@@ -156,7 +199,8 @@ function getVenuesDetail(venueId, callback) {
  */
 function orderVenues(submitData, callback) {
   Request.request({
-    url: `api/venueinfo/bookVenueById?userId=${UserManager.getUserId()}&venueId=${submitData.venueId}&bookDate=${submitData.bookDate}&bookTime=${submitData.bookTime}&activityIdName=${submitData.activityIdName}`
+    url: `api/venueinfo/bookVenueById?userId=${UserManager.getUserId()}&venueId=${submitData.venueId}&bookDate=${submitData.bookDate}&bookTime=${submitData.bookTime}&activityIdName=${submitData.activityIdName}&activityCount=${submitData.activityCount
+    }&activityType=${submitData.activityType}&activityContent=${submitData.activityContent}&status=${submitData.status}&activityIconUrl=${submitData.activityIconUrl}`
   },callback)
 }
 
@@ -209,7 +253,17 @@ function getGroupDetail(teamId, callback) {
  */
 function joinGroup(teamId, callback) {
   Request.request({
-    url: `api/team/entryTeamById?teamId=${teamId}&userId=${UserManager.getUserId()}`
+    url: `api/team/entryTeamById?teamId=${teamId}&uid=${UserManager.getUserId()}`
+  },callback)
+}
+/**
+ * 退出团队
+ * @param {string} teamId 团队id
+ * @param {function(boolean, object)} callback 
+ */
+function exitGroup(teamId, callback) {
+  Request.request({
+    url: `api/team/exitTeam?tid=${teamId}&uid=${UserManager.getUserId()}`
   },callback)
 }
 
@@ -230,9 +284,10 @@ function getJoinedGroup(callback) {
  */
 function createGroup(submitData, callback){
   Request.request({
-    url: `api/team/buildTeam?tname=${submitData.tname}&peopleCount=${submitData.peopleCount}&activityType=${submitData.activityType}&activityContent=${submitData.activityContent}&enterCondition=${submitData.enterCondition}`
+    url: `api/team/buildTeam?uid=${submitData.uid}&tname=${submitData.tname}&peopleCount=${submitData.peopleCount}&activityType=${submitData.activityType}&activityContent=${submitData.activityContent}&enterCondition=${submitData.enterCondition}`
   }, callback)
 }
+
 
 /**
  * 我创建的团队列表
@@ -242,6 +297,16 @@ function getCreatedGroup(callback) {
   Request.request({
     url: `api/team/listTeamByCreateUserId?uid=${UserManager.getUserId()}`
   }, callback);
+}
+/**
+ * 团队成员列表
+ * @param {string} teamId 团队id
+ * @param {function(boolean, object)} callback 
+ */
+function getTeamUserList(teamId, callback) {
+  Request.request({
+    url: `api/team/getTeamUserById?teamId=${teamId}`
+  }, callback)
 }
 
 /**
@@ -268,6 +333,18 @@ function applyConvener(activityId,idCardFontUrl,idCardBackUrl,callback) {
     url: `api/convenerinfo/applyConvener?userId=${UserManager.getUserId()}&activityId=${activityId}&idcardFrontUrl=${idCardFontUrl}&idcardBackUrl=${idCardBackUrl}`
   }, callback)
 }
+/**
+ * 获取活动报名名单
+ *   @param {string} activityId  活动ID
+ * @param {function(boolean, object)} callback 
+ */
+function getUserList(activityId,callback){
+  Request.request({
+    url: `api/activities/getUserListById?activityId=${activityId}`
+  }, callback)
+}
+
+
 
 /**
  * 获取居委会列表
@@ -278,6 +355,7 @@ function getCommitteeList(callback){
     url: `api/committee/getComList`
   }, callback)
 }
+
 
 /**
  * 获取字典
@@ -358,4 +436,11 @@ module.exports = {
   createGroup, // *
   getCreatedGroup, // 
   getJoinedGroup, // *
+  getTeamUserList,
+  sendPhoto,
+  getMyJournalList,
+  cancelActivity,
+  getMyVenuesDetail,
+  getUserList,
+  exitGroup
 }

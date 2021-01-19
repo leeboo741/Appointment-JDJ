@@ -1,5 +1,6 @@
 // pages/groups/group-my-joined/index.js
-import { checkIsFunction } from '../../../utils/util';
+import { checkEmpty,checkIsFunction } from '../../../utils/util';
+import userDataManager from '../../../global/manager/userDataManager';
 import httpManager from '../../../global/manager/httpManager'
 Page({
 
@@ -75,7 +76,7 @@ Page({
     console.log('点击团队列表 item', e.detail.value);
     // 发起加入团队请求
     wx.navigateTo({
-      url: `/pages/groups/group-detail/index?id=${e.detail.value.teamId}&joined=true`,
+      url: `/pages/groups/group-detail/index?id=${e.detail.value.tid}&joined=true`,
     })
   },
 
@@ -84,7 +85,12 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    httpManager.getJoinedGroup(callback);
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert();
+    }else{
+      httpManager.getJoinedGroup(callback);
+    }
+    
   },
 
   refresh: function() {

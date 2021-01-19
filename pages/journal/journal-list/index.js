@@ -11,29 +11,8 @@ Page({
    */
   data: {
     userData: null,
-    bannerData: [
-      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2690349196,3296263947&fm=26&gp=0.jpg",
-      "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276709640,3891421934&fm=26&gp=0.jpg",
-      "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg"
-    ],
-    dataSource: [
-      {
-        id: 1234,
-        name: "隔壁王大爷",
-        avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg',
-        time: "2020-02-11 13:33:33",
-        title: "最美书法大赛",
-        content: "最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛",
-        imageList: [
-          "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2690349196,3296263947&fm=26&gp=0.jpg",
-          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276709640,3891421934&fm=26&gp=0.jpg",
-          "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg"
-        ],
-        watchCount: 5000,
-        likeCount: 13,
-        commentCount: 30
-      }
-    ],
+    bannerData: [],
+    dataSource: [],
     page: 1,
   },
 
@@ -91,6 +70,15 @@ Page({
         success: (res) => {},
       })
       if (success && !checkEmpty(data)) {
+
+        data.forEach(function(item,index){  
+          item.pitureUrlsList = item.pitureUrls.split(",");
+          if(item.pitureUrlsList.length>0&&item.pitureUrlsList[0]!=""){
+            item.pitureUrlsList = item.pitureUrlsList.map(function(url){
+               return 'https://www.jindingjieorg.cn:9020/picture/'+ url
+          })
+        }
+        })
         $this.setData({
           page: 2,
           dataSource: data
@@ -108,6 +96,15 @@ Page({
     let $this = this;
     this.getJournalList(this.data.page, function(success, data){
       if (success && !checkEmpty(data)) {
+        data.forEach(function(item,index){  
+          item.pitureUrlsList = item.pitureUrls.split(",");
+          if(item.pitureUrlsList.length>0&&item.pitureUrlsList[0]!=""){
+            item.pitureUrlsList = item.pitureUrlsList.map(function(url){
+               return 'https://www.jindingjieorg.cn:9020/picture/'+ url
+          })
+        }
+        })
+
         $this.setData({
           page: $this.data.page + 1,
           dataSource: $this.data.dataSource.concat(data)

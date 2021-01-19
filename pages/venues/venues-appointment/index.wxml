@@ -7,7 +7,7 @@
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动人数'>
-      <input class="normal" placeholder-class="placeholder" placeholder="请输入活动人数" bindinput="input" id='count' type="number" style="width:100%"></input>
+      <input class="normal"  placeholder-class="placeholder" placeholder="请输入活动人数" bindinput="input" id='count' type="number" style="width:100%"></input>
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动类型'>
@@ -22,7 +22,7 @@
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动照片'>
-      <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='2' maxCount='1'></imageBox>
+      <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='2' maxCount='1'  bindupload="uploadImg" bindtapDelete="deleteImg"></imageBox>
     </submitRow>
     <view class="splite"></view>
     <submitRow title='活动形式'>
@@ -39,4 +39,5 @@
     <view class="bottom-button cancel-button" bindtap="cancel">取消</view>
     <view class="bottom-button confirm-button" bindtap="confirm">确定</view>
   </view>
+  <pushLogin></pushLogin>
 </view>

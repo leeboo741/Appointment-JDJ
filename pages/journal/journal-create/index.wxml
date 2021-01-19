@@ -4,8 +4,14 @@
     <submitRow title='想说的话'>
       <textarea class="normal text-area input" placeholder-class="placeholder" placeholder="请输入想说的" bindinput="input" id='content' style="width: 100%; height: 160rpx"></textarea>
     </submitRow>
+  <submitRow title='所在地点'>
+    <picker id='committee' range="{{committeeRange}}" range-key="cname" value='{{submitData.committeeIndex}}' bindchange="changePicker">
+      <view class="normal" wx:if='{{submitData.committee != null}}'>{{submitData.committee.cname}}</view>
+      <view class="placeholder" wx:else>请选择所在地点</view>
+    </picker>
+    </submitRow>
     <submitRow title='上传图片'>
-      <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='2' maxCount='4'></imageBox>
+      <imageBox ableAdd='true' ableDelete='true' style='width: 100%' columnCount='2' maxCount='4' bindupload="uploadImg" bindtapDelete="deleteImge"></imageBox>
     </submitRow>
   </view>
   <view class="bottom-box">

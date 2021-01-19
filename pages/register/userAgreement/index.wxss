@@ -1,0 +1,14 @@
+/* pages/register/userAgreement/index.wxss */
+.content-box{
+    margin: 0 20rpx;
+}
+.header{
+    margin-top: 30rpx;
+   text-align: center;
+   font-weight: bold;
+   margin-bottom: 20rpx;
+}
+.content{
+    margin-top: 15rpx;
+    text-indent:30rpx;
+}

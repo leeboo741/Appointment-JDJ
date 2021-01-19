@@ -3,7 +3,7 @@
   <image class="venues-image" src="{{data.iconUrl}}" mode="aspectFill"></image>
   <view class="venues-content">
     <view class="name">{{data.venueName}}</view>
-    <view class="type">支持活动类型：{{data.supportActiveType}}</view>
+    <view class="type">支持活动类型：{{data.supportActiveTypeDes}}</view>
     <view class="introduction">场馆简介：{{data.describtion}}</view>
   </view>
 </view>

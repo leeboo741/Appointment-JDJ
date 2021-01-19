@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <!-- 高度60rpx -->
-<searchBar bind:tapright='tapSearchRight' bind:input='inputSearch' bind:confirm='confirmSearch' bind:focus='focusSearch' bind:blur='blurSearch'></searchBar>
+<!-- <searchBar bind:tapright='tapSearchRight' bind:input='inputSearch' bind:confirm='confirmSearch' bind:focus='focusSearch' bind:blur='blurSearch'></searchBar> -->
 <swiper class="banner" indicator-dots='true' indicator-color='#ffffff' indicator-active-color='#FF7603'>
   <swiper-item wx:for="{{bannerData}}" wx:key='index'>
     <view class="banner-item">
@@ -34,6 +34,7 @@
   <scroll-view slot='content' scroll-x class="activity" style="width: 100%">
     <view class="activity-item" wx:for='{{activities}}' wx:key='index' bindtap="tapActivity" data-obj='{{item}}'>
       <image class="activity-item-image" src="{{item.activityIconUrl}}"></image>
+      <!-- <image class="activity-item-image" src="../../resources/images/demo.jpg"></image> -->
       <view class="activity-item-content">
         <text class="activity-item-title">{{item.activityIdName}}</text>
         <text class="activity-item-detail">{{item.activityContent}}</text>

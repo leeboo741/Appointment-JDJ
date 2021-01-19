@@ -1,5 +1,7 @@
 // pages/convener/index.js
-import httpManager from '../../global/manager/httpManager'
+import httpManager from '../../global/manager/httpManager';
+import userDataManager from '../../global/manager/userDataManager';
+const { checkEmpty, checkIsFunction } = require("../../utils/util");
 Page({
 
   /**
@@ -70,6 +72,29 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   * 图片正面上传
+   * 
+   */
+  uploadFrontImg:function(e){
+      console.log("图片地址",e);
+      this.data.submitData.idcardFrontUrl = e.detail;
+  },
+  deleteFrontImg:function(){
+    console.log("删除图片");
+    this.data.submitData.idcardFrontUrl = '';
+  },
+  /**
+   * 图片反面上传
+   * 
+   */
+  uploadBackImg:function(e){
+    console.log("图片地址",e.detail);
+    this.data.submitData.idcardBackUrl = e.detail;
+},
+deleteBackImg:function(){
+  this.data.submitData.idcardBackUrl = '';
+},
 
   /**
    * 选择
@@ -86,8 +111,31 @@ Page({
   },
 
   tapApply: function(e) {
-    console.log('点击申请', this.data.submitData);
-    httpManager.applyConvener(this.data.submitData.activityId, this.data.submitData.idcardFrontUrl, this.data.submitData.idcardBackUrl, function(success, data) {
+    let $this = this;
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert();
+    }else{
+      if(checkEmpty($this.data.submitData.idcardFrontUrl)){
+        wx.showToast({
+          title:'请上传身份证正面',
+          icon:'none'
+        })
+        return
+      }else if(checkEmpty($this.data.submitData.idcardBackUrl)){
+        wx.showToast({
+          title:'请上传身份证背面',
+          icon:'none'
+        })
+        return
+      }else if(checkEmpty($this.data.submitData.activityId)){
+          wx.showToast({
+            title:'请填写活动类型',
+            icon:'none'
+          })
+          return
+        }else{
+
+    httpManager.applyConvener($this.data.submitData.activityId, $this.data.submitData.idcardFrontUrl, $this.data.submitData.idcardBackUrl, function(success, data) {
       if (success) {
         wx.showModal({
           title: '申请召集人',
@@ -101,6 +149,8 @@ Page({
         })
       }
     })
+  }
+  }
   },
 
   /**

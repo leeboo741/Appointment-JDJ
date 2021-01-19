@@ -1,19 +1,21 @@
 <!--pages/venues/venues-my-appointmented-detail/index.wxml-->
-<venuesInfo venues='{{appointmentDetail.venues}}' style='width: 100%'></venuesInfo>
+<venuesInfo venues='{{appointmentDetail}}' style='width: 100%'></venuesInfo>
 
 <view class="white-block">
-  <image class="qrcode" src="/resources/images/test_qrcode.jpeg"></image>
+  <canvas class="qrcode" canvas-id="myQrcode" style="background:#fff;width: 100px;height: 100px;position: fixed; top:8888px" />
+  <image class="qrcode" src="{{codeImg}}"></image> 
   <submitRow title='报名人数'>
-    <input type="number" disabled="{{true}}" value='{{appointmentDetail.currentPeopleCount}}人' style="width: 100%"></input>
+    <input type="number" disabled="{{true}}" value='{{list.length}}人' style="width: 100%"></input>
   </submitRow>
   <submitRow title='活动时间'>
-    <input type="text" disabled="{{true}}" value='{{appointmentDetail.date}}' style="width: 100%"></input>
+    <!-- <view>{{appointmentDetail.bookDate}}{{appointmentDetail.bookTime}}</view> -->
+    <input type="text" disabled="{{true}}" value='{{appointmentDetail.bookDate +" "+appointmentDetail.bookTime}}' style="width: 100%"></input>
   </submitRow>
   <submitRow title='报名名单'>
     <view class="list" style="width:100%">
-      <view class="item" wx:for='{{appointmentDetail.list}}' wx:key='index'>
-        <view class="name">{{item.name}}</view>
-        <view class="phone">{{parse.encrypPhone(item.phone)}}</view>
+      <view class="item" wx:for='{{list}}' wx:key='index'>
+        <view class="name">{{item.uname}}</view>
+        <view class="phone">{{parse.encrypPhone(item.mobile)}}</view>
       </view>
     </view>
   </submitRow>

@@ -31,6 +31,5 @@
     <view class="bottom-button cancel-button" bindtap="cancel">取消</view>
     <view class="bottom-button confirm-button" bindtap="confirm">确定</view>
   </view>
+  <pushLogin></pushLogin>
 </view>
-
-<pushLogin></pushLogin>

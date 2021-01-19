@@ -1,5 +1,7 @@
 const { checkEmpty } = require("../../../utils/util");
 import httpManager from '../../../global/manager/httpManager';
+import userDataManager from '../../../global/manager/userDataManager';
+
 // pages/venues/venues-appointment/index.js
 Page({
 
@@ -46,6 +48,7 @@ Page({
         'submitData.venueId': app.globalData.orderVenues.venueId
       })
     }
+    console.log("预约场馆的时间",options.date);
     this.setData({
       "submitData.bookDate": options.date,
       'submitData.bookTime': options.time
@@ -111,16 +114,98 @@ Page({
     wx.navigateBack({});
   },
 
+  
+  /**
+   * 上传图片
+   * @param {any} e 
+   */
+  uploadImg:function(e){
+    console.log("上传",e);
+    this.data.submitData.activityIconUrl = e.detail;
+  },
+  deleteImg:function(){
+    this.data.submitData.activityIconUrl ='';
+  },
+
   /**
    * 点击确定
    */
   confirm: function(){
+    console.log("用户权限",userDataManager.queryUserData().userRole);
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert()
+      
+    }else if(userDataManager.queryUserData().userRole != 2){
+        wx.showModal({
+          title: '前往申请成为召集人',
+          content:'只有召集人才可预约场馆',
+          confirmText:'立即前往',
+          cancelText:'暂不前往',
+          success:function(res){
+            if(res.confirm){
+              console.log("确定")
+              wx.navigateTo({
+                url:'/pages/convener/index'
+              })
+            }else{
+
+            }
+          }
+        })
+    }else{
+    if(checkEmpty(this.data.submitData.activityIdName)){
+      wx.showToast({
+        title:'请填写活动名称',
+        icon:'none'
+      })
+      return 
+    }else if(checkEmpty(this.data.submitData.activityType)){
+      wx.showToast({
+        title:'请填写活动类型',
+        icon:'none'
+      })
+      return 
+    }else if(checkEmpty(this.data.submitData.activityCount)){
+      wx.showToast({
+        title:'请填写活动人数',
+        icon:'none'
+      })
+      return 
+    }else if(checkEmpty(this.data.submitData.activityContent)){
+      wx.showToast({
+        title:'请填写活动内容',
+        icon:'none'
+      })
+      return 
+    }else if(checkEmpty(this.data.submitData.activityIconUrl)){
+      wx.showToast({
+        title:'请上传活动照片',
+        icon:'none'
+      })
+      return 
+    }else if(checkEmpty(this.data.submitData.status)){
+      wx.showToast({
+        title:'请填写活动形式',
+        icon:'none'
+      })
+      return 
+    }
     console.log('提交预约', this.data.submitData);
     httpManager.orderVenues(this.data.submitData, function(success, data){
       if (success) {
-        
+        wx.showToast({
+          title:'预约成功',
+          icon:"none"
+        })
+        setTimeout(function(){
+          wx.switchTab({
+            url: '/pages/home/index'
+          });
+        },1000)
+       
       }
     })
+  }
   },
 
   /**
@@ -136,7 +221,7 @@ Page({
       })
     } else if (id == 'count') {
       this.setData({
-        'submitData.activityCount': e.detail.value
+        'submitData.activityCount': Number(e.detail.value)
       })
     } else if (id == 'content') {
       this.setData({
@@ -155,12 +240,12 @@ Page({
     if (id == 'type') {
       this.setData({
         selectActivityTypeIndex: e.detail.value,
-        'submitData.activityType': this.data.activityTypeRange[e.detail.value].name
+        'submitData.activityType': this.data.activityTypeRange[e.detail.value].id
       })
     } else if (id == 'private') {
       this.setData({
         selectPrivateTypeIndex: e.detail.value,
-        'submitData.privated': this.data.privateTypeRange[e.detail.value].name
+        'submitData.status': this.data.privateTypeRange[e.detail.value].id
       })
     }
   },

@@ -21,22 +21,22 @@ Component({
     currentDate: "请选择要预约的时间", // 当前时间
     colorList: [
       {
-        state: 1,
+        state: 3,
         name: '已选择',
         color: '#FF7603'
       },
       {
-        state: 2,
+        state: 1,
         name: '不可选',
         color: '#ee2c2c'
       },
       {
-        state: 3,
+        state: 0,
         name: '可选',
         color: '#dfdfdf'
       },
       {
-        state: 4,
+        state: 2,
         name: '已预约',
         color: '#FEC500'
       },
@@ -48,19 +48,19 @@ Component({
       let date = this.data.data[selectedSection].date;
       let time = this.data.data[selectedSection].list[selectedRow].time;
       let state = this.data.data[selectedSection].list[selectedRow].state;
-      if (state == 3) {
+      if (state == 0) { 
         this.setData({
           currentDate: `${date} ${time}`
         })
-      } else if (state == 1) {
+      } else if (state == 3) {
         this.setData({
           currentDate: `${date} ${time} (已选择)`
         })
-      } else if (state == 2) {
+      } else if (state == 1) {
         this.setData({
           currentDate: `${date} ${time} (不可选)`
         })
-      } else if (state == 4) {
+      } else if (state == 2) {
         this.setData({
           currentDate: `${date} ${time} (已预约)`
         })

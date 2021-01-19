@@ -1,63 +1,64 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/home/index",
-    "pages/my/index",
-    "pages/register/index",
-    "pages/user-info/index",
-    "pages/convener/index",
-    "pages/journal/journal-list/index",
-    "pages/journal/journal-my/index",
-    "pages/journal/journal-create/index",
-    "pages/venues/venues-list/index",
-    "pages/venues/venues-appointment/index",
-    "pages/venues/venues-appointment-rule/index",
-    "pages/venues/venues-detail/index",
-    "pages/venues/venues-my-appointmented/index",
-    "pages/activities/activity-detail/index",
-    "pages/activities/activity-list/index",
-    "pages/activities/activity-my-joined/index",
-    "pages/groups/group-create/index",
-    "pages/groups/group-list/index",
-    "pages/groups/group-my-created/index",
-    "pages/groups/group-my-joined/index",
-    "pages/groups/group-detail/index",
-    "pages/venues/venues-my-appointmented-detail/index"
-  ],
-  "usingComponents": {
-    "pushLogin": "/components/push-login/index",
-    "vantCell": "@vant/weapp/cell/index",
-    "vantCellGroup": "@vant/weapp/cell-group/index"
-  },
-  "tabBar": {
-    "selectedColor": "#FF7603",
-    "color": "#666666",
-    "list": [
-      {
-        "pagePath": "pages/journal/journal-list/index",
-        "text": "随拍",
-        "iconPath": "/resources/images/journal_unselected.png",
-        "selectedIconPath": "/resources/images/journal_selected.png"
-      },
-      {
-        "pagePath": "pages/home/index",
-        "text": "首页",
-        "iconPath": "/resources/images/home_unselected.png",
-        "selectedIconPath": "/resources/images/home_selected.png"
-      },
-      {
-        "pagePath": "pages/my/index",
-        "text": "我的",
-        "iconPath": "/resources/images/my_unselected.png",
-        "selectedIconPath": "/resources/images/my_selected.png"
-      }
-    ]
-  },
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "金顶街-场馆预约",
-    "navigationBarTextStyle": "black"
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/home/index",
+        "pages/my/index",
+        "pages/register/index",
+        "pages/user-info/index",
+        "pages/convener/index",
+        "pages/journal/journal-list/index",
+        "pages/journal/journal-my/index",
+        "pages/journal/journal-create/index",
+        "pages/venues/venues-list/index",
+        "pages/venues/venues-appointment/index",
+        "pages/venues/venues-appointment-rule/index",
+        "pages/venues/venues-detail/index",
+        "pages/venues/venues-my-appointmented/index",
+        "pages/activities/activity-detail/index",
+        "pages/activities/activity-list/index",
+        "pages/activities/activity-my-joined/index",
+        "pages/groups/group-create/index",
+        "pages/groups/group-list/index",
+        "pages/groups/group-my-created/index",
+        "pages/groups/group-my-joined/index",
+        "pages/groups/group-detail/index",
+        "pages/venues/venues-my-appointmented-detail/index",
+        "pages/register/userAgreement/index"
+    ],
+    "usingComponents": {
+        "pushLogin": "/components/push-login/index",
+        "vantCell": "@vant/weapp/cell/index",
+        "vantCellGroup": "@vant/weapp/cell-group/index"
+    },
+    "tabBar": {
+        "selectedColor": "#FF7603",
+        "color": "#666666",
+        "list": [
+            {
+                "pagePath": "pages/journal/journal-list/index",
+                "text": "随拍",
+                "iconPath": "/resources/images/journal_unselected.png",
+                "selectedIconPath": "/resources/images/journal_selected.png"
+            },
+            {
+                "pagePath": "pages/home/index",
+                "text": "首页",
+                "iconPath": "/resources/images/home_unselected.png",
+                "selectedIconPath": "/resources/images/home_selected.png"
+            },
+            {
+                "pagePath": "pages/my/index",
+                "text": "我的",
+                "iconPath": "/resources/images/my_unselected.png",
+                "selectedIconPath": "/resources/images/my_selected.png"
+            }
+        ]
+    },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "金顶街-场馆预约",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json"
 }

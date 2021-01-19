@@ -2,7 +2,7 @@
 <view class="form">
   <image class="avatar" src='{{submitData.avatarUrl}}' wx:if='{{submitData.avatarUrl != null && submitData.avatarUrl.length > 0}}'></image>
   <inputItem title='姓名'>
-    <input id='name' placeholder="请输入姓名" bindfocus="focus" bindinput="input" class="normal" placeholder-class='placeholder' value='{{submitData.name}}'></input>
+    <input id='name' placeholder="请输入真实姓名" bindfocus="focus" bindinput="input" class="normal" placeholder-class='placeholder' value='{{submitData.name}}'></input>
   </inputItem>
   <inputItem title='性别' iconPath='/resources/images/down-arrow.png'>
     <picker id='sex' style="width:100%" range="{{sexRange}}" range-key="name" value='{{submitData.sexIndex}}' bindchange="changePicker">
@@ -28,7 +28,7 @@
   <view class="notice" catchtap="tapContract">
     <image class="check" src="{{submitData.checkContract?'/resources/images/checked.png':'/resources/images/unChecked.png'}}"></image>
     <view class="title">我已阅读并同意</view>
-    <view class="contract">《用户须知》</view>
+    <view class="contract" catchtap="userAbout">《用户须知》</view>
   </view>
   <view class="button" catchtap="tapRegister">注册</view>
 </view>

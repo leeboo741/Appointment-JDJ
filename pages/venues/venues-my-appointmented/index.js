@@ -1,6 +1,7 @@
 // pages/venues/venues-my-appointmented/index.js
 const notificationCenter = require("../../../global/notificationCenter");
-import { checkIsFunction } from '../../../utils/util';
+import { checkEmpty,checkIsFunction } from '../../../utils/util';
+import userDataManager from '../../../global/manager/userDataManager';
 import httpManager from '../../../global/manager/httpManager';
 Page({
 
@@ -74,8 +75,10 @@ Page({
    */
   tapItem: function(e) {
     console.log('点击已预约场馆列表 item', e.detail.value);
+    let venueId = e.detail.value.venueId;
+    let activityId = e.detail.value.activityId;
     wx.navigateTo({
-      url: `/pages/venues/venues-my-appointmented-detail/index?id=${e.detail.value.venueId}`,
+      url: `/pages/venues/venues-my-appointmented-detail/index?venueId=${venueId}&activityId=${activityId}`,
     })
   },
 
@@ -84,15 +87,25 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    httpManager.getBookedVenuesList(callback)
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert();
+    }else{
+      httpManager.getBookedVenuesList(callback)
+    }
+    
   },
 
   refresh: function() {
     this.data.page = 1;
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
+      console.log("预约列表1111111",data);
       wx.stopPullDownRefresh()
       if (success) {
+        data.forEach(item => {
+          let iconUrl ='https://www.jindingjieorg.cn:9020' +item.iconUrl ;
+          item.iconUrl = iconUrl
+        });
         $this.setData({
           venuesList: data
         })
@@ -110,9 +123,13 @@ Page({
     let $this = this;
     this.requestList(this.data.page, function(success, data) {
       if (success) {
-        $this.data.venuesList = $this.data.venuesList.concat(data);
+        data.forEach(item => {
+          let iconUrl ='https://www.jindingjieorg.cn:9020' +item.iconUrl ;
+          item.iconUrl = iconUrl
+        });
+        $this.data.venuesList= $this.data.venuesList.concat(data);
         $this.setData({
-          venuesList
+          "venuesList":data
         })
         $this.data.page ++;
       } else {

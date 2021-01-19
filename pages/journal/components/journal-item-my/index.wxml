@@ -1,7 +1,7 @@
 <!--pages/journal/journal-list/components/journal-item/index.wxml-->
 <view class="journal-item">
   <view class="header">
-    <image class="avatar" src='{{"../../../../resources/images/head.jpg"}}'></image>
+    <image class="avatar" src='{{data.headImg}}'></image>
     <!-- <image class="avatar" src='{{data.pitureUrls?data.pitureUrls:"../../../../resources/images/head.jpg"}}'></image> -->
     <view class="header-content">
       <view class="name">{{data.uname}}</view>
@@ -11,9 +11,7 @@
   <view class="body">
     <view class="title">{{data.committeeName}}</view>
     <view class="content">{{data.content}}</view>
-
     <imageBox imageList='{{data.pitureUrlsList?data.pitureUrlsList:[]}}'></imageBox>
- 
   </view>
   <!-- <view class="footer" hidden="true">
     <operateItem iconPath='/resources/images/watch.png' count='{{data.watchCount}}' flag='watch' disabled='true'></operateItem>

@@ -11,3 +11,4 @@
   <schedule style="width: 100%" data='{{scheduleData}}' bind:tapschedule='tapSchedule'></schedule>
   <view class="order-button" bindtap="tapOrder">立即预约</view>
 </view>
+<pushLogin></pushLogin>

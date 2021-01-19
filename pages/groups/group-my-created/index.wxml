@@ -4,4 +4,5 @@
     <view class="close-button" catchtap="close" data-index='{{index}}' wx:if='{{item.status==1}}'>临时关闭</view>
     <view class="open-button" catchtap="open" data-index='{{index}}' wx:elif='{{item.status==2}}'>重新开放</view>
   </groupItem>
+  <pushLogin></pushLogin>
 </view>

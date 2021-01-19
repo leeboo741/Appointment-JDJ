@@ -39,8 +39,11 @@ Page({
     this.setData({
       options
     })
-    this.getDetail(options.id)
+    console.log("options",options);
+    this.getDetail(options.id);
+    this.getUserList(options.id);
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -95,7 +98,22 @@ Page({
    * 退出团队
    */
   cancel: function(){
-    console.log('退出团队')
+
+    let tid = this.data.groupDetail.tid;
+    httpManager.exitGroup(tid,function(success,data){
+      console.log("退出",data)
+      if(success){
+          wx.showToast({
+            title: '退出成功',
+            icon:'none'
+          })
+          setTimeout(function(){
+            wx.navigateBack({
+              delta: 2,
+            })
+          },1000)
+      }
+    })
   },
 
   /**
@@ -111,13 +129,37 @@ Page({
    */
   close: function(){
     console.log('关闭')
+    let $this = this;
+    let teamId = this.data.groupDetail.tid;
+    console.log("点击",teamId);
+    httpManager.updateGroupStatus(teamId,2,function(success,data){
+      if(success){
+          wx.showToast({
+            title: '关闭成功',
+            icon:'none'
+          })
+          $this.getDetail(teamId); 
+      }
+    })
   },
 
   /**
    * 开放
    */
   open: function(){
-    console.log('开放')
+    let $this = this;
+    console.log('开放');
+    let teamId = this.data.groupDetail.tid;
+    console.log("点击",teamId);
+    httpManager.updateGroupStatus(teamId,1,function(success,data){
+      if(success){
+          wx.showToast({
+            title: '开启成功',
+            icon:'none'
+          })
+          $this.getDetail(teamId); 
+      }
+    })
   },
 
   getDetail: function(teamId) {
@@ -126,6 +168,18 @@ Page({
       if (success) {
         $this.setData({
           groupDetail: data
+        })
+      }
+    })
+  },
+  getUserList:function(teamId){
+    let $this = this;
+    httpManager.getTeamUserList(teamId,function(success,data){
+      console.log("用户列表结果",data)
+      if (success) {
+        
+        $this.setData({
+          list:data
         })
       }
     })

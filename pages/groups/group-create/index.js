@@ -1,7 +1,7 @@
 // pages/groups/group-create/index.js
-import httpManager from '../../../global/manager/httpManager'
-import UserManager from '../../../global/manager/userDataManager';
-import { checkEmpty } from '../../../utils/util';
+import httpManager from '../../../global/manager/httpManager';
+import userDataManager from '../../../global/manager/userDataManager';
+const { checkEmpty, checkIsFunction } = require("../../../utils/util");
 Page({
 
   /**
@@ -87,26 +87,63 @@ Page({
    * 点击确定
    */
   confirm: function(){
-    console.log('创建团队', this.data.submitData);
-    if (checkEmpty(UserManager.getUserId())) {
-      UserManager.showNeedLoginAlert();
-    } else {
-      let $this = this;
-      httpManager.createGroup(this.data.submitData, function(success, data) {
-        if (success) {
-          wx.showModal({
-            title: '创建团队成功',
-            content: `您已成功创建团队《${$this.data.submitData.tname}》`,
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                wx.navigateBack({})
-              }
-            }
-          })
-        }
-      })
+    
+    let $this = this;
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert();
+    }else{
+      if(checkEmpty(this.data.submitData.tname)){
+        wx.showToast({
+          title:'请填写活动名称',
+          icon:'none'
+        })
+        return 
+      }else if(checkEmpty(this.data.submitData.peopleCount)){
+        wx.showToast({
+          title:'请填写活动人数',
+          icon:'none'
+        })
+        return 
+      }else if(checkEmpty(this.data.submitData.activityType)){
+        wx.showToast({
+          title:'请填写活动类型',
+          icon:'none'
+        })
+        return 
+      }else if(checkEmpty(this.data.submitData.activityContent)){
+        wx.showToast({
+          title:'请填写活动内容',
+          icon:'none'
+        })
+        return 
+      }else if(checkEmpty(this.data.submitData.enterCondition)){
+        wx.showToast({
+          title:'请填写加入条件',
+          icon:'none'
+        })
+        return 
+      }
+    let uid = userDataManager.getUserId();
+    console.log("uid",uid);
+    let query ={
+      ...this.data.submitData,
+      uid:uid
     }
+    httpManager.createGroup(query, function(success, data) {
+      if (success) {
+        wx.showModal({
+          title: '创建团队成功',
+          content: `您已成功创建团队《${$this.data.submitData.tname}》`,
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      }
+    })
+  }
   },
 
   /**

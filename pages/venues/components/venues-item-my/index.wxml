@@ -8,10 +8,10 @@
       <view class="address">地址：{{venues.address}}</view>
     </view>
   </view>
-  <view class="row">
+  <!-- <view class="row">
     <view class="title">报名人数：</view>
     <view class="value">{{venues.peopleCount}}</view>
-  </view>
+  </view> -->
   <view class="row">
     <view class="title">活动时间：</view>
     <view class="value">{{venues.bookDate}} {{venues.bookTime}}</view>

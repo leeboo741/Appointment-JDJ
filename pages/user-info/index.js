@@ -32,6 +32,7 @@ Page({
     this.getCommitteeList();
     this.getActivityType();
     this.getUserById();
+    console.log("用户信息",UserManager.queryUserData());
   },
 
   /**
@@ -143,14 +144,19 @@ Page({
 
   getUserById: function() {
     let $this = this;
-    httpManager.getUserById(function(success, data) {
-      if (success) {
-        $this.setData({
-          userInfo: data,
-          selectSexIndex: parseInt(data.sex)
-        })
-      }
+    let data = UserManager.queryUserData();
+    $this.setData({
+      'userInfo':data,
+      'selectSexIndex': parseInt(data.sex)
     })
+    // httpManager.getUserById(function(success, data) {
+    //   if (success) {
+    //     $this.setData({
+    //       userInfo: data,
+    //       selectSexIndex: parseInt(data.sex)
+    //     })
+    //   }
+    // })
   },
 
   /**
@@ -180,6 +186,7 @@ Page({
           showCancel: false,
           success(res) {
             if (res.confirm) {
+              UserManager.updateUserData($this.data.userInfo);
               wx.navigateBack({})
             }
           }

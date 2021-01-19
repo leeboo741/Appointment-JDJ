@@ -1,5 +1,7 @@
 // pages/journal/journal-my/index.js
 import UserDataManager from '../../../global/manager/userDataManager';
+const { checkEmpty } = require("../../../utils/util");
+import httpManager from '../../../global/manager/httpManager';
 import NotificationCenter from '../../../global/notificationCenter';
 import {NOTIFICATION_SHOW_COMMENT} from '../../../resources/strings/notificationName';
 Page({
@@ -10,22 +12,7 @@ Page({
   data: {
     userData: null,
     dataSource: [
-      {
-        id: 1234,
-        name: "隔壁王大爷",
-        avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg',
-        time: "2020-02-11 13:33:33",
-        title: "最美书法大赛",
-        content: "最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛最美书法大赛",
-        imageList: [
-          "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2690349196,3296263947&fm=26&gp=0.jpg",
-          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276709640,3891421934&fm=26&gp=0.jpg",
-          "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg"
-        ],
-        watchCount: 5000,
-        likeCount: 13,
-        commentCount: 30
-      }
+     
     ]
   },
 
@@ -33,12 +20,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     let that = this;
     this.userData = UserDataManager.queryUserData(this, function(userData){
       that.setData({
         userData
       })
     })
+   
   },
 
   /**
@@ -52,7 +41,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.startPullDownRefresh({
+      success: (res) => {},
+    })
   },
 
   /**
@@ -73,14 +64,62 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    let $this = this;
+    this.getList(1, function(success, data){
+      console.log("下发的数据",data);
+      wx.stopPullDownRefresh({
+        success: (res) => {},
+      })
+      if (success && !checkEmpty(data)) {
+        //拼接图片地址
+        let uerheadImg = UserDataManager.queryUserData().headImg;
+        console.log("用户头像",uerheadImg);
+        data.forEach(function(item,index){  
+          item.headImg = uerheadImg;
+          item.pitureUrlsList = item.pitureUrls.split(",");
+          if(item.pitureUrlsList.length>0&&item.pitureUrlsList[0]!=""){
+            item.pitureUrlsList = item.pitureUrlsList.map(function(url){
+               return 'https://www.jindingjieorg.cn:9020/picture/'+ url
+          })
+        }
+        })
+        $this.setData({
+          page: 2,
+          dataSource: data
+        })
 
+        console.log("处理之后的数据",$this.data.dataSource);
+      } else {
+
+      }
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    let $this = this;
+    this.getMyJournalList(this.data.page, function(success, data){
+      if (success && !checkEmpty(data)) {
+        let uerheadImg = UserDataManager.queryUserData().headImg;
+        data.forEach(function(item,index){  
+          data.headImg = uerheadImg;
+          item.pitureUrlsList = item.pitureUrls.split(",");
+          if(item.pitureUrlsList.length>0&&item.pitureUrlsList[0]!=""){
+            item.pitureUrlsList = item.pitureUrlsList.map(function(url){
+               return 'https://www.jindingjieorg.cn:9020/picture/'+ url
+          })
+        }
+        })
+        $this.setData({
+          page: $this.data.page + 1,
+          dataSource: $this.data.dataSource.concat(data)
+        })
+      } else {
 
+      }
+    })
   },
 
   /**
@@ -88,6 +127,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+   /**
+   * 请求随拍列表
+   * @param {any} page 
+   */
+  getList: function(page,callback) {
+    httpManager.getMyJournalList(page,callback);
   },
 
   /**

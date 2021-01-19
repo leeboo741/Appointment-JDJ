@@ -1,5 +1,7 @@
 // pages/activities/activity-detail/index.js
-import httpManager from "../../../global/manager/httpManager"
+import httpManager from "../../../global/manager/httpManager";
+import UserDataManager from '../../../global/manager/userDataManager';
+import {checkEmpty} from '../../../utils/util';
 Page({
 
   /**
@@ -77,6 +79,11 @@ Page({
    */
   tapOrder: function(){
     console.log('报名活动')
+    if(checkEmpty(UserDataManager.queryUserData())){
+      UserDataManager.showNeedLoginAlert();
+    }else{
+
+ 
     let $this = this;
     httpManager.joinActivity(this.data.options.id, function(success, data) {
       if (success) {
@@ -92,13 +99,25 @@ Page({
         })
       }
     })
+  }
   },
 
   /**
    * 点击退出活动
    */
   tapCancel: function() {
-    console.log('退出活动')
+    let $this = this;
+    httpManager.cancelActivity($this.data.options.id,function(success, data){
+      if (success) {
+        wx.showToast({
+          title: '退出成功',
+        })
+        setTimeout(function(){
+          wx.navigateBack({})
+        },1000)
+        
+      }
+    })
   },
 
   /**
@@ -108,6 +127,8 @@ Page({
   getDetail: function(activityId){
     let $this = this;
     httpManager.getActivityDetail(activityId, function(success, data){
+      console.log("详情",data);
+      data.activityIconUrl = 'https://www.jindingjieorg.cn:9020' +data.activityIconUrl 
       if (success) {
         $this.setData({
           activityDetail: data

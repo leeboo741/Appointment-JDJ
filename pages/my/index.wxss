@@ -2,6 +2,7 @@
 .header{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding: 60rpx 20rpx;
   background: linear-gradient(#FF7603,#FF9813);
@@ -49,9 +50,10 @@
 }
 
 .user-role{
+  width: 280rpx;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 
@@ -75,6 +77,7 @@
 .right-box{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
 }
 

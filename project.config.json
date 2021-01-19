@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -40,7 +40,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.1",
-  "appid": "wx3a6796d91e05c5bf",
+  "appid": "wx2d9d1a4c8beb93ab",
   "projectname": "Appointment-JDJ",
   "debugOptions": {
     "hidedInDevtools": []
@@ -50,23 +50,53 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "pages/register/index",
+          "pathName": "pages/register/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/register/userAgreement/index",
+          "pathName": "pages/register/userAgreement/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/venues/venues-my-appointmented/index",
+          "pathName": "pages/venues/venues-my-appointmented/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/index",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/journal/journal-my/index",
+          "pathName": "pages/journal/journal-my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/venues/venues-detail/index",
+          "pathName": "pages/venues/venues-detail/index",
+          "scene": null
+        }
+      ]
     }
   }
 }

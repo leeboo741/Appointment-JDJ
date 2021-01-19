@@ -1,6 +1,7 @@
 // pages/groups/group-my-created/index.js
 import Request from '../../../global/http/request';
-import { checkIsFunction } from '../../../utils/util';
+import { checkEmpty,checkIsFunction } from '../../../utils/util';
+import userDataManager from '../../../global/manager/userDataManager';
 import httpManager from '../../../global/manager/httpManager';
 Page({
 
@@ -76,7 +77,7 @@ Page({
     console.log('点击团队列表 item', e.detail.value);
     // 发起加入团队请求
     wx.navigateTo({
-      url: `/pages/groups/group-detail/index?id=${e.detail.value.teamId}&my=true`,
+      url: `/pages/groups/group-detail/index?id=${e.detail.value.tid}&my=true`,
     })
   },
 
@@ -85,7 +86,12 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    httpManager.getCreatedGroup(callback);
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert();
+    }else{
+      httpManager.getCreatedGroup(callback);
+    }
+    
   },
 
   refresh: function() {
@@ -131,6 +137,14 @@ Page({
    */
   close: function(e){
     console.log('关闭', e.currentTarget.dataset.index);
+    let teamId = this.data.groupList[e.currentTarget.dataset.index].tid;
+    console.log("点击",teamId);
+    httpManager.updateGroupStatus(teamId,2,function(success,data){
+      if(success){
+        console.log("点击",data);
+        wx.startPullDownRefresh()
+      }
+    })
   },
 
   /**
@@ -139,5 +153,13 @@ Page({
    */
   open: function(e) {
     console.log('打开', e.currentTarget.dataset.index);
+    let teamId = this.data.groupList[e.currentTarget.dataset.index].tid;
+    console.log("点击",teamId);
+    httpManager.updateGroupStatus(teamId,1,function(success,data){
+      if(success){
+        console.log("点击",data);
+        wx.startPullDownRefresh()
+      }
+    })
   }
 })

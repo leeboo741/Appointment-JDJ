@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "imageBox": "/components/image-box/index",
+    "operateItem": "../journal-item-operate/index"
+  }
+}

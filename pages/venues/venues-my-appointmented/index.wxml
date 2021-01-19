@@ -1,4 +1,5 @@
 <!--pages/venues/venues-my-appointmented/index.wxml-->
 <view class="list">
   <venuesItem wx:for='{{venuesList}}' wx:key='index' venues='{{item}}' bind:tapitem='tapItem' style=''></venuesItem>
+  <pushLogin></pushLogin>
 </view>

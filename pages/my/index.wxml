@@ -1,7 +1,7 @@
 <!--pages/my/index.wxml-->
 <view class="header">
   <view class="left-box">
-    <image class="avatar" src="{{userData.iconUrl?userData.iconUrl:'/resources/images/logo.jpg'}}" wx:if='{{userData}}'></image>
+    <image class="avatar" src="{{userData.headImg?userData.headImg:'/resources/images/logo.jpg'}}" wx:if='{{userData}}'></image>
     <image class="avatar" src="/resources/images/logo.jpg" wx:else bindtap="tapLogin"></image>
   </view>
   <view class="center-box">
@@ -15,12 +15,14 @@
     <text wx:else bindtap="tapLogin">点我登录,登录之后更精彩</text>
   </view>
   <view class="right-box" wx:if='{{userData}}'>
-    <view class="apply-button" bindtap="tapApplyConvener">申请成为召集人</view>
+    <view class="apply-button" bindtap="tapApplyConvener" wx:if='{{userData.userRole == 1}}'>申请成为召集人</view>
+    <view class="apply-button" style="margin-top:30rpx" bindtap="updateUserInfo">刷新用户信息</view>
   </view>
 </view>
 <view style="height: 20rpx"></view>
 <vantCellGroup>
-  <vantCell wx:for='{{operate}}' wx:key='index' is-link='{{parse.isLink(item.id)}}' link-type='navigateTo' url='{{item.url}}' data-id='{{item.id}}' bindtap="tapCell" wx:if='{{!item.hidden}}'>
+
+  <vantCell wx:for='{{operate}}' wx:key='index' data-index='{{index}}'  data-id='{{item.id}}' bindtap="tapCell" wx:if='{{!item.hidden}}'>
     <text slot='title' class="cell-title">{{item.name}}</text>
     <image slot='icon' class="cell-icon" src="{{item.icon}}"></image>
   </vantCell>
@@ -33,8 +35,11 @@
     isLink: function(id) {
       if (id == 'scan') {
         return false;
+      }else{
+        return true;
       }
-      return true;
+      
+      
     }
   }
 </wxs>

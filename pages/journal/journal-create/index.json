@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "submitRow": "/components/submit-row/index",
-    "imageBox": "/components/image-box/index"
+    "imageBox": "/components/image-box/index",
+    "inputItem": "../../register/components/input-item/input-item"
   },
   "navigationBarTitleText": "发布随拍"
 }

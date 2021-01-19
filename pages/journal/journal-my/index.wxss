@@ -3,13 +3,14 @@
   width: 130rpx;
   height: 130rpx;
   border-radius: 65rpx;
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
   text-align: center;
   line-height: 130rpx;
   font-size: 32rpx;
   color: #fff;
   position: fixed;
-  bottom: 160rpx;
-  right: 30rpx;
+  bottom: 200rpx;
+  right: 100rpx;
   z-index: 10;
+  background: linear-gradient(#FF7603,#FF9813);
 }

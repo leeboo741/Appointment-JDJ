@@ -80,7 +80,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
@@ -101,7 +101,11 @@ Page({
    * 点击用户须知协议
    */
   tapContract: function(){
-    console.log('用户须知')
+    this.setData({
+      'submitData.checkContract':!this.data.submitData.checkContract
+    })
+    
+    
   },
 
   /**
@@ -180,6 +184,15 @@ Page({
     //   }
     // }
   },
+  userAbout:function(){
+    console.log("跳转")
+      wx.navigateTo({
+        url: 'userAgreement/index',
+        fail:function(err){
+            console.log("错误",err)
+        }
+      })
+  },
 
   /**
    * 输入框输入
@@ -254,6 +267,9 @@ Page({
     let $this = this;
     httpManager.getCommitteeList(function(success, data){
       if (success) {
+       
+        data.splice(0,1);
+        console.log("居委会",data);
         $this.setData({
           committeeRange: data
         })

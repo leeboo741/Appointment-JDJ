@@ -1,5 +1,7 @@
 // pages/home/home.js
 import httpManager from '../../global/manager/httpManager';
+import UserDataManager from '../../global/manager/userDataManager';
+import {checkEmpty} from '../../utils/util';
 Page({
 
   /**
@@ -128,18 +130,29 @@ Page({
    * 点击创建团队
    */
   tapCreatedGroup: function(){
-    wx.navigateTo({
-      url: '/pages/groups/group-create/index',
-    })
+    console.log("是否登录",checkEmpty(UserDataManager.queryUserData()))
+    if(checkEmpty(UserDataManager.queryUserData())){
+      UserDataManager.showNeedLoginAlert();
+    }else{
+      wx.navigateTo({
+        url: '/pages/groups/group-create/index',
+      })
+    }
+   
   },
 
   /**
    * 点击加入团队
    */
   tapJoinedGroup: function(){
-    wx.navigateTo({
-      url: '/pages/groups/group-list/index',
-    })
+    if(checkEmpty(UserDataManager.queryUserData())){
+      UserDataManager.showNeedLoginAlert();
+    }else{
+      wx.navigateTo({
+        url: '/pages/groups/group-list/index',
+      })
+    }
+
   },
 
   /**
@@ -166,6 +179,11 @@ Page({
    * @param {any} e 
    */
   tapJoinActivity: function(e) {
+    if(checkEmpty(UserDataManager.queryUserData())){
+      UserDataManager.showNeedLoginAlert();
+    }else{
+     
+  
     console.log('点击参加活动', e.currentTarget.dataset.obj);
     this.joinActivity(e.currentTarget.dataset.obj.activityId, function(success, data){
       if (success) {
@@ -176,6 +194,7 @@ Page({
         })
       }
     })
+  }
   },
 
   /**
@@ -196,6 +215,11 @@ Page({
     let $this = this;
     httpManager.getActivityListData(1, function(success, data) {
       if (success) {
+        console.log("活动",data)
+        data.forEach(item => {
+          let activityIconUrl ='https://www.jindingjieorg.cn:9020' +item.activityIconUrl ;
+          item.activityIconUrl = activityIconUrl
+        });
         $this.setData({
           activities: data
         })

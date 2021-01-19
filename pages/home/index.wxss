@@ -59,7 +59,7 @@
 
 .activity{
   width: 100%;
-  height: 510rpx;
+  height: 410rpx;
   display: flex;
   flex-direction: row;
   white-space: nowrap;
@@ -68,7 +68,7 @@
 .activity-item{
   display: inline-block;
   width: 380rpx;
-  height: 490rpx;
+  height: 390rpx;
   margin-left: 20rpx;
   border-radius: 10rpx;
   position: relative;
@@ -89,7 +89,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 150rpx;
+  height: 100rpx;
   background: rgba(0, 0, 0, 0.3);
   color: white;
   display: flex;

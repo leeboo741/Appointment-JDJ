@@ -1,5 +1,7 @@
 // pages/my/index.js
 import UserDataManager from "../../global/manager/userDataManager";
+const { checkEmpty } = require("../../utils/util");
+import httpManager from '../../global/manager/httpManager';
 Page({
 
   /**
@@ -37,6 +39,7 @@ Page({
         name: '我预约的场馆',
         icon: '/resources/images/venue.png',
         url: '/pages/venues/venues-my-appointmented/index',
+        hidden: true,
       },
       {
         id: 'my-journal',
@@ -50,7 +53,8 @@ Page({
         icon: '/resources/images/info.png',
         url: '/pages/user-info/index'
       }
-    ]
+    ],
+    
   },
 
   /**
@@ -62,6 +66,17 @@ Page({
       that.setData({
         userData
       })
+        if(that.data.userData.userRole == 2){
+                that.data.operate.forEach(function(item){
+                  if(item.id == 'my-venue'){
+                      item.hidden = false
+                  }
+                })
+                that.setData({
+                  operate: that.data.operate
+                })
+
+              }
     })
     this.setData({
       userData: this.data.userData
@@ -131,19 +146,78 @@ Page({
       url: '/pages/convener/index',
     })
   },
+    /**
+   * 点击更新用户信息
+   */
+  updateUserInfo:function(){
+        httpManager.getUserById(function(success,data){
+       
+         let userheadImg = UserDataManager.queryUserData().headImg;
+         data.headImg = userheadImg;
+         UserDataManager.updateUserData(data);
+         console.log("用户信息",data);
+        })
+  },
 
   tapCell: function(e) {
-    console.log(e.currentTarget.dataset.id);
+
+    if(checkEmpty(UserDataManager.queryUserData())){
+      UserDataManager.showNeedLoginAlert();
+      return
+    }else{
+      console.log("点击",e.currentTarget.dataset.id);
     if (e.currentTarget.dataset.id == 'scan') {
       wx.scanCode({
         onlyFromCamera: true,
         success(res) {
           console.log('扫码内容', res.result);
+          // 截取扫码内容
+            let activityId = res.result.substring(11);
+            console.log('活动ID', activityId);
+          if(res.result){
+            httpManager.signActivity(activityId,function(scuess,data){
+                if(scuess){
+                  wx.showModal({
+                    title: '签到成功',
+                    content:'恭喜签到成功'
+                  })
+                }else{
+                  wx.showModal({
+                    title: '签到失败',
+                    content:'请扫描正确二维码'
+                  })
+                }
+            })
+          }
+        },
+        fail:function(res){
+          console.log("扫码失败",res);
+          wx.showModal({
+            title: '扫码失败',
+            content:res
+          })
         }
       })
+    }else{
+      let url =this.data.operate[e.currentTarget.dataset.index].url; 
+      console.log("url",url);
+      wx.navigateTo({
+        url: url,
+      })
     }
+  }
   },
   tapLogin: function(){
     UserDataManager.showNeedLoginAlert();
+  },
+  isLink: function(id) {
+    if (id == 'scan') {
+      return false;
+    }else if(checkEmpty(UserDataManager.queryUserData())){
+    UserDataManager.showNeedLoginAlert();
+    return false;
+    }
+    return true;
+    
   }
 })

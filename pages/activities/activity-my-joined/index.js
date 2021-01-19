@@ -1,5 +1,6 @@
 // pages/activities/activity-my-joined/index.js
-import { checkIsFunction } from '../../../utils/util';
+import { checkEmpty,checkIsFunction } from '../../../utils/util';
+import userDataManager from '../../../global/manager/userDataManager';
 import httpManager from "../../../global/manager/httpManager";
 Page({
 
@@ -14,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.startPullDownRefresh();
+    
   },
 
   /**
@@ -28,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.startPullDownRefresh();  
   },
 
   /**
@@ -82,7 +83,12 @@ Page({
    * @param {function(boolean, data)} callback  回调
    */
   requestList: function(page, callback){
-    httpManager.getJoinedActivity(callback);
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert();
+    }else{
+      httpManager.getJoinedActivity(callback);
+    }
+    
   },
 
   /**
@@ -94,6 +100,14 @@ Page({
     this.requestList(this.data.page, function(success, data) {
       wx.stopPullDownRefresh()
       if (success) {
+        console.log("列表",data)
+        data.forEach(item => {
+          if(item){
+          let activityIconUrl ='https://www.jindingjieorg.cn:9020' +item.activityIconUrl ;
+          item.activityIconUrl = activityIconUrl
+          }
+          
+        });
         $this.setData({
           activityList: data
         })

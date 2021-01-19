@@ -1,6 +1,6 @@
 <!--components/image-box/index.wxml-->
 <view class="image-box">
-  <view class="image-item " wx:for='{{imageList}}' wx:key='index' style="width: {{1 / columnCount * 100}}%; height: {{height}}">
+  <view class="image-item " wx:for='{{imageList}}' wx:key='index' style="width: {{1 / columnCount * 100}}%; height: {{height}}; min-height: {{height}}" v-if='{{index != 0}}'>
     <image class="image-content {{circle?'image-circle':''}}" src="{{item}}" catchtap="tapPreview" data-url='{{item}}' mode="aspectFill"></image>
     <image class="delete" src="/resources/images/delete.png" catchtap="tapDelete" data-index='{{index}}' wx:if='{{ableDelete}}'></image>
   </view>

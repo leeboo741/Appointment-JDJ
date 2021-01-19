@@ -24,8 +24,9 @@
     <submitRow title='成员名单'>
       <view class="list" style="width:100%">
         <view class="item" wx:for='{{list}}' wx:key='index'>
-          <view class="name">{{item.name}}</view>
-          <view class="phone">{{parse.encrypPhone(item.phone)}}</view>
+          <view class="name">{{item.uname}}</view>
+          <view class="phone" wx:if="{{options.my}}">{{item.mobile}}</view>
+          <view class="phone" wx:else>{{parse.encrypPhone(item.mobile)}}</view>
         </view>
       </view>
     </submitRow>

@@ -1,6 +1,7 @@
 // pages/venues/venues-detail/index.js
 import { checkEmpty, checkIsFunction } from "../../../utils/util";
-import httpManager from "../../../global/manager/httpManager"
+import httpManager from "../../../global/manager/httpManager";
+import userDataManager from '../../../global/manager/userDataManager';
 Page({
 
   /**
@@ -9,8 +10,8 @@ Page({
   data: {
     venueId: null,
     venuesDetail: {},
-    selectedDate: '2020.12.28',
-    selectedTime: '09:00',
+    selectedDate: '',
+    selectedTime: '',
     scheduleData: []
   },
 
@@ -80,6 +81,9 @@ Page({
     let $this = this;
     httpManager.getVenuesDetail(venueId, function(success, data) {
       if (success) {
+        console.log("详情",data);
+          let iconUrl ='https://www.jindingjieorg.cn:9020' +data.iconUrl ;
+          data.iconUrl = iconUrl
         $this.setData({
           venuesDetail: data
         })
@@ -104,10 +108,23 @@ Page({
   tapOrder: function(){
     console.log('点击预约', this.data.venuesDetail);
     const app = getApp();
+    let $this = this;
+    // 选中才能进入下一页
+    if(checkEmpty(userDataManager.queryUserData())){
+      userDataManager.showNeedLoginAlert()
+      
+    }else if(checkEmpty($this.data.selectedDate)&&checkEmpty($this.data.selectedTime)){
+      wx.showToast({
+        title:'请选择预约时间',
+        icon:"none"
+      })
+  }else{
+
     app.globalData.orderVenues = this.data.venuesDetail;
     wx.navigateTo({
       url: `/pages/venues/venues-appointment/index?id=${this.data.venuesDetail.venueId}&date=${this.data.selectedDate}&time=${this.data.selectedTime}`,
     })
+  }
   },
 
   /**
@@ -116,18 +133,44 @@ Page({
    */
   tapSchedule: function(e) {
     console.log('点击排期', e.detail.date, e.detail.time, e.detail.state);
+
+    let $this = this;
+      
     let msg = null;
     // if (e.detail.state == 1) {
     //   msg = '该日期已选择'
     // } else 
-    if (e.detail.state == 2) {
+    if (e.detail.state == 1) {
       msg = '该日期不可选'
-    } else if (e.detail.state == 4) {
+    } else if (e.detail.state == 2) {
       msg = '该日期已预约'
     }
     if (checkEmpty(msg)) {
+     
       this.data.selectedDate = e.detail.date;
       this.data.selectedTime = e.detail.time;
+      // 点击切换颜色
+      //先让清空之前的已选，再选择
+      this.data.scheduleData.forEach(function(item,index){
+          item.list.forEach(function(timeObj,index){
+            if(timeObj.state == 3){
+              timeObj.state = 0
+            }
+          })
+      })
+      this.data.scheduleData.forEach(function(item,index){
+        if(item.date == $this.data.selectedDate){
+          item.list.forEach(function(timeObj,index){
+            if(timeObj.time == $this.data.selectedTime){
+              timeObj.state = 3
+            }
+          })
+        }
+      })
+      this.setData({
+        'scheduleData':this.data.scheduleData
+      })
+      console.log("点击之后",this.data.scheduleData);
     } else {
       this.data.selectedDate = null;
       this.data.selectedTime = null;

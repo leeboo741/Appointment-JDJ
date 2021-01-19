@@ -7,7 +7,14 @@
 <pushFilter pushNotificationKey='{{filterKey}}' bind:confirm='confirmFilter' bind:reset='resetFilter'>
   <scroll-view class="filter-content" scroll-y>
     <view style="display: inline-block">
-      <pushSection title='人数' mode='count-zone' startCount='{{countZone.startCount}}' endCount='{{countZone.endCount}}' bind:inputcount='inputCount'></pushSection>
+      <view class="title">
+        <view>
+          最大可容纳人数
+        </view>
+        <!-- <searchBar style="" value='{{queryCount}}' leftInputIconPath='' bind:input='inputCount' placeholder=''></searchBar> -->
+      <input type="number" name="" class="title_input" value='{{queryCount}}' bindinput="inputCount"></input>
+    </view>
+      <!-- <pushSection title='人数' mode='count-zone' startCount='{{countZone.startCount}}' endCount='{{countZone.endCount}}' bind:inputcount='inputCount'></pushSection> -->
       <pushSection title='类型' mode='tag-single' tags='{{typeRange}}' selectedTags='{{selectedType}}' bind:selectedtag='selectedTag' id='type'></pushSection>
       <pushSection title='区域' mode='tag-single' tags='{{zoneRange}}' key='cname' idKey='cid' selectedTags='{{selectedZone}}' bind:selectedtag='selectedTag' id='zone'></pushSection>
     </view>

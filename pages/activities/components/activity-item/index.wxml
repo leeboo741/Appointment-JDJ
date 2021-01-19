@@ -4,9 +4,10 @@
     <image class="activity-image" src="{{data.activityIconUrl}}" mode="aspectFill"></image>
     <view class="activity-content">
       <view class="name">{{data.activityIdName}}</view>
-      <view class="type">{{data.activityType}}  ({{data.activityCount}}人)</view>
+      <!-- <view class="type">{{data.activityType}}  ({{data.activityCount}}人)</view> -->
       <view class="content">内容：{{data.activityContent}}</view>
-      <view class="time">{{data.activityTime}}</view>
+      <view class="time">时间:{{data.activityTime}}</view>
+      <view class="time">地址:{{data.venueName}}</view>
     </view>
   </view>
   <block wx:if='{{showOperateBox}}'>

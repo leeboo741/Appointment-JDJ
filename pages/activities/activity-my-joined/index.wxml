@@ -3,4 +3,5 @@
   <activityItem wx:for='{{activityList}}' wx:key='index' data='{{item}}' bind:tapitem='tapItem' showOperateBox='{{true}}'>
     <view class="cancel-button" catchtap="cancel" data-index='{{index}}'>退出活动</view>
   </activityItem>
+  <pushLogin></pushLogin>
 </view>

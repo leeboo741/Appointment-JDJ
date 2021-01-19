@@ -182,6 +182,11 @@ Page({
   refresh: function() {
     let $this = this;
     this.requestList(1, function(success, data) {
+      console.log("列表数据",data);
+      data.forEach(item => {
+        let activityIconUrl ='https://www.jindingjieorg.cn:9020' +item.activityIconUrl ;
+        item.activityIconUrl = activityIconUrl
+      });
       wx.stopPullDownRefresh()
       if (success) {
         $this.setData({
