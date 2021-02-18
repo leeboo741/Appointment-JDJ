@@ -11,8 +11,14 @@ Page({
    */
   data: {
     userData: null,
-    bannerData: [],
-    dataSource: [],
+    bannerData: [
+      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2690349196,3296263947&fm=26&gp=0.jpg",
+      "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276709640,3891421934&fm=26&gp=0.jpg",
+      "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3224420074,1885140053&fm=26&gp=0.jpg"
+    ],
+    dataSource: [
+      
+    ],
     page: 1,
   },
 

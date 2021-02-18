@@ -8,18 +8,17 @@
 </swiper>
 <view class="whiteBlock">
   <view class="info-list">
+    <infoRow title='活动场馆' value='{{activityDetail.venueName}}'></infoRow>
     <infoRow title='活动名称' value='{{activityDetail.activityIdName}}'></infoRow>
     <infoRow title='活动时间' value='{{activityDetail.activityTime}}'></infoRow>
-    <infoRow title='所在社区' value='暂无'></infoRow>
-    <infoRow title='活动地点' value='暂无'></infoRow>
-    <infoRow title='活动场馆' value='{{activityDetail.venueName}}'></infoRow>
+    <infoRow title='活动地点' value='{{activityDetail.address}}'></infoRow>
+  
   </view>
 </view>
 <view class="whiteBlock">
   <view class="info-list">
-    <infoRow title='报名要求' value='暂无'></infoRow>
     <infoRow title='名额限制' value='{{activityDetail.activityCount}}人'></infoRow>
-    <infoRow title='已报名人数' value='暂无'></infoRow>
+    <infoRow title='已报名人数' value='{{activityUserNum}}'></infoRow>
   </view>
 </view>
 <view class="whiteBlock">

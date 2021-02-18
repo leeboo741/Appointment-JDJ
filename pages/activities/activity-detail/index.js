@@ -13,6 +13,8 @@ Page({
       joined: null
     },
     activityDetail: {},
+    activityUserNum:0
+
   },
 
   /**
@@ -23,6 +25,7 @@ Page({
       options
     })
     this.getDetail(this.options.id);
+    this.getUserList(this.options.id);
   },
 
   /**
@@ -134,6 +137,15 @@ Page({
           activityDetail: data
         })
       }
+    })
+  },
+  getUserList:function(activityId){
+    let $this = this;
+    httpManager.getUserList(activityId,function(success,data){
+      console.log("人数",data)
+        $this.setData({
+          'activityUserNum':data.length
+        })
     })
   }
 })

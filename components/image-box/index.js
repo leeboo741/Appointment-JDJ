@@ -137,38 +137,36 @@ Component({
     requestUploadFile: function(imgurl){
       let $this = this;
       wx.uploadFile({
-        url: 'https://www.jindingjieorg.cn:9020/api/photoinfo/saveImage',
-        filePath: imgurl,
-        name: 'imgFile',
-        success:function(res){
-          let obj = JSON.parse(res.data)
-          console.log("上传成功",obj.raws);
-          let reimgUrl = 'https://www.jindingjieorg.cn:9020/picture/'+obj.raws;
-          $this.data.imageList = $this.data.imageList.concat(reimgUrl); //回显的图片列表
-            $this.setData({
-              imageList: $this.data.imageList
-            })
-            $this.triggerEvent('upload',obj.raws,{})     //每上传成功一张图抛出
-        },
-        fail:function(err){
+      url: 'https://www.jindingjieorg.cn:9020/api/photoinfo/saveImage',
+      filePath: imgurl,
+      name: 'imgFile',
+      success:function(res){
+        let obj = JSON.parse(res.data)
+        console.log("上传成功",obj.raws);
+        let reimgUrl = 'https://www.jindingjieorg.cn:9020/picture/'+obj.raws;
+        $this.data.imageList = $this.data.imageList.concat(reimgUrl); //回显的图片列表
+          $this.setData({
+            imageList: $this.data.imageList
+          })
+          $this.triggerEvent('upload',obj.raws,{})     //每上传成功一张图抛出
+      },
+      fail:function(err){
 
-        }
+      }
       })
     }
   },
 
   ready:function() {
     var that = this
-    setTimeout(function(){
-      let rate = that.data.circle? 1.0 : 1.3;
-      var query = wx.createSelectorQuery().in(that) //此处多了in(this)
-      query.select(".image-item").boundingClientRect(function(res) {
-        console.log('标签Rect信息',res)
-        that.setData({
-          height: res.width * rate + 'px'
-        })
-      }).exec()
-    },0)
+    let rate = this.data.circle? 1.0 : 1.3;
+    var query = wx.createSelectorQuery().in(this) //此处多了in(this)
+    query.select(".image-content").boundingClientRect(function(res) {
+      console.log(res)
+      that.setData({
+        height: res.width * rate + 'px'
+      })
+    }).exec()
   },
 
 })

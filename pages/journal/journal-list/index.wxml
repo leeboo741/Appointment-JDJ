@@ -6,7 +6,7 @@
     </view>
   </swiper-item>
 </swiper>
-<view style="margin-top:20rpx">
+<view>
 <journalItem wx:for='{{dataSource}}' wx:key='index' data='{{item}}' data-index='{{index}}' bind:like='like' bind:comment='comment'></journalItem>
 </view>
 <pushLogin></pushLogin>

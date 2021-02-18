@@ -94,6 +94,12 @@
         {
           "name": "pages/venues/venues-detail/index",
           "pathName": "pages/venues/venues-detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/venues/venues-detail/index",
+          "pathName": "pages/venues/venues-detail/index",
           "scene": null
         }
       ]

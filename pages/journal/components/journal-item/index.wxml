@@ -11,7 +11,7 @@
   <view class="body">
     <view class="title">{{data.committeeName}}</view>
     <view class="content">{{data.content}}</view>
-
+  
     <imageBox imageList='{{data.pitureUrlsList?data.pitureUrlsList:[]}}'></imageBox>
  
   </view>
